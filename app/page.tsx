@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { ChainDiagram } from "@/components/ChainDiagram";
 import { ModuleStrip } from "@/components/ModuleStrip";
+import { TagGrid } from "@/components/TagGrid";
+import { StatTile } from "@/components/StatTile";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
@@ -21,6 +23,39 @@ const chain1Steps = [
   "Quality identifies the workflow delay",
   "the Manager is alerted",
   "the team resolves it before discharge",
+];
+
+const departments = [
+  "Utilization Management",
+  "Case Management",
+  "Physician Advisors",
+  "Patient Access",
+  "Admitting",
+  "Business Office",
+  "Revenue Cycle",
+  "Authorization Teams",
+  "Denial Management",
+  "Payer Communication",
+];
+
+const consequences = [
+  "Missed admission opportunities",
+  "Preventable denials",
+  "Authorization delays",
+  "Avoidable days",
+  "Underpayments",
+  "Unpaid claims",
+  "Revenue leakage",
+];
+
+const aiCapabilities = [
+  "AI Quality Auditor",
+  "Authorization Assistant",
+  "Payer Communication Assistant",
+  "Contract Intelligence",
+  "Conversational Analytics",
+  "Operational Intelligence",
+  "Workflow Automation",
 ];
 
 const faqs = [
@@ -66,9 +101,8 @@ export default function Home() {
             The Real-Time Mid-Revenue Cycle Operating Platform
           </h1>
           <p className="mt-6 text-body text-slate-600">
-            Ten departments are each responsible for protecting hospital revenue. Their
-            software has never talked to each other — until now. MGear connects every one
-            of them, in real time, while the patient is still admitted.
+            Ten departments protect hospital revenue. Their software has never talked to
+            each other — until now.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="/request-demo">Request Demo</Button>
@@ -88,18 +122,20 @@ export default function Home() {
         <h2 className="text-section font-semibold text-charcoal">
           The problem isn&apos;t visibility
         </h2>
-        <p className="mt-4 text-body text-slate-600">
-          Utilization Management. Case Management. Physician Advisors. Patient Access.
-          Admitting. Business Office. Revenue Cycle. Authorization Teams. Denial
-          Management. Payer Communication. Ten departments, each with a piece of the
-          job, each working from software that doesn&apos;t talk to the others.
+        <p className="mt-4 max-w-2xl text-body text-slate-600">
+          Ten departments, each with a piece of the job, each working from software
+          that doesn&apos;t talk to the others.
         </p>
-        <p className="mt-4 text-body text-slate-600">
-          The result: missed admission opportunities, preventable denials, authorization
-          delays, avoidable days, underpayments, unpaid claims, and revenue that leaks
-          out through the gaps between departments that never see each other&apos;s work.
-        </p>
-        <p className="mt-4 rounded-lg border border-brand/20 bg-[#f2f9f4] px-5 py-4 text-body text-charcoal">
+        <div className="mt-5">
+          <TagGrid items={departments} />
+        </div>
+
+        <p className="mt-8 max-w-2xl text-body text-slate-600">The result:</p>
+        <div className="mt-3">
+          <TagGrid items={consequences} />
+        </div>
+
+        <p className="mt-6 rounded-lg border border-brand/20 bg-[#f2f9f4] px-5 py-4 text-body text-charcoal">
           <strong>The problem is not simply visibility.</strong> The problem is the
           absence of one operational platform coordinating every department
           responsible for protecting revenue <em>while the patient is still admitted.</em>{" "}
@@ -113,23 +149,14 @@ export default function Home() {
         <h2 className="text-section font-semibold text-charcoal">
           One platform. Constant communication.
         </h2>
-        <p className="mt-4 text-body text-slate-600">
-          Every module continuously communicates with every other module. Not a suite
-          of tools that happen to share a login — a single operating platform where
-          something changing in one department automatically reaches the departments it
-          affects, before a person has to notice and forward it.
+        <p className="mt-4 max-w-2xl text-body text-slate-600">
+          Not a suite of tools that happen to share a login — a single operating
+          platform where something changing in one department automatically reaches
+          the departments it affects.
         </p>
         <div className="mt-8">
           <ModuleStrip />
         </div>
-        <p className="mt-8 text-body text-slate-600">
-          An authorization stalls. Payer Communication hears about it the moment it
-          happens — not at the next status meeting. Payor Grid checks that payer&apos;s
-          specific rules automatically. Analytics reflects it immediately. Quality flags
-          the delay as a workflow issue, not just a missed authorization. A manager is
-          alerted. The team fixes it before the patient is discharged, not after the
-          claim is denied.
-        </p>
       </Section>
 
       {/* Financial impact */}
@@ -138,17 +165,13 @@ export default function Home() {
           <div>
             <Eyebrow>Financial Impact</Eyebrow>
             <p className="text-section font-semibold text-charcoal">
-              A behavioral health program that cost{" "}
-              <span className="text-brand">$395K</span> a year returned{" "}
+              A program that cost <span className="text-brand">$395K</span> returned{" "}
               <span className="text-brand">$4.87M</span> net.
             </p>
-            <p className="mt-4 text-body text-slate-600">
-              Admission rate 11% → 16%. Behavioral health denial rate 35% → 0%.
-              Authorization approval rate 100%. Every module on this platform connects
-              to a financial result — increased admissions, reduced avoidable days,
-              reduced preventable denials, recovered underpayments, improved payer
-              compliance.
-            </p>
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <StatTile label="Admission rate" value="11% → 16%" />
+              <StatTile label="Denial rate" value="35% → 0%" />
+            </div>
             <div className="mt-6">
               <Button href="/results" variant="secondary">
                 See the Full Case
@@ -172,17 +195,14 @@ export default function Home() {
         <h2 className="text-section font-semibold text-charcoal">
           AI assists operations. It doesn&apos;t replace judgment.
         </h2>
-        <p className="mt-4 text-body text-slate-600">
-          AI does not replace clinicians or operational staff. AI assists operations.
+        <p className="mt-4 max-w-2xl text-body text-slate-600">
           Humans remain responsible for every clinical and operational decision.
+          Governed — analytics answer inside the hospital&apos;s own permission model,
+          not an open chatbot over the chart.
         </p>
-        <p className="mt-4 text-body text-slate-600">
-          Named capabilities: AI Quality Auditor, Authorization Assistant, Payer
-          Communication Assistant, Contract Intelligence, Conversational Analytics,
-          Operational Intelligence, Workflow Automation. Governed — analytics answer
-          inside the hospital&apos;s own permission model and data boundaries, not an
-          open chatbot over the chart.
-        </p>
+        <div className="mt-5">
+          <TagGrid items={aiCapabilities} tone="brand" />
+        </div>
         <div className="mt-6">
           <Link href="/ai" className="font-medium text-brand hover:text-brand-dark">
             Full detail on AI →

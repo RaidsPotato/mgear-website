@@ -2,9 +2,35 @@ import Image from "next/image";
 import { ReactNode } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
+import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion, type FAQItem } from "@/components/FAQAccordion";
+import {
+  ReceivesIcon,
+  SendsIcon,
+  WorkflowIcon,
+  ValueIcon,
+  FinancialIcon,
+  AIIcon,
+  IntegrationIcon,
+} from "@/components/ModuleIcons";
 
 export type ModuleScreenshot = { src: string; alt: string };
+
+function splitCapabilities(text: string): string[] {
+  return text
+    .split(".")
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+function CardHeading({ icon, children }: { icon: ReactNode; children: ReactNode }) {
+  return (
+    <div className="flex items-center gap-3">
+      {icon}
+      <h2 className="text-section font-semibold text-charcoal">{children}</h2>
+    </div>
+  );
+}
 
 export function ModulePageLayout({
   eyebrow,
@@ -56,13 +82,25 @@ export function ModulePageLayout({
       </Section>
 
       <Section className="border-t border-slate-100" width="wide">
-        <div className="rounded-lg border border-brand/20 bg-[#f2f9f4] px-5 py-4">
-          <p className="text-body text-charcoal">
-            <strong className="font-semibold">Receives:</strong> {receives}
-          </p>
-          <p className="mt-1 text-body text-charcoal">
-            <strong className="font-semibold">Sends:</strong> {sends}
-          </p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex gap-3 rounded-lg border border-brand/20 bg-[#f2f9f4] px-5 py-4">
+            <ReceivesIcon />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+                Receives
+              </p>
+              <p className="mt-1 text-body text-charcoal">{receives}</p>
+            </div>
+          </div>
+          <div className="flex gap-3 rounded-lg border border-brand/20 bg-[#f2f9f4] px-5 py-4">
+            <SendsIcon />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+                Sends
+              </p>
+              <p className="mt-1 text-body text-charcoal">{sends}</p>
+            </div>
+          </div>
         </div>
 
         <h2 className="mt-10 text-section font-semibold text-charcoal">
@@ -71,15 +109,22 @@ export function ModulePageLayout({
         <div className="mt-4 max-w-3xl text-body text-slate-600">{problem}</div>
 
         <h2 className="mt-10 text-section font-semibold text-charcoal">What it does</h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">{whatItDoes}</p>
+        <div className="mt-4">
+          <TagGrid items={splitCapabilities(whatItDoes)} />
+        </div>
       </Section>
 
       <Section className="border-t border-slate-100" width="wide">
-        <h2 className="text-section font-semibold text-charcoal">Operational Workflow</h2>
-        <div className="mt-4 max-w-3xl text-body text-slate-600">{workflow}</div>
-
-        <h2 className="mt-10 text-section font-semibold text-charcoal">Business Value</h2>
-        <div className="mt-4 max-w-3xl text-body text-slate-600">{businessValue}</div>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <CardHeading icon={<WorkflowIcon />}>Operational Workflow</CardHeading>
+            <div className="mt-4 text-body text-slate-600">{workflow}</div>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <CardHeading icon={<ValueIcon />}>Business Value</CardHeading>
+            <div className="mt-4 text-body text-slate-600">{businessValue}</div>
+          </div>
+        </div>
       </Section>
 
       {interactiveDemo && (
@@ -110,24 +155,26 @@ export function ModulePageLayout({
       )}
 
       <Section className="border-t border-slate-100" width="wide">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div>
-            <Eyebrow>Financial Impact</Eyebrow>
-            <div className="mt-3 text-body text-slate-600">{financialImpact}</div>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-xl border border-brand/25 bg-[#f2f9f4] p-6">
+            <CardHeading icon={<FinancialIcon />}>Financial Impact</CardHeading>
+            <div className="mt-4 text-body text-slate-600">{financialImpact}</div>
           </div>
-          <div>
-            <Eyebrow>AI Capabilities</Eyebrow>
-            <div className="mt-3 text-body text-slate-600">{aiCapabilities}</div>
+          <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <CardHeading icon={<AIIcon />}>AI Capabilities</CardHeading>
+            <div className="mt-4 text-body text-slate-600">{aiCapabilities}</div>
           </div>
         </div>
 
-        <div className="mt-10">
-          <Eyebrow>Integration Capabilities</Eyebrow>
-          <div className="mt-3 max-w-3xl text-body text-slate-600">{integrationCapabilities}</div>
+        <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
+          <CardHeading icon={<IntegrationIcon />}>Integration Capabilities</CardHeading>
+          <div className="mt-4 max-w-3xl text-body text-slate-600">
+            {integrationCapabilities}
+          </div>
         </div>
 
         {futureRoadmap && (
-          <div className="mt-10">
+          <div className="mt-6 rounded-xl border border-dashed border-brand/40 bg-brand/5 p-6">
             <Eyebrow>Future Roadmap</Eyebrow>
             <div className="mt-3 max-w-3xl text-body text-slate-600">{futureRoadmap}</div>
           </div>

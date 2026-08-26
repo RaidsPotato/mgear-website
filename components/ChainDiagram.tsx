@@ -305,7 +305,7 @@ export function ChainDiagram({
                   strokeLinecap="butt"
                   strokeLinejoin="round"
                   pathLength={pathLenRef.current[i]}
-                  pathOffset={pathOffRef.current[i]}
+                  {...({ pathOffset: pathOffRef.current[i] } as object)}
                 />
                 <motion.path
                   d={bottomRoute}
@@ -315,7 +315,7 @@ export function ChainDiagram({
                   strokeLinecap="butt"
                   strokeLinejoin="round"
                   pathLength={pathLenRef.current[i]}
-                  pathOffset={pathOffRef.current[i]}
+                  {...({ pathOffset: pathOffRef.current[i] } as object)}
                 />
               </g>
             );

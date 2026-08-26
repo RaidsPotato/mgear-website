@@ -202,7 +202,7 @@ const analyticsFeeders: NodeId[] = [
 
 export function WholeSystemDiagram() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const nodeRefs = useRef<Partial<Record<NodeId, HTMLDivElement | null>>>({});
+  const nodeRefs = useRef<Partial<Record<NodeId, HTMLButtonElement | null>>>({});
   const [rects, setRects] = useState<Partial<Record<NodeId, Rect>> | null>(null);
   const [selected, setSelected] = useState<NodeId | null>(null);
 

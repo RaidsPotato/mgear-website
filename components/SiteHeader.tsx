@@ -10,6 +10,7 @@ import { primaryNav } from "@/lib/nav";
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState<string | null>(null);
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
@@ -78,14 +79,53 @@ export function SiteHeader() {
         <div className="border-t border-slate-200 px-6 py-4 xl:hidden">
           <nav className="flex flex-col gap-1">
             {primaryNav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-md px-2 py-2 text-sm font-medium text-slate-700 hover:text-brand"
-                onClick={() => setMobileOpen(false)}
-              >
-                {item.label}
-              </Link>
+              <div key={item.href}>
+                <div className="flex items-center justify-between">
+                  <Link
+                    href={item.href}
+                    className="flex-1 rounded-md px-2 py-2 text-sm font-medium text-slate-700 hover:text-brand"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                  {item.children && (
+                    <button
+                      type="button"
+                      aria-label={`Toggle ${item.label} submenu`}
+                      onClick={() =>
+                        setMobileSection((prev) => (prev === item.href ? null : item.href))
+                      }
+                      className="p-2 text-slate-500"
+                    >
+                      <svg
+                        width="10"
+                        height="6"
+                        viewBox="0 0 10 6"
+                        className={clsx(
+                          "fill-current transition-transform",
+                          mobileSection === item.href && "rotate-180"
+                        )}
+                      >
+                        <path d="M0 0 L5 6 L10 0 Z" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+                {item.children && mobileSection === item.href && (
+                  <div className="ml-3 flex flex-col gap-1 border-l border-slate-200 pl-3">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="rounded-md px-2 py-2 text-sm text-slate-600 hover:text-brand"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
           <Button href="/request-demo" className="mt-3 w-full">

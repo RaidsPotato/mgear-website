@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/*
+  MGear brand tokens — sourced from 04-BRAND-KIT.md.
+  Website leads brand green + charcoal. Product blue (#1890ff) is
+  deliberately NOT defined here — it only ever appears inside real
+  product screenshots, never as a site UI color.
+*/
+@theme {
+  --font-sans: var(--font-inter), system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /* Brand */
+  --color-brand: #16a34a;
+  --color-brand-dark: #128a3e;
+  --color-charcoal: #25272f;
+
+  /* Surfaces & neutrals (Tailwind slate carries over per brand kit) */
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f8f9fb;
+  --color-foreground: #0f172a;
+
+  /* Semantic — meaning only, never decoration. Always rendered inside
+     the StatusBadge pill component, never as a plain fill or button. */
+  --color-success: #4fb437;
+  --color-danger: #df6060;
+  --color-warning: #ffc53d;
+  --color-info: #40a9ff;
+  --color-resolved: #21d27d;
+  --color-turquoise: #006ba7;
+  --color-regal-blue: #243c5a;
+  --color-muted: #848b92;
+
+  /* Radii — brand kit's four-step scale mapped onto Tailwind's names */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 14px;
+
+  /* Shadows — brand kit specifies blue-tinted inside the product,
+     green-tinted on brand (website) surfaces, same low opacity, never gray. */
+  --shadow-xs: 0 1px 2px rgba(22, 163, 74, 0.07);
+  --shadow-sm: 0 2px 5px rgba(22, 163, 74, 0.07);
+  --shadow-md: 0 4px 10px rgba(22, 163, 74, 0.07);
+  --shadow-lg: 0 10px 15px rgba(22, 163, 74, 0.08);
+  --shadow-xl: 0 20px 25px rgba(22, 163, 74, 0.08);
+  --shadow-2xl: 0 25px 50px rgba(22, 163, 74, 0.09);
+
+  /* Marketing type scale (16-018px body, generous line height — not the
+     product's dense 13px scale). Paired line-heights per Tailwind v4 convention. */
+  --text-hero: 3.5rem;
+  --text-hero--line-height: 1.08;
+  --text-page-title: 2.25rem;
+  --text-page-title--line-height: 1.15;
+  --text-section: 1.625rem;
+  --text-section--line-height: 1.25;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.4;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* Section label: uppercase, letter-spaced — a signature detail carried
+   over from the product per the brand kit. */
+.eyebrow {
+  font-size: var(--text-label);
+  line-height: var(--text-label--line-height);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--color-brand);
+}

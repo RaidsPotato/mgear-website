@@ -145,7 +145,7 @@ export default function ModulesHub() {
           the part a feature list can&apos;t show.
         </p>
 
-        <div className="mt-10 space-y-3">
+        <div className="mt-10 grid gap-4 lg:grid-cols-2">
           {modules.map((m) => (
             <Link
               key={m.href}
@@ -161,8 +161,8 @@ export default function ModulesHub() {
                     <h3 className="font-semibold text-charcoal group-hover:text-brand">
                       {m.name}
                     </h3>
-                    <span className="hidden text-sm text-brand opacity-0 transition-opacity group-hover:opacity-100 sm:block">
-                      Full page →
+                    <span className="text-sm text-brand opacity-0 transition-opacity group-hover:opacity-100">
+                      →
                     </span>
                   </div>
                   <p className="mt-2 text-sm text-slate-600">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
+import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
@@ -57,11 +58,13 @@ export default function PricingPage() {
         </p>
 
         <h2 className="mt-10 text-section font-semibold text-charcoal">What's typically included</h2>
+        <div className="mt-4">
+          <TagGrid items={["EHR integration (FHIR/HL7)", "Implementation support", "Ongoing support"]} tone="brand" />
+        </div>
         <p className="mt-4 max-w-3xl text-body text-slate-600">
-          Integration with your EHR via FHIR and HL7, implementation support to get each
-          licensed module live, and ongoing support once you&apos;re running. Exact
-          inclusions and what counts as additional will be confirmed as pricing is
-          finalized — see Implementation for the outline of how a rollout is structured.
+          Exact inclusions and what counts as additional will be confirmed as pricing
+          is finalized — see Implementation for the outline of how a rollout is
+          structured.
         </p>
       </Section>
 

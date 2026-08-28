@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
+import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
@@ -83,14 +84,12 @@ export default function SecurityPage() {
       <Section className="border-t border-slate-100" width="wide">
         <h2 className="text-section font-semibold text-charcoal">Enterprise security posture</h2>
         <p className="mt-4 max-w-3xl text-body text-slate-600">
-          <strong className="text-charcoal">HIPAA architecture</strong>,{" "}
-          <strong className="text-charcoal">enterprise security</strong>,{" "}
-          <strong className="text-charcoal">cloud architecture</strong>,{" "}
-          <strong className="text-charcoal">multi-hospital SaaS deployment</strong>, and{" "}
-          <strong className="text-charcoal">enterprise scalability</strong> are all
-          stated platform capabilities, alongside the role-based access and audit
+          All stated platform capabilities, alongside the role-based access and audit
           logging already demonstrable today.
         </p>
+        <div className="mt-4">
+          <TagGrid items={["HIPAA architecture", "Enterprise security", "Cloud architecture", "Multi-hospital SaaS deployment", "Enterprise scalability"]} />
+        </div>
       </Section>
 
       <Section className="border-t border-slate-100" width="wide">

@@ -75,19 +75,19 @@ export default function IndustriesHub() {
       </Section>
 
       <Section className="border-t border-slate-100" width="wide">
-        <div className="space-y-4">
+        <div className="grid gap-4 sm:grid-cols-2">
           {industries.map((s) => (
             <Link
               key={s.href}
               href={s.href}
-              className="group block rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-xs transition-colors hover:border-brand/40"
+              className="group flex flex-col rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-xs transition-colors hover:border-brand/40"
             >
               <div className="flex items-center justify-between gap-4">
                 <h3 className="font-semibold text-charcoal group-hover:text-brand">
                   {s.name}
                 </h3>
-                <span className="hidden text-sm text-brand opacity-0 transition-opacity group-hover:opacity-100 sm:block">
-                  Full page →
+                <span className="text-brand opacity-0 transition-opacity group-hover:opacity-100">
+                  →
                 </span>
               </div>
               <p className="mt-2 text-sm text-slate-600">{s.desc}</p>

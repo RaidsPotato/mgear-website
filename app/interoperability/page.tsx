@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
+import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
@@ -50,16 +51,17 @@ export default function InteroperabilityPage() {
       <Section className="border-t border-slate-100" width="wide">
         <h2 className="text-section font-semibold text-charcoal">EHR connectivity</h2>
         <p className="mt-4 max-w-3xl text-body text-slate-600">
-          Clinical and administrative data flows in continuously via{" "}
-          <strong className="text-charcoal">FHIR</strong> and{" "}
-          <strong className="text-charcoal">HL7</strong>, with{" "}
-          <strong className="text-charcoal">SMART on FHIR</strong> support, from{" "}
-          <strong className="text-charcoal">Epic, Cerner, Meditech, Paragon,</strong> and{" "}
-          <strong className="text-charcoal">Health Samurai Aidbox</strong> — feeding
-          every module on the platform in real time. Where a direct interface isn&apos;t
-          available, AI-assisted ingestion and RPA bring the data in anyway, rather than
-          leaving a gap in the feed that every downstream chain depends on.
+          Clinical and administrative data flows in continuously, feeding every module
+          on the platform in real time. Where a direct interface isn&apos;t available,
+          AI-assisted ingestion and RPA bring the data in anyway, rather than leaving a
+          gap in the feed that every downstream chain depends on.
         </p>
+        <div className="mt-4">
+          <TagGrid
+            items={["FHIR", "HL7", "SMART on FHIR", "Epic", "Cerner", "Meditech", "Paragon", "Health Samurai Aidbox"]}
+            tone="brand"
+          />
+        </div>
       </Section>
 
       <Section className="border-t border-slate-100" width="wide">
@@ -86,14 +88,13 @@ export default function InteroperabilityPage() {
       <Section className="border-t border-slate-100" width="wide">
         <h2 className="text-section font-semibold text-charcoal">Standards and readiness</h2>
         <p className="mt-4 max-w-3xl text-body text-slate-600">
-          <strong className="text-charcoal">CMS-0057-F</strong> readiness,{" "}
-          <strong className="text-charcoal">FHIR</strong> interoperability,{" "}
-          <strong className="text-charcoal">HL7</strong> interoperability,{" "}
-          <strong className="text-charcoal">SMART on FHIR</strong>, and payer
-          connectivity are all stated platform capabilities. CMS-0057-F — the federal
-          prior-authorization interoperability rule — applies directly to Authorization
-          Management&apos;s function.
+          All stated platform capabilities. CMS-0057-F — the federal prior-authorization
+          interoperability rule — applies directly to Authorization Management&apos;s
+          function.
         </p>
+        <div className="mt-4">
+          <TagGrid items={["CMS-0057-F readiness", "FHIR interoperability", "HL7 interoperability", "SMART on FHIR", "Payer connectivity"]} />
+        </div>
       </Section>
 
       <Section className="border-t border-slate-100" width="wide">

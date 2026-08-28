@@ -6,7 +6,7 @@ import clsx from "clsx";
 export type FAQItem = { question: string; answer: string };
 
 export function FAQAccordion({ items }: { items: FAQItem[] }) {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
     <div className="divide-y divide-slate-200 border-t border-b border-slate-200">

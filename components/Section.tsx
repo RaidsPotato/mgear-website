@@ -13,7 +13,7 @@ export function Section({
   const maxWidth =
     width === "narrow" ? "max-w-3xl" : width === "wide" ? "max-w-7xl" : "max-w-5xl";
   return (
-    <section className={clsx("mx-auto px-6 py-16 sm:py-20", maxWidth, className)}>
+    <section className={clsx("mx-auto px-6 py-10 sm:py-14", maxWidth, className)}>
       {children}
     </section>
   );

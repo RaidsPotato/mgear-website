@@ -57,20 +57,18 @@ export default function CompanyPage() {
           still admitted, not reporting what happened after discharge.
         </p>
 
-        <h2 className="mt-10 text-section font-semibold text-charcoal">Leadership</h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
-          Leadership names and titles to be added.
-        </p>
-
-        <h2 className="mt-10 text-section font-semibold text-charcoal">Headquarters & founding</h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
-          Founding date, headquarters, and the founding story to be added.
-        </p>
-
-        <h2 className="mt-10 text-section font-semibold text-charcoal">Team</h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
-          Team size to be added.
-        </p>
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          {[
+            ["Leadership", "Names and titles to be added."],
+            ["Headquarters & Founding", "Founding date, location, and story to be added."],
+            ["Team", "Team size to be added."],
+          ].map(([title, desc]) => (
+            <div key={title} className="rounded-xl border border-dashed border-slate-300 bg-surface-alt p-5">
+              <h3 className="font-semibold text-charcoal">{title}</h3>
+              <p className="mt-2 text-sm text-slate-500">{desc}</p>
+            </div>
+          ))}
+        </div>
       </Section>
 
       <Section className="border-t border-slate-100" width="narrow">

@@ -4,6 +4,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { WholeSystemDiagram } from "@/components/WholeSystemDiagram";
 import { ChainExplorer } from "@/components/ChainExplorer";
 import { DenialROICalculator } from "@/components/DenialROICalculator";
+import { StatTile } from "@/components/StatTile";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
@@ -183,10 +184,13 @@ export default function PlatformOverview() {
             </p>
             <p className="mt-4 text-body text-slate-600">
               At the platform level, the same coordination pattern is what produces the
-              outcome on the Results page: a program that cost $395K returned $4.87M
-              net. That&apos;s not a different mechanism — it&apos;s this same chain, run
-              continuously, across a whole program.
+              outcome on the Results page — not a different mechanism, this same chain,
+              run continuously, across a whole program.
             </p>
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <StatTile label="Annual program cost" value="$395K" />
+              <StatTile label="Net annual impact" value="$4.87M" />
+            </div>
             <div className="mt-6">
               <Button href="/results" variant="secondary">
                 See the Full Case

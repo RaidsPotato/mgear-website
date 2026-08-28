@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
 import { TagGrid } from "@/components/TagGrid";
@@ -95,7 +95,7 @@ export default function SecurityPage() {
       <Section className="border-t border-slate-100" width="wide">
         <div className="grid gap-6 sm:grid-cols-2">
           <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
-            <Image
+            <ZoomableImage
               src="/screenshots/plat-02-users.png"
               alt="MGear role-based access — users and roles"
               width={2000}
@@ -104,7 +104,7 @@ export default function SecurityPage() {
             />
           </div>
           <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
-            <Image
+            <ZoomableImage
               src="/screenshots/plat-03-activity.png"
               alt="MGear audit logging — activity log"
               width={2000}

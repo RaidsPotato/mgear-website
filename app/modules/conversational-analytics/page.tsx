@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section } from "@/components/Section";
 import { ModulePageLayout } from "@/components/ModulePageLayout";
 
@@ -86,7 +86,7 @@ export default function Page() {
       />
       <Section width="wide" className="border-t border-slate-100">
         <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
-          <Image
+          <ZoomableImage
             src="/screenshots/analytics-01-executive-dashboard.png"
             alt="MGear analytics hub — the governed data foundation this module's natural-language layer sits on top of"
             width={2000}

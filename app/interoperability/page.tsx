@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
 import { TagGrid } from "@/components/TagGrid";
@@ -99,7 +99,7 @@ export default function InteroperabilityPage() {
 
       <Section className="border-t border-slate-100" width="wide">
         <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
-          <Image
+          <ZoomableImage
             src="/screenshots/payer-01-payer-grid.png"
             alt="MGear Payor Grid — payer rules and requirements"
             width={2000}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
@@ -182,7 +182,7 @@ export default function ModulesHub() {
 
       <Section className="border-t border-slate-100" width="wide">
         <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
-          <Image
+          <ZoomableImage
             src="/screenshots/auth-01-authorizations.png"
             alt="MGear authorization workspace — one of the eleven connected modules, live"
             width={2000}

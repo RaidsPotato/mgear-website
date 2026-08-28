@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { ReactNode } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
 import { TagGrid } from "@/components/TagGrid";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { FAQAccordion, type FAQItem } from "@/components/FAQAccordion";
 import {
   ReceivesIcon,
@@ -141,7 +141,7 @@ export function ModulePageLayout({
                 key={s.src}
                 className="overflow-hidden rounded-xl border border-slate-200 shadow-md"
               >
-                <Image
+                <ZoomableImage
                   src={s.src}
                   alt={s.alt}
                   width={2000}

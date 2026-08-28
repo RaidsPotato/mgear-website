@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 type Align = "left" | "center" | "right";
 type VAlign = "up" | "down";
@@ -89,7 +89,7 @@ export function ScreenshotHotspots() {
   return (
     <div className="relative">
       <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
-        <Image
+        <ZoomableImage
           src="/screenshots/analytics-05-financial.png"
           alt="MGear financial analytics — denied dollars, underpayment variance, and net collection rate by payer"
           width={2000}

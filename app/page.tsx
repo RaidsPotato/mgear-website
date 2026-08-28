@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section, Eyebrow } from "@/components/Section";
 import { ChainDiagram } from "@/components/ChainDiagram";
 import { ModuleStrip } from "@/components/ModuleStrip";
@@ -179,7 +179,7 @@ export default function Home() {
             </div>
           </div>
           <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
-            <Image
+            <ZoomableImage
               src="/screenshots/analytics-05-financial.png"
               alt="MGear financial analytics — denied dollars, underpayment variance, and net collection rate by payer"
               width={2000}

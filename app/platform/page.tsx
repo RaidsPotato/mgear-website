@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section, Eyebrow } from "@/components/Section";
 import { WholeSystemDiagram } from "@/components/WholeSystemDiagram";
 import { ChainExplorer } from "@/components/ChainExplorer";
@@ -198,7 +198,7 @@ export default function PlatformOverview() {
             </div>
           </div>
           <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
-            <Image
+            <ZoomableImage
               src="/screenshots/um-04-live-ed-audit.png"
               alt="MGear live ED audit view — real-time proof the chain resolves before discharge"
               width={2000}

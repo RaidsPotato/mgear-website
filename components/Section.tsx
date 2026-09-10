@@ -19,6 +19,12 @@ export function Section({
   );
 }
 
-export function Eyebrow({ children }: { children: ReactNode }) {
-  return <p className="eyebrow mb-3">{children}</p>;
+export function Eyebrow({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <p className={clsx("eyebrow mb-3", className)}>{children}</p>;
 }

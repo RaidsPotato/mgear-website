@@ -4,6 +4,7 @@ import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "MGear Modules — Eleven Connected Hospital Revenue Cycle Modules",
@@ -146,50 +147,54 @@ export default function ModulesHub() {
         </p>
 
         <div className="mt-10 grid gap-4 lg:grid-cols-2">
-          {modules.map((m) => (
-            <Link
-              key={m.href}
-              href={m.href}
-              className="group block rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-xs transition-colors hover:border-brand/40"
-            >
-              <div className="flex items-start gap-4">
-                <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
-                  {m.n}
-                </span>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between gap-4">
-                    <h3 className="font-semibold text-charcoal group-hover:text-brand">
-                      {m.name}
-                    </h3>
-                    <span className="text-sm text-brand opacity-0 transition-opacity group-hover:opacity-100">
-                      →
-                    </span>
+          {modules.map((m, i) => (
+            <Reveal key={m.href} delay={(i % 2) * 0.08} className="h-full">
+              <Link
+                href={m.href}
+                className="group flex h-full rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-xs transition-colors hover:border-brand/40"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
+                    {m.n}
+                  </span>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between gap-4">
+                      <h3 className="font-semibold text-charcoal group-hover:text-brand">
+                        {m.name}
+                      </h3>
+                      <span className="text-sm text-brand opacity-40 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
+                        &rarr;
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm text-slate-600">
+                      <strong className="font-medium text-charcoal">Receives:</strong>{" "}
+                      {m.receives}
+                    </p>
+                    <p className="mt-1 text-sm text-slate-600">
+                      <strong className="font-medium text-charcoal">Sends:</strong> {m.sends}
+                    </p>
+                    <p className="mt-2 text-sm text-slate-500">{m.desc}</p>
                   </div>
-                  <p className="mt-2 text-sm text-slate-600">
-                    <strong className="font-medium text-charcoal">Receives:</strong>{" "}
-                    {m.receives}
-                  </p>
-                  <p className="mt-1 text-sm text-slate-600">
-                    <strong className="font-medium text-charcoal">Sends:</strong> {m.sends}
-                  </p>
-                  <p className="mt-2 text-sm text-slate-500">{m.desc}</p>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </Section>
 
       <Section className="border-t border-slate-100" width="wide">
-        <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
-          <ZoomableImage
-            src="/screenshots/auth-01-authorizations.png"
-            alt="MGear authorization workspace — one of the eleven connected modules, live"
-            width={2000}
-            height={1250}
-            className="h-auto w-full"
-          />
-        </div>
+        <Eyebrow>One Module, Live</Eyebrow>
+        <Reveal className="mt-4">
+          <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
+            <ZoomableImage
+              src="/screenshots/auth-01-authorizations.png"
+              alt="MGear authorization workspace — one of the eleven connected modules, live"
+              width={2000}
+              height={1250}
+              className="h-auto w-full"
+            />
+          </div>
+        </Reveal>
       </Section>
 
       <Section className="border-t border-slate-100" width="narrow">

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { ZoomableImage } from "@/components/ZoomableImage";
-import { Section, Eyebrow } from "@/components/Section";
-import { Button } from "@/components/Button";
+import { Section } from "@/components/Section";
+import { SectionHeader } from "@/components/SectionHeader";
+import { PageHero } from "@/components/PageHero";
+import { ClosingCTA } from "@/components/ModulePageLayout";
 import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
@@ -33,30 +35,19 @@ const faqs = [
 export default function InteroperabilityPage() {
   return (
     <>
-      <Section width="wide" className="pt-14 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>Interoperability</Eyebrow>
-          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
-            The Data Layer Underneath Every Chain on This Site
-          </h1>
-          <p className="mt-6 text-body text-slate-600">
-            None of the connection chains described elsewhere on this site work without
-            a continuous, reliable feed of clinical, administrative, and payer data.
-            This is how that feed reaches the platform, and how the platform reaches
-            back out.
-          </p>
-        </div>
-      </Section>
+      <PageHero
+        eyebrow="Interoperability"
+        title="The Data Layer Underneath Every Chain on This Site"
+        lead="None of the connection chains described elsewhere on this site work without a continuous, reliable feed of clinical, administrative, and payer data. This is how that feed reaches the platform, and how the platform reaches back out."
+      />
 
-      <Section className="border-t border-slate-100" width="wide">
-        <h2 className="text-section font-semibold text-charcoal">EHR connectivity</h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
-          Clinical and administrative data flows in continuously, feeding every module
-          on the platform in real time. Where a direct interface isn&apos;t available,
-          AI-assisted ingestion and RPA bring the data in anyway, rather than leaving a
-          gap in the feed that every downstream chain depends on.
-        </p>
-        <div className="mt-4">
+      <Section width="wide">
+        <SectionHeader
+          eyebrow="EHR Connectivity"
+          heading="Data flows in continuously"
+          lead="Clinical and administrative data feeds every module on the platform in real time. Where a direct interface isn't available, AI-assisted ingestion and RPA bring the data in anyway, rather than leaving a gap in the feed that every downstream chain depends on."
+        />
+        <div className="mt-8">
           <TagGrid
             items={["FHIR", "HL7", "SMART on FHIR", "Epic", "Cerner", "Meditech", "Paragon", "Health Samurai Aidbox"]}
             tone="brand"
@@ -64,11 +55,12 @@ export default function InteroperabilityPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-slate-100" width="wide">
-        <h2 className="text-section font-semibold text-charcoal">
-          The payer's own rules police the workflow
-        </h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
+      <Section width="wide" tone="alt">
+        <SectionHeader
+          eyebrow="Rules Engine"
+          heading="The payer's own rules police the workflow"
+        />
+        <p className="mt-6 max-w-3xl text-body text-slate-600">
           Payor Grid holds each payer&apos;s rules — notification windows, documentation
           requirements, submission endpoints, contacts. A rules engine watches the
           actual work against those rules continuously, and the moment work departs
@@ -85,20 +77,20 @@ export default function InteroperabilityPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-slate-100" width="wide">
-        <h2 className="text-section font-semibold text-charcoal">Standards and readiness</h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
-          All stated platform capabilities. CMS-0057-F — the federal prior-authorization
-          interoperability rule — applies directly to Authorization Management&apos;s
-          function.
-        </p>
-        <div className="mt-4">
+      <Section width="wide">
+        <SectionHeader
+          eyebrow="Standards & Readiness"
+          heading="Standards and readiness"
+          lead="All stated platform capabilities. CMS-0057-F — the federal prior-authorization interoperability rule — applies directly to Authorization Management's function."
+        />
+        <div className="mt-8">
           <TagGrid items={["CMS-0057-F readiness", "FHIR interoperability", "HL7 interoperability", "SMART on FHIR", "Payer connectivity"]} />
         </div>
       </Section>
 
-      <Section className="border-t border-slate-100" width="wide">
-        <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
+      <Section width="wide" tone="alt">
+        <SectionHeader eyebrow="The Product" heading="Payor Grid, captured today" />
+        <div className="mt-8 overflow-hidden rounded-xl border border-slate-200 shadow-md">
           <ZoomableImage
             src="/screenshots/payer-01-payer-grid.png"
             alt="MGear Payor Grid — payer rules and requirements"
@@ -109,28 +101,15 @@ export default function InteroperabilityPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-slate-100" width="narrow">
-        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
+      <Section width="narrow" divide>
+        <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <Section width="wide" className="border-t border-slate-100">
-        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
-          <h2 className="text-section font-semibold text-white">
-            See how the data reaches every module.
-          </h2>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/request-demo">Request Demo</Button>
-            <Button
-              href="/modules/emr-integration"
-              variant="secondary"
-              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
-            >
-              EMR Integration Module
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <ClosingCTA
+        headline="See how the data reaches every module."
+        secondary={{ label: "EMR Integration Module", href: "/modules/emr-integration" }}
+      />
     </>
   );
 }

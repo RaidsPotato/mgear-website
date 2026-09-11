@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 import { Section, Eyebrow } from "@/components/Section";
+import { SectionHeader } from "@/components/SectionHeader";
+import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/Button";
 import { TagGrid } from "@/components/TagGrid";
 import { ZoomableImage } from "@/components/ZoomableImage";
@@ -24,11 +26,28 @@ function splitCapabilities(text: string): string[] {
     .filter(Boolean);
 }
 
-function CardHeading({ icon, children }: { icon: ReactNode; children: ReactNode }) {
+function Card({
+  icon,
+  title,
+  children,
+  accent = false,
+}: {
+  icon: ReactNode;
+  title: string;
+  children: ReactNode;
+  accent?: boolean;
+}) {
   return (
-    <div className="flex items-center gap-3">
-      {icon}
-      <h2 className="text-section font-semibold text-charcoal">{children}</h2>
+    <div
+      className={`h-full rounded-xl border p-6 shadow-sm ${
+        accent ? "border-brand/25 bg-[#f2f9f4]" : "border-slate-200 bg-white"
+      }`}
+    >
+      <div className="flex items-center gap-3">
+        {icon}
+        <h3 className="text-lg font-semibold text-charcoal">{title}</h3>
+      </div>
+      <div className="mt-4 text-body text-slate-600">{children}</div>
     </div>
   );
 }
@@ -72,22 +91,17 @@ export function ModulePageLayout({
 }) {
   return (
     <>
-      <Section width="wide" className="pt-14 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
-            {headline}
-          </h1>
-          <p className="mt-6 text-body text-slate-600">{subheadline}</p>
-        </div>
-      </Section>
+      <PageHero eyebrow={eyebrow} title={headline} lead={subheadline} />
 
       {/* How this module connects — the first screen, per 01-PRODUCT-TRUTH.md */}
-      <Section className="border-t border-slate-100" width="wide">
-        <Eyebrow>How This Module Connects</Eyebrow>
-        <div className="mt-4 grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">
+      <Section width="wide">
+        <SectionHeader
+          eyebrow="How This Module Connects"
+          heading="Nothing here happens in isolation"
+        />
+        <div className="mt-8 grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">
           <Reveal className="h-full">
-            <div className="flex h-full gap-3 rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5">
+            <div className="flex h-full gap-3 rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5 shadow-sm">
               <ReceivesIcon />
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-brand">
@@ -115,7 +129,7 @@ export function ModulePageLayout({
           </div>
 
           <Reveal delay={0.1} className="h-full">
-            <div className="flex h-full gap-3 rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5">
+            <div className="flex h-full gap-3 rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5 shadow-sm">
               <SendsIcon />
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-brand">
@@ -126,44 +140,53 @@ export function ModulePageLayout({
             </div>
           </Reveal>
         </div>
+      </Section>
 
-        <Eyebrow className="mt-12">The Problem It Solves</Eyebrow>
+      <Section width="wide" tone="alt">
+        <SectionHeader
+          eyebrow="The Problem It Solves"
+          heading="Why this module exists"
+        />
         <Reveal>
-          <div className="mt-3 max-w-3xl text-body text-slate-600">{problem}</div>
+          <div className="mt-4 max-w-3xl text-body text-slate-600">{problem}</div>
         </Reveal>
 
-        <Eyebrow className="mt-12">What It Does</Eyebrow>
+        <Eyebrow className="mt-14">What It Does</Eyebrow>
         <Reveal className="mt-3">
           <TagGrid items={splitCapabilities(whatItDoes)} />
         </Reveal>
       </Section>
 
-      <Section className="border-t border-slate-100" width="wide">
-        <div className="grid gap-6 lg:grid-cols-2">
+      <Section width="wide">
+        <SectionHeader eyebrow="In Practice" heading="How the work actually runs" />
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
           <Reveal className="h-full">
-            <div className="h-full rounded-xl border border-slate-200 bg-white p-6">
-              <CardHeading icon={<WorkflowIcon />}>Operational Workflow</CardHeading>
-              <div className="mt-4 text-body text-slate-600">{workflow}</div>
-            </div>
+            <Card icon={<WorkflowIcon />} title="Operational Workflow">
+              {workflow}
+            </Card>
           </Reveal>
           <Reveal delay={0.1} className="h-full">
-            <div className="h-full rounded-xl border border-slate-200 bg-white p-6">
-              <CardHeading icon={<ValueIcon />}>Business Value</CardHeading>
-              <div className="mt-4 text-body text-slate-600">{businessValue}</div>
-            </div>
+            <Card icon={<ValueIcon />} title="Business Value">
+              {businessValue}
+            </Card>
           </Reveal>
         </div>
       </Section>
 
       {interactiveDemo && (
-        <Section className="border-t border-slate-100" width="wide">
+        <Section width="wide" tone="alt">
           {interactiveDemo}
         </Section>
       )}
 
       {screenshots.length > 0 && (
-        <Section className="border-t border-slate-100" width="wide">
-          <div className={`grid gap-6 ${screenshots.length > 1 ? "sm:grid-cols-2" : ""}`}>
+        <Section width="wide" tone={interactiveDemo ? "default" : "alt"}>
+          <SectionHeader eyebrow="The Product" heading="Real screens, captured today" />
+          <div
+            className={`mt-8 grid gap-6 ${
+              screenshots.length > 1 ? "sm:grid-cols-2" : ""
+            }`}
+          >
             {screenshots.map((s, i) => (
               <Reveal key={s.src} delay={i * 0.08}>
                 <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
@@ -181,29 +204,38 @@ export function ModulePageLayout({
         </Section>
       )}
 
-      <Section className="border-t border-slate-100" width="wide">
-        <Eyebrow>Impact</Eyebrow>
-        <div className="mt-4 grid gap-6 lg:grid-cols-2">
+      <Section
+        width="wide"
+        tone={
+          (interactiveDemo && screenshots.length > 0) ||
+          (!interactiveDemo && screenshots.length === 0)
+            ? "alt"
+            : "default"
+        }
+      >
+        <SectionHeader
+          eyebrow="Impact"
+          heading="What it earns or protects"
+          lead="Every feature here ties to a financial outcome — that pairing is the point."
+        />
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
           <Reveal className="h-full">
-            <div className="h-full rounded-xl border border-brand/25 bg-[#f2f9f4] p-6">
-              <CardHeading icon={<FinancialIcon />}>Financial Impact</CardHeading>
-              <div className="mt-4 text-body text-slate-600">{financialImpact}</div>
-            </div>
+            <Card icon={<FinancialIcon />} title="Financial Impact" accent>
+              {financialImpact}
+            </Card>
           </Reveal>
           <Reveal delay={0.1} className="h-full">
-            <div className="h-full rounded-xl border border-slate-200 bg-white p-6">
-              <CardHeading icon={<AIIcon />}>AI Capabilities</CardHeading>
-              <div className="mt-4 text-body text-slate-600">{aiCapabilities}</div>
-            </div>
+            <Card icon={<AIIcon />} title="AI Capabilities">
+              {aiCapabilities}
+            </Card>
           </Reveal>
         </div>
 
         <Reveal>
-          <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
-            <CardHeading icon={<IntegrationIcon />}>Integration Capabilities</CardHeading>
-            <div className="mt-4 max-w-3xl text-body text-slate-600">
-              {integrationCapabilities}
-            </div>
+          <div className="mt-6">
+            <Card icon={<IntegrationIcon />} title="Integration Capabilities">
+              <div className="max-w-3xl">{integrationCapabilities}</div>
+            </Card>
           </div>
         </Reveal>
 
@@ -211,32 +243,51 @@ export function ModulePageLayout({
           <Reveal>
             <div className="mt-6 rounded-xl border border-dashed border-brand/40 bg-brand/5 p-6">
               <Eyebrow>Future Roadmap</Eyebrow>
-              <div className="mt-3 max-w-3xl text-body text-slate-600">{futureRoadmap}</div>
+              <div className="mt-3 max-w-3xl text-body text-slate-600">
+                {futureRoadmap}
+              </div>
             </div>
           </Reveal>
         )}
       </Section>
 
-      <Section className="border-t border-slate-100" width="narrow">
-        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
+      <Section width="narrow" divide>
+        <h2 className="mb-8 text-section font-semibold text-charcoal">
+          Frequently asked
+        </h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <Section width="wide" className="border-t border-slate-100">
-        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
-          <h2 className="text-section font-semibold text-white">{closingHeadline}</h2>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/request-demo">Request Demo</Button>
-            <Button
-              href="/platform"
-              variant="secondary"
-              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
-            >
-              See How It Works
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <ClosingCTA headline={closingHeadline} />
     </>
+  );
+}
+
+export function ClosingCTA({
+  headline,
+  lead,
+  secondary = { label: "See How It Works", href: "/platform" },
+}: {
+  headline: string;
+  lead?: string;
+  secondary?: { label: string; href: string };
+}) {
+  return (
+    <Section width="wide" tone="dark">
+      <div className="mx-auto max-w-2xl text-center">
+        <h2 className="text-display font-semibold text-white">{headline}</h2>
+        {lead && <p className="mt-4 text-lead text-slate-300">{lead}</p>}
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Button href="/request-demo">Request Demo</Button>
+          <Button
+            href={secondary.href}
+            variant="secondary"
+            className="!border-slate-500 !bg-transparent !text-white hover:!border-white"
+          >
+            {secondary.label}
+          </Button>
+        </div>
+      </div>
+    </Section>
   );
 }

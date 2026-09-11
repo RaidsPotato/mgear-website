@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ZoomableImage } from "@/components/ZoomableImage";
-import { Section, Eyebrow } from "@/components/Section";
-import { Button } from "@/components/Button";
+import { Section } from "@/components/Section";
+import { SectionHeader } from "@/components/SectionHeader";
+import { PageHero } from "@/components/PageHero";
+import { ClosingCTA } from "@/components/ModulePageLayout";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { Reveal } from "@/components/Reveal";
 
@@ -125,21 +127,14 @@ const faqs = [
 export default function ModulesHub() {
   return (
     <>
-      <Section width="wide" className="pt-14 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>The Eleven Modules</Eyebrow>
-          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
-            Eleven Modules. One Continuous System.
-          </h1>
-          <p className="mt-6 text-body text-slate-600">
-            Each module does real work on its own. None of them work alone — every one
-            receives something from another module, and sends something to the next.
-          </p>
-        </div>
-      </Section>
+      <PageHero
+        eyebrow="The Eleven Modules"
+        title="Eleven Modules. One Continuous System."
+        lead="Each module does real work on its own. None of them work alone — every one receives something from another module, and sends something to the next."
+      />
 
-      <Section className="border-t border-slate-100" width="wide">
-        <p className="max-w-3xl text-body text-slate-600">
+      <Section width="wide">
+        <p className="max-w-3xl text-lead text-slate-600">
           Every department listed below already exists in most hospitals in some form.
           What doesn&apos;t exist elsewhere is what happens between them. Before reading
           what each module contains, read what moves through it — because that&apos;s
@@ -151,7 +146,7 @@ export default function ModulesHub() {
             <Reveal key={m.href} delay={(i % 2) * 0.08} className="h-full">
               <Link
                 href={m.href}
-                className="group flex h-full rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-xs transition-colors hover:border-brand/40"
+                className="group flex h-full rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-sm transition-colors hover:border-brand/40 hover:shadow-md"
               >
                 <div className="flex items-start gap-4">
                   <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
@@ -182,9 +177,9 @@ export default function ModulesHub() {
         </div>
       </Section>
 
-      <Section className="border-t border-slate-100" width="wide">
-        <Eyebrow>One Module, Live</Eyebrow>
-        <Reveal className="mt-4">
+      <Section width="wide" tone="alt">
+        <SectionHeader eyebrow="One Module, Live" heading="Not a mockup — a real workspace" />
+        <Reveal className="mt-8">
           <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
             <ZoomableImage
               src="/screenshots/auth-01-authorizations.png"
@@ -197,28 +192,12 @@ export default function ModulesHub() {
         </Reveal>
       </Section>
 
-      <Section className="border-t border-slate-100" width="narrow">
-        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
+      <Section width="narrow" divide>
+        <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <Section width="wide" className="border-t border-slate-100">
-        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
-          <h2 className="text-section font-semibold text-white">
-            See the connection, not a slide deck.
-          </h2>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/request-demo">Request Demo</Button>
-            <Button
-              href="/platform"
-              variant="secondary"
-              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
-            >
-              See How It Works
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <ClosingCTA headline="See the connection, not a slide deck." />
     </>
   );
 }

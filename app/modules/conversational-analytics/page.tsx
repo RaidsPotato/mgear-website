@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section } from "@/components/Section";
+import { SectionHeader } from "@/components/SectionHeader";
 import { ModulePageLayout } from "@/components/ModulePageLayout";
 
 export const metadata: Metadata = {
@@ -12,14 +13,13 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Section width="wide" className="pb-0 pt-8">
-        <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
+      <div className="bg-amber-50">
+        <div className="mx-auto max-w-7xl px-6 py-3 text-sm text-amber-900">
           This module&apos;s natural-language question-answering feature is being built
           ahead of go-to-market. This page is written present-tense per product
-          leadership&apos;s ruling — and now doubles as the specification for that
-          build.
+          leadership&apos;s ruling — and now doubles as the specification for that build.
         </div>
-      </Section>
+      </div>
       <ModulePageLayout
         eyebrow="Module — Conversational Analytics"
         headline="One Question. One Governed Answer. One Number Everywhere Else Agrees With."
@@ -84,8 +84,13 @@ export default function Page() {
           },
         ]}
       />
-      <Section width="wide" className="border-t border-slate-100">
-        <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
+      <Section width="wide" tone="alt" divide>
+        <SectionHeader
+          eyebrow="The Product"
+          heading="The governed data foundation, captured today"
+          lead="The analytics hub shown below is real and captured today — the natural-language question layer itself isn't built yet."
+        />
+        <div className="mt-8 overflow-hidden rounded-xl border border-slate-200 shadow-md">
           <ZoomableImage
             src="/screenshots/analytics-01-executive-dashboard.png"
             alt="MGear analytics hub — the governed data foundation this module's natural-language layer sits on top of"
@@ -94,10 +99,6 @@ export default function Page() {
             className="h-auto w-full"
           />
         </div>
-        <p className="mt-3 text-sm text-slate-500">
-          The analytics hub shown above is real and captured today — the natural-language
-          question layer itself isn&apos;t built yet.
-        </p>
       </Section>
     </>
   );

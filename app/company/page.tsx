@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Section, Eyebrow } from "@/components/Section";
+import { Section } from "@/components/Section";
+import { SectionHeader } from "@/components/SectionHeader";
+import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
@@ -27,20 +29,13 @@ const faqs = [
 export default function CompanyPage() {
   return (
     <>
-      <Section width="wide" className="pt-14 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>Company</Eyebrow>
-          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
-            About MGear
-          </h1>
-          <p className="mt-6 text-body text-slate-600">
-            MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational
-            AI infrastructure for hospitals.
-          </p>
-        </div>
-      </Section>
+      <PageHero
+        eyebrow="Company"
+        title="About MGear"
+        lead="MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational AI infrastructure for hospitals."
+      />
 
-      <Section className="border-t border-slate-100" width="wide">
+      <Section width="wide">
         <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
           This page carries the recommended structure for a Company page, with
           placeholder copy. Founding date, headquarters, leadership names and titles,
@@ -48,8 +43,8 @@ export default function CompanyPage() {
           added.
         </div>
 
-        <h2 className="mt-10 text-section font-semibold text-charcoal">What MGear is</h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
+        <SectionHeader className="mt-12" eyebrow="What We Are" heading="What MGear is" />
+        <p className="mt-6 max-w-3xl text-body text-slate-600">
           Not utilization management software. Not authorization software. Not denial
           software. Not analytics software. Not case management software. MGear
           connects every department responsible for protecting hospital revenue into
@@ -71,14 +66,14 @@ export default function CompanyPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-slate-100" width="narrow">
-        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
+      <Section width="narrow" tone="alt">
+        <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <Section width="wide" className="border-t border-slate-100">
-        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
-          <h2 className="text-section font-semibold text-white">
+      <Section width="wide" tone="dark">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-display font-semibold text-white">
             See the platform behind the company.
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -86,7 +81,7 @@ export default function CompanyPage() {
             <Button
               href="/contact"
               variant="secondary"
-              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
+              className="!border-slate-500 !bg-transparent !text-white hover:!border-white"
             >
               Contact
             </Button>

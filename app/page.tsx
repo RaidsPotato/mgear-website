@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section, Eyebrow } from "@/components/Section";
+import { SectionHeader } from "@/components/SectionHeader";
+import { ClosingCTA } from "@/components/ModulePageLayout";
 import { ChainDiagram } from "@/components/ChainDiagram";
 import { ModuleStrip } from "@/components/ModuleStrip";
 import { TagGrid } from "@/components/TagGrid";
@@ -96,52 +98,47 @@ const faqs = [
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <Section width="wide" className="pt-14 sm:pt-20">
-        <div className="max-w-4xl">
-          <Eyebrow>Operational AI Infrastructure for Hospitals</Eyebrow>
-          <h1 className="text-hero font-bold tracking-tight text-charcoal">
-            The Real-Time Mid-Revenue Cycle Operating Platform
-          </h1>
-          <p className="mt-6 max-w-2xl text-body text-slate-600">
-            Ten departments protect hospital revenue. Their software has never talked to
-            each other — until now.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/request-demo">Request Demo</Button>
-            <Button href="/platform" variant="secondary">
-              See How It Works
-            </Button>
+      {/* Hero — full-bleed off-white, chain diagram + proof strip inline */}
+      <section className="border-b border-slate-200 bg-surface-alt">
+        <div className="mx-auto max-w-7xl px-6 pt-16 pb-14 sm:pt-24 sm:pb-20">
+          <div className="max-w-4xl">
+            <Eyebrow>Operational AI Infrastructure for Hospitals</Eyebrow>
+            <h1 className="text-hero font-bold text-charcoal">
+              The Real-Time Mid-Revenue Cycle Operating Platform
+            </h1>
+            <p className="mt-6 max-w-2xl text-lead text-slate-600">
+              Ten departments protect hospital revenue. Their software has never talked
+              to each other — until now.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href="/request-demo">Request Demo</Button>
+              <Button href="/platform" variant="secondary">
+                See How It Works
+              </Button>
+            </div>
+          </div>
+
+          <div className="mt-14">
+            <ChainDiagram steps={chain1Steps} />
+          </div>
+          <div className="mt-6">
+            <StatBand
+              stats={providenceStats}
+              caption="Results from the Providence behavioral health program"
+              captionHref="/results"
+            />
           </div>
         </div>
-
-        <div className="mt-12">
-          <ChainDiagram steps={chain1Steps} />
-        </div>
-
-        <div className="mt-6">
-          <StatBand
-            stats={providenceStats}
-            caption="Results from the Providence behavioral health program"
-            captionHref="/results"
-          />
-        </div>
-      </Section>
+      </section>
 
       {/* Problem — siloed vs. connected */}
-      <Section className="border-t border-slate-100" width="wide">
-        <div className="max-w-2xl">
-          <Eyebrow>The Problem</Eyebrow>
-          <h2 className="text-section font-semibold text-charcoal">
-            The problem isn&apos;t visibility
-          </h2>
-          <p className="mt-4 text-body text-slate-600">
-            Ten departments, each with a piece of the job, each working from software
-            that doesn&apos;t talk to the others.
-          </p>
-        </div>
-
-        <div className="mt-8">
+      <Section width="wide">
+        <SectionHeader
+          eyebrow="The Problem"
+          heading="The problem isn't visibility"
+          lead="Ten departments, each with a piece of the job, each working from software that doesn't talk to the others."
+        />
+        <div className="mt-10">
           <BeforeAfter
             before={{
               eyebrow: "Hospitals today",
@@ -167,72 +164,65 @@ export default function Home() {
         </div>
 
         <Reveal>
-          <p className="mt-8 rounded-lg border border-brand/20 bg-[#f2f9f4] px-5 py-4 text-body text-charcoal">
-            <strong>The problem is not simply visibility.</strong> The problem is the
-            absence of one operational platform coordinating every department
-            responsible for protecting revenue <em>while the patient is still admitted.</em>{" "}
-            A platform that reports what went wrong after discharge is a dashboard. MGear
-            acts while the outcome can still change.
+          <p className="mt-10 border-l-2 border-brand bg-[#f2f9f4] px-6 py-5 text-lead text-charcoal">
+            <strong>The problem is not simply visibility.</strong> It is the absence of
+            one operational platform coordinating every department responsible for
+            protecting revenue <em>while the patient is still admitted.</em> A platform
+            that reports what went wrong after discharge is a dashboard. MGear acts
+            while the outcome can still change.
           </p>
         </Reveal>
       </Section>
 
-      {/* The shape of every chain — dark band */}
-      <div className="border-t border-slate-100 bg-charcoal">
-        <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
-          <p className="eyebrow !text-brand">How it works</p>
-          <h2 className="mt-3 max-w-2xl text-section font-semibold text-white">
-            Every chain in the platform has the same shape
-          </h2>
-          <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {chainShape.map((step, i) => (
-              <Reveal key={step} delay={i * 0.08}>
-                <li className="flex h-full flex-col rounded-lg border border-white/15 bg-white/5 p-5">
-                  <span className="text-caption font-semibold text-brand">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="mt-2 text-body leading-snug text-slate-100">
-                    {step}
-                  </span>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
-          <p className="mt-6 max-w-2xl text-caption text-slate-400">
-            The last step is what makes it MGear and not a report.
-          </p>
-        </div>
-      </div>
+      {/* The shape of every chain — full-bleed dark band */}
+      <Section width="wide" tone="dark">
+        <SectionHeader
+          tone="dark"
+          eyebrow="How It Works"
+          heading="Every chain in the platform has the same shape"
+        />
+        <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {chainShape.map((step, i) => (
+            <Reveal key={step} delay={i * 0.08}>
+              <li className="flex h-full flex-col rounded-xl border border-white/15 bg-white/5 p-5">
+                <span className="text-caption font-semibold text-brand">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="mt-2 text-body leading-snug text-slate-100">
+                  {step}
+                </span>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+        <p className="mt-6 text-caption text-slate-400">
+          The last step is what makes it MGear and not a report.
+        </p>
+      </Section>
 
       {/* Module strip */}
-      <Section className="border-t border-slate-100" width="wide">
-        <div className="max-w-2xl">
-          <Eyebrow>The Platform</Eyebrow>
-          <h2 className="text-section font-semibold text-charcoal">
-            One platform. Constant communication.
-          </h2>
-          <p className="mt-4 text-body text-slate-600">
-            Not a suite of tools that happen to share a login — a single operating
-            platform where something changing in one department automatically reaches
-            the departments it affects.
-          </p>
-        </div>
-        <Reveal className="mt-8">
+      <Section width="wide">
+        <SectionHeader
+          eyebrow="The Platform"
+          heading="One platform. Constant communication."
+          lead="Not a suite of tools that happen to share a login — a single operating platform where something changing in one department automatically reaches the departments it affects."
+        />
+        <Reveal className="mt-10">
           <ModuleStrip />
         </Reveal>
       </Section>
 
       {/* Financial impact */}
-      <Section className="border-t border-slate-100" width="wide">
+      <Section width="wide" tone="alt">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <div>
               <Eyebrow>Financial Impact</Eyebrow>
-              <p className="text-section font-semibold text-charcoal">
+              <p className="text-display font-semibold text-charcoal">
                 A program that cost <span className="text-brand">$395K</span> returned{" "}
                 <span className="text-brand">$4.87M</span> net.
               </p>
-              <p className="mt-4 text-body text-slate-600">
+              <p className="mt-5 text-body text-slate-600">
                 The Providence behavioral health program: behavioral health denial rate
                 from 35% to 0%, admission rate from 11% to 16%, authorization approval
                 rate at 100%.
@@ -259,19 +249,13 @@ export default function Home() {
       </Section>
 
       {/* AI */}
-      <Section className="border-t border-slate-100" width="wide">
-        <div className="max-w-2xl">
-          <Eyebrow>Artificial Intelligence</Eyebrow>
-          <h2 className="text-section font-semibold text-charcoal">
-            AI assists operations. It doesn&apos;t replace judgment.
-          </h2>
-          <p className="mt-4 text-body text-slate-600">
-            Humans remain responsible for every clinical and operational decision.
-            Governed — analytics answer inside the hospital&apos;s own permission model,
-            not an open chatbot over the chart.
-          </p>
-        </div>
-        <Reveal className="mt-5">
+      <Section width="wide">
+        <SectionHeader
+          eyebrow="Artificial Intelligence"
+          heading="AI assists operations. It doesn't replace judgment."
+          lead="Humans remain responsible for every clinical and operational decision. Governed — analytics answer inside the hospital's own permission model, not an open chatbot over the chart."
+        />
+        <Reveal className="mt-8">
           <TagGrid items={aiCapabilities} tone="brand" />
         </Reveal>
         <div className="mt-6">
@@ -281,43 +265,30 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Consequences reference (kept, condensed) */}
-      <Section className="border-t border-slate-100" width="wide">
-        <div className="max-w-2xl">
-          <Eyebrow>What Disconnection Costs</Eyebrow>
-          <h2 className="text-section font-semibold text-charcoal">
-            The revenue that leaks when departments can&apos;t coordinate
-          </h2>
-        </div>
-        <Reveal className="mt-5">
+      {/* Consequences reference */}
+      <Section width="wide" tone="alt">
+        <SectionHeader
+          eyebrow="What Disconnection Costs"
+          heading="The revenue that leaks when departments can't coordinate"
+        />
+        <Reveal className="mt-8">
           <TagGrid items={consequences} />
         </Reveal>
       </Section>
 
       {/* FAQ */}
-      <Section className="border-t border-slate-100" width="narrow">
-        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
+      <Section width="narrow">
+        <h2 className="mb-8 text-section font-semibold text-charcoal">
+          Frequently asked
+        </h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      {/* Closing CTA */}
-      <Section width="wide" className="border-t border-slate-100">
-        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
-          <h2 className="text-section font-semibold text-white">
-            See the connection, not a slide deck.
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-body text-slate-300">
-            A live walkthrough of how an authorization delay gets caught and resolved
-            automatically — while the patient is still admitted.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/request-demo">Request Demo</Button>
-            <Button href="/results" variant="secondary" className="!bg-transparent !text-white !border-slate-500 hover:!border-white">
-              Download Case Study
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <ClosingCTA
+        headline="See the connection, not a slide deck."
+        lead="A live walkthrough of how an authorization delay gets caught and resolved automatically — while the patient is still admitted."
+        secondary={{ label: "Download Case Study", href: "/results" }}
+      />
     </>
   );
 }

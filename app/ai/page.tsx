@@ -180,8 +180,7 @@ export default function AIPage() {
             <Button href="/request-demo">Request Demo</Button>
             <Button
               href="/modules"
-              variant="secondary"
-              className="!border-slate-500 !bg-transparent !text-white hover:!border-white"
+              variant="inverse"
             >
               Explore the Modules
             </Button>

@@ -98,27 +98,27 @@ const faqs = [
 export default function Home() {
   return (
     <>
-      {/* Hero — full-bleed off-white, chain diagram + proof strip inline */}
-      <section className="border-b border-slate-200 bg-surface-alt">
-        <div className="mx-auto max-w-7xl px-6 pt-16 pb-14 sm:pt-24 sm:pb-20">
-          <div className="max-w-4xl">
-            <Eyebrow>Operational AI Infrastructure for Hospitals</Eyebrow>
-            <h1 className="text-hero font-bold text-charcoal">
+      {/* Hero — full-bleed dark, chain diagram floated as a light panel on top of it */}
+      <section className="bg-charcoal">
+        <div className="mx-auto max-w-7xl px-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-brand">Operational AI Infrastructure for Hospitals</p>
+            <h1 className="mt-4 text-hero font-bold text-white">
               The Real-Time Mid-Revenue Cycle Operating Platform
             </h1>
-            <p className="mt-6 max-w-2xl text-lead text-slate-600">
+            <p className="mt-6 max-w-2xl text-lead text-slate-300">
               Ten departments protect hospital revenue. Their software has never talked
               to each other — until now.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/request-demo">Request Demo</Button>
-              <Button href="/platform" variant="secondary">
+              <Button href="/platform" variant="inverse">
                 See How It Works
               </Button>
             </div>
           </div>
 
-          <div className="mt-14">
+          <div className="mt-14 rounded-2xl bg-white p-3 shadow-2xl sm:p-5">
             <ChainDiagram steps={chain1Steps} />
           </div>
           <div className="mt-6">
@@ -126,6 +126,8 @@ export default function Home() {
               stats={providenceStats}
               caption="Results from the Providence behavioral health program"
               captionHref="/results"
+              tone="dark"
+              size="lg"
             />
           </div>
         </div>
@@ -212,15 +214,17 @@ export default function Home() {
         </Reveal>
       </Section>
 
-      {/* Financial impact */}
-      <Section width="wide" tone="alt">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+      {/* Financial impact — the number is the visual, not a footnote */}
+      <Section width="wide" tone="brand">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-center">
           <Reveal>
             <div>
               <Eyebrow>Financial Impact</Eyebrow>
-              <p className="text-display font-semibold text-charcoal">
-                A program that cost <span className="text-brand">$395K</span> returned{" "}
-                <span className="text-brand">$4.87M</span> net.
+              <p className="mt-3 text-hero font-bold leading-[1.05] text-charcoal">
+                <span className="text-brand">$4.87M</span> net
+              </p>
+              <p className="mt-2 text-lead text-slate-600">
+                on a program that cost $395K.
               </p>
               <p className="mt-5 text-body text-slate-600">
                 The Providence behavioral health program: behavioral health denial rate
@@ -235,7 +239,7 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
+            <div className="overflow-hidden rounded-2xl border border-white shadow-xl">
               <ZoomableImage
                 src="/screenshots/analytics-05-financial.png"
                 alt="MGear financial analytics — denied dollars, underpayment variance, and net collection rate by payer"

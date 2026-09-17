@@ -44,9 +44,14 @@ export default function PlatformOverview() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="How the Platform Works"
         title="One Operating Platform. Every Department. Real Time."
         lead="Not a suite of modules that happen to share a login. A single platform where every module continuously communicates with every other module — while the patient is still admitted."
+        actions={[
+          { label: "Request Demo", href: "/request-demo" },
+          { label: "See the Whole System", href: "#whole-system", variant: "inverse" },
+        ]}
       />
 
       <Section width="wide">
@@ -120,7 +125,7 @@ export default function PlatformOverview() {
         </Reveal>
       </Section>
 
-      <Section width="wide" tone="alt">
+      <Section id="whole-system" width="wide" tone="alt">
         <SectionHeader
           eyebrow="The Whole System"
           heading="The whole system, one picture"
@@ -165,7 +170,7 @@ export default function PlatformOverview() {
         </div>
       </Section>
 
-      <Section width="wide" tone="alt">
+      <Section width="wide" tone="brand">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <div>
@@ -190,7 +195,7 @@ export default function PlatformOverview() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
+            <div className="overflow-hidden rounded-2xl border border-white shadow-xl">
               <ZoomableImage
                 src="/screenshots/um-04-live-ed-audit.png"
                 alt="MGear live ED audit view — real-time proof the chain resolves before discharge"
@@ -221,8 +226,7 @@ export default function PlatformOverview() {
             <Button href="/modules">Explore the Modules</Button>
             <Button
               href="/request-demo"
-              variant="secondary"
-              className="!border-slate-500 !bg-transparent !text-white hover:!border-white"
+              variant="inverse"
             >
               Request Demo
             </Button>

@@ -37,21 +37,19 @@ const faqs = [
 export default function ResultsPage() {
   return (
     <>
-      <section className="border-b border-slate-200 bg-surface-alt">
-        <div className="mx-auto max-w-7xl px-6 pt-16 pb-14 sm:pt-24 sm:pb-20">
+      <section className="bg-charcoal">
+        <div className="mx-auto max-w-7xl px-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
           <div className="max-w-3xl">
-            <p className="text-label font-semibold uppercase tracking-[0.06em] text-brand">
-              Results
+            <p className="eyebrow text-brand">Results</p>
+            <p className="mt-4 text-hero font-bold leading-[1.05] text-white">
+              <span className="text-brand">$4.87M</span> net
             </p>
-            <h1 className="mt-4 text-page-title font-bold text-charcoal">
-              A Program That Cost $395K Returned $4.87M Net
-            </h1>
-            <p className="mt-6 text-lead text-slate-600">
-              The Providence behavioral health program, measured — not a projection, and
-              not a feature list.
+            <p className="mt-3 text-lead text-slate-300">
+              on a program that cost $395K — the Providence behavioral health program,
+              measured, not projected.
             </p>
           </div>
-          <div className="mt-12">
+          <div className="mt-12 rounded-2xl bg-white p-4 shadow-2xl sm:p-6">
             <ProvidenceToggle />
           </div>
         </div>
@@ -70,17 +68,13 @@ export default function ResultsPage() {
           ].map(([label, value]) => (
             <div
               key={label}
-              className="rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5"
+              className="rounded-xl border border-brand/20 bg-[#f2f9f4] px-6 py-6"
             >
               <p className="text-sm text-slate-600">{label}</p>
-              <p className="mt-1 text-2xl font-bold text-charcoal">{value}</p>
+              <p className="mt-1.5 text-3xl font-bold tracking-tight text-charcoal">{value}</p>
             </div>
           ))}
         </div>
-        <p className="mt-6 max-w-3xl text-body text-slate-600">
-          A program that cost <strong className="text-charcoal">$395K</strong> returned{" "}
-          <strong className="text-charcoal">$4.87M</strong> net.
-        </p>
       </Section>
 
       <Section width="wide" tone="alt">

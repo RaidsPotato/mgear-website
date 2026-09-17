@@ -18,30 +18,69 @@ export function StatBand({
   stats,
   caption,
   captionHref,
+  size = "md",
+  tone = "light",
 }: {
   stats: Stat[];
   caption?: string;
   captionHref?: string;
+  size?: "md" | "lg";
+  tone?: "light" | "dark";
 }) {
+  const isDark = tone === "dark";
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200">
-      <dl className="grid grid-cols-2 gap-px bg-slate-200 sm:grid-cols-4">
+    <div
+      className={`overflow-hidden rounded-xl border ${
+        isDark ? "border-white/15" : "border-slate-200"
+      }`}
+    >
+      <dl
+        className={`grid grid-cols-2 gap-px sm:grid-cols-4 ${
+          isDark ? "bg-white/10" : "bg-slate-200"
+        }`}
+      >
         {stats.map((s) => (
-          <div key={s.label} className="bg-surface-alt px-5 py-6 text-center">
+          <div
+            key={s.label}
+            className={`px-5 text-center ${size === "lg" ? "py-8" : "py-6"} ${
+              isDark ? "bg-charcoal" : "bg-surface-alt"
+            }`}
+          >
             <dt className="sr-only">{s.label}</dt>
             <dd>
-              <p className="text-2xl font-bold tracking-tight text-brand sm:text-3xl">
+              <p
+                className={`font-bold tracking-tight text-brand ${
+                  size === "lg"
+                    ? "text-3xl sm:text-4xl lg:text-5xl"
+                    : "text-2xl sm:text-3xl"
+                }`}
+              >
                 {s.value}
               </p>
-              <p className="mt-1.5 text-caption text-slate-600">{s.label}</p>
+              <p
+                className={`mt-2 text-caption ${
+                  isDark ? "text-slate-400" : "text-slate-600"
+                }`}
+              >
+                {s.label}
+              </p>
             </dd>
           </div>
         ))}
       </dl>
       {caption && (
-        <p className="border-t border-slate-200 bg-white px-5 py-3 text-center text-caption text-slate-500">
+        <p
+          className={`border-t px-5 py-3 text-center text-caption ${
+            isDark
+              ? "border-white/15 bg-white/5 text-slate-400"
+              : "border-slate-200 bg-white text-slate-500"
+          }`}
+        >
           {captionHref ? (
-            <Link href={captionHref} className="hover:text-brand">
+            <Link
+              href={captionHref}
+              className={isDark ? "hover:text-white" : "hover:text-brand"}
+            >
               {caption} &rarr;
             </Link>
           ) : (

@@ -36,6 +36,7 @@ export function Section({
   width = "default",
   tone = "default",
   divide = false,
+  id,
 }: {
   children: ReactNode;
   className?: string;
@@ -43,11 +44,14 @@ export function Section({
   width?: Width;
   tone?: Tone;
   divide?: boolean;
+  id?: string;
 }) {
   return (
     <section
+      id={id}
       className={clsx(
         toneClass[tone],
+        id && "scroll-mt-20",
         divide && "border-t border-slate-100",
         outerClassName
       )}

@@ -80,8 +80,7 @@ export default function CompanyPage() {
             <Button href="/platform">Platform Overview</Button>
             <Button
               href="/contact"
-              variant="secondary"
-              className="!border-slate-500 !bg-transparent !text-white hover:!border-white"
+              variant="inverse"
             >
               Contact
             </Button>

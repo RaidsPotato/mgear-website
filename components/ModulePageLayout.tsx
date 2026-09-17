@@ -281,8 +281,7 @@ export function ClosingCTA({
           <Button href="/request-demo">Request Demo</Button>
           <Button
             href={secondary.href}
-            variant="secondary"
-            className="!border-slate-500 !bg-transparent !text-white hover:!border-white"
+            variant="inverse"
           >
             {secondary.label}
           </Button>

@@ -76,8 +76,7 @@ export default function PricingPage() {
             <Button href="/contact">Contact Sales</Button>
             <Button
               href="/request-demo"
-              variant="secondary"
-              className="!border-slate-500 !bg-transparent !text-white hover:!border-white"
+              variant="inverse"
             >
               Request Demo
             </Button>

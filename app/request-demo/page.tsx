@@ -2,21 +2,27 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Section } from "@/components/Section";
-import { PageHero } from "@/components/PageHero";
+import { Section, Eyebrow } from "@/components/Section";
 
 export default function RequestDemoPage() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
     <>
-      <PageHero
-        eyebrow="Request Demo"
-        title="See the Connection, Not a Slide Deck"
-        lead="A live walkthrough of how an authorization delay gets caught and resolved automatically — while the patient is still admitted."
-      />
+      <Section width="wide" className="pt-14 sm:pt-20">
+        <div className="max-w-3xl">
+          <Eyebrow>Request Demo</Eyebrow>
+          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
+            See the Connection, Not a Slide Deck
+          </h1>
+          <p className="mt-6 text-body text-slate-600">
+            A live walkthrough of how an authorization delay gets caught and resolved
+            automatically — while the patient is still admitted.
+          </p>
+        </div>
+      </Section>
 
-      <Section width="narrow">
+      <Section className="border-t border-slate-100" width="narrow">
         <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
           This form isn&apos;t yet connected to a live calendar or CRM — the demo
           booking destination and sales email are still placeholders. Submitting below

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Section, Eyebrow } from "@/components/Section";
-import { SectionHeader } from "@/components/SectionHeader";
-import { PageHero } from "@/components/PageHero";
-import { ClosingCTA } from "@/components/ModulePageLayout";
+import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
@@ -29,24 +27,27 @@ const faqs = [
 export default function ImplementationPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Implementation"
-        title="Getting MGear Live at Your Hospital"
-        lead="The shape of a rollout, outlined ahead of a finalized timeline and support commitment."
-      />
+      <Section width="wide" className="pt-14 sm:pt-20">
+        <div className="max-w-3xl">
+          <Eyebrow>Implementation</Eyebrow>
+          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
+            Getting MGear Live at Your Hospital
+          </h1>
+          <p className="mt-6 text-body text-slate-600">
+            The shape of a rollout, outlined ahead of a finalized timeline and support
+            commitment.
+          </p>
+        </div>
+      </Section>
 
-      <Section width="wide">
+      <Section className="border-t border-slate-100" width="wide">
         <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
           This page outlines the typical shape of an implementation. A specific
           timeline and the finalized support commitment are still being determined.
         </div>
 
-        <SectionHeader
-          className="mt-12"
-          eyebrow="Rollout"
-          heading="How a rollout is structured"
-        />
-        <ol className="mt-8 space-y-4">
+        <h2 className="mt-10 text-section font-semibold text-charcoal">How a rollout is structured</h2>
+        <ol className="mt-6 space-y-4">
           {[
             ["EHR connectivity is established", "via FHIR and HL7, to whichever EHR your hospital runs — Epic, Cerner, Meditech, Paragon, or Health Samurai Aidbox."],
             ["Licensed modules are configured", "to your hospital's payer mix and existing workflows — you only configure what you've licensed."],
@@ -65,22 +66,35 @@ export default function ImplementationPage() {
           ))}
         </ol>
 
-        <Eyebrow className="mt-12">Support</Eyebrow>
+        <h2 className="mt-10 text-section font-semibold text-charcoal">Support</h2>
         <p className="mt-4 max-w-3xl text-body text-slate-600">
           A specific support commitment — response times and ongoing structure — is
           still being finalized. This section will be updated once it is.
         </p>
       </Section>
 
-      <Section width="narrow" tone="alt">
-        <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
+      <Section className="border-t border-slate-100" width="narrow">
+        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <ClosingCTA
-        headline="Talk through implementation for your hospital."
-        secondary={{ label: "Pricing", href: "/pricing" }}
-      />
+      <Section width="wide" className="border-t border-slate-100">
+        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
+          <h2 className="text-section font-semibold text-white">
+            Talk through implementation for your hospital.
+          </h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button href="/request-demo">Request Demo</Button>
+            <Button
+              href="/pricing"
+              variant="secondary"
+              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
+            >
+              Pricing
+            </Button>
+          </div>
+        </div>
+      </Section>
     </>
   );
 }

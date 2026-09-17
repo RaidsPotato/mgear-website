@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Section } from "@/components/Section";
-import { SectionHeader } from "@/components/SectionHeader";
-import { ClosingCTA } from "@/components/ModulePageLayout";
+import { Section, Eyebrow } from "@/components/Section";
+import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { ProvidenceToggle } from "@/components/ProvidenceToggle";
 import { ScreenshotHotspots } from "@/components/ScreenshotHotspots";
@@ -37,27 +36,25 @@ const faqs = [
 export default function ResultsPage() {
   return (
     <>
-      <section className="bg-charcoal">
-        <div className="mx-auto max-w-7xl px-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
-          <div className="max-w-3xl">
-            <p className="eyebrow text-brand">Results</p>
-            <p className="mt-4 text-hero font-bold leading-[1.05] text-white">
-              <span className="text-brand">$4.87M</span> net
-            </p>
-            <p className="mt-3 text-lead text-slate-300">
-              on a program that cost $395K — the Providence behavioral health program,
-              measured, not projected.
-            </p>
-          </div>
-          <div className="mt-12 rounded-2xl bg-white p-4 shadow-2xl sm:p-6">
-            <ProvidenceToggle />
-          </div>
+      <Section width="wide" className="pt-14 sm:pt-20">
+        <div className="max-w-3xl">
+          <Eyebrow>Results</Eyebrow>
+          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
+            A Program That Cost $395K Returned $4.87M Net
+          </h1>
+          <p className="mt-6 text-body text-slate-600">
+            The Providence behavioral health program, measured — not a projection, and
+            not a feature list.
+          </p>
         </div>
-      </section>
+        <div className="mt-10">
+          <ProvidenceToggle />
+        </div>
+      </Section>
 
-      <Section width="wide">
-        <SectionHeader eyebrow="The Outcome" heading="The outcome, in full" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">The outcome, in full</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
             ["Admission rate", "11% → 16%"],
             ["Behavioral health denial rate", "35% → 0%"],
@@ -68,18 +65,22 @@ export default function ResultsPage() {
           ].map(([label, value]) => (
             <div
               key={label}
-              className="rounded-xl border border-brand/20 bg-[#f2f9f4] px-6 py-6"
+              className="rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5"
             >
               <p className="text-sm text-slate-600">{label}</p>
-              <p className="mt-1.5 text-3xl font-bold tracking-tight text-charcoal">{value}</p>
+              <p className="mt-1 text-2xl font-bold text-charcoal">{value}</p>
             </div>
           ))}
         </div>
+        <p className="mt-6 max-w-3xl text-body text-slate-600">
+          A program that cost <strong className="text-charcoal">$395K</strong> returned{" "}
+          <strong className="text-charcoal">$4.87M</strong> net.
+        </p>
       </Section>
 
-      <Section width="wide" tone="alt">
-        <SectionHeader eyebrow="The Mechanism" heading="What actually changed" />
-        <p className="mt-6 max-w-3xl text-body text-slate-600">
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">What actually changed</h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
           This isn&apos;t a different mechanism from what&apos;s described on Platform
           Overview — it&apos;s the same chain, run continuously, across a whole program.
           An authorization delay is caught and resolved before discharge instead of
@@ -90,12 +91,11 @@ export default function ResultsPage() {
         </p>
       </Section>
 
-      <Section width="wide">
-        <SectionHeader
-          eyebrow="One Owner Per Fact"
-          heading="One number, one owner, everywhere it appears"
-        />
-        <p className="mt-6 max-w-3xl text-body text-slate-600">
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">
+          One number, one owner, everywhere it appears
+        </h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
           The reason executives distrust hospital dashboards is that two reports
           disagree and nobody can say which is right. MGear&apos;s answer is
           structural: the P2P module owns the case record — it&apos;s the only place an
@@ -106,23 +106,41 @@ export default function ResultsPage() {
         </p>
       </Section>
 
-      <Section width="wide" tone="alt">
-        <SectionHeader
-          eyebrow="The Product"
-          heading="The dashboard behind the number"
-          lead="This is a real screen from the platform, not a mockup. Click any marker to see what it's showing."
-        />
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">
+          The dashboard behind the number
+        </h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          This is a real screen from the platform, not a mockup. Click any marker to
+          see what it's showing.
+        </p>
         <div className="mt-8">
           <ScreenshotHotspots />
         </div>
       </Section>
 
-      <Section width="narrow" divide>
-        <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
+      <Section className="border-t border-slate-100" width="narrow">
+        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <ClosingCTA headline="See the mechanism behind this number." />
+      <Section width="wide" className="border-t border-slate-100">
+        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
+          <h2 className="text-section font-semibold text-white">
+            See the mechanism behind this number.
+          </h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button href="/request-demo">Request Demo</Button>
+            <Button
+              href="/platform"
+              variant="secondary"
+              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
+            >
+              See How It Works
+            </Button>
+          </div>
+        </div>
+      </Section>
     </>
   );
 }

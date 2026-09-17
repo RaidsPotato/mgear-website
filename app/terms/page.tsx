@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Section } from "@/components/Section";
-import { PageHero } from "@/components/PageHero";
+import { Section, Eyebrow } from "@/components/Section";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -10,10 +9,12 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <>
-      <PageHero eyebrow="Legal" title="Terms of Service" width="default" />
-      <Section width="narrow">
-      <p className="text-sm text-slate-500">Last updated: August 21, 2026</p>
+    <Section width="narrow" className="pt-14 pb-20 sm:pt-20">
+      <Eyebrow>Terms of Service</Eyebrow>
+      <h1 className="mt-2 text-page-title font-bold tracking-tight text-charcoal">
+        Terms of Service
+      </h1>
+      <p className="mt-4 text-sm text-slate-500">Last updated: August 21, 2026</p>
 
       <div className="mt-10 space-y-8 text-body text-slate-600">
         <p>
@@ -87,7 +88,6 @@ export default function TermsPage() {
           </p>
         </section>
       </div>
-      </Section>
-    </>
+    </Section>
   );
 }

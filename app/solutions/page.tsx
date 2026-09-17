@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ZoomableImage } from "@/components/ZoomableImage";
-import { Section } from "@/components/Section";
-import { SectionHeader } from "@/components/SectionHeader";
-import { PageHero } from "@/components/PageHero";
-import { ClosingCTA } from "@/components/ModulePageLayout";
+import { Section, Eyebrow } from "@/components/Section";
+import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
 export const metadata: Metadata = {
@@ -61,26 +59,34 @@ const faqs = [
 export default function SolutionsHub() {
   return (
     <>
-      <PageHero
-        eyebrow="Solutions by Department"
-        title="The Same Connected Platform, From Where You Sit"
-        lead="Every department below works inside the same platform described on Platform Overview. These four pages start from your seat first, and show you the specific chain that runs through your daily work."
-      />
+      <Section width="wide" className="pt-14 sm:pt-20">
+        <div className="max-w-3xl">
+          <Eyebrow>Solutions by Department</Eyebrow>
+          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
+            The Same Connected Platform, From Where You Sit
+          </h1>
+          <p className="mt-6 text-body text-slate-600">
+            Every department below works inside the same platform described on Platform
+            Overview. These four pages start from your seat first, and show you the
+            specific chain that runs through your daily work.
+          </p>
+        </div>
+      </Section>
 
-      <Section width="wide">
+      <Section className="border-t border-slate-100" width="wide">
         <div className="grid gap-4 sm:grid-cols-2">
           {solutions.map((s) => (
             <Link
               key={s.href}
               href={s.href}
-              className="group flex flex-col rounded-xl border border-slate-200 bg-white px-6 py-6 shadow-sm transition-colors hover:border-brand/40 hover:shadow-md"
+              className="group flex flex-col rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-xs transition-colors hover:border-brand/40"
             >
               <div className="flex items-center justify-between gap-4">
-                <h3 className="text-lg font-semibold text-charcoal group-hover:text-brand">
+                <h3 className="font-semibold text-charcoal group-hover:text-brand">
                   {s.name}
                 </h3>
-                <span className="text-brand opacity-40 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
-                  &rarr;
+                <span className="text-brand opacity-0 transition-opacity group-hover:opacity-100">
+                  →
                 </span>
               </div>
               <p className="mt-2 text-sm font-medium text-brand">{s.chain}</p>
@@ -90,12 +96,8 @@ export default function SolutionsHub() {
         </div>
       </Section>
 
-      <Section width="wide" tone="alt">
-        <SectionHeader
-          eyebrow="One Screen, Every Module"
-          heading="The executive dashboard, captured today"
-        />
-        <div className="mt-8 overflow-hidden rounded-xl border border-slate-200 shadow-md">
+      <Section className="border-t border-slate-100" width="wide">
+        <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
           <ZoomableImage
             src="/screenshots/analytics-01-executive-dashboard.png"
             alt="MGear executive dashboard — every module on one screen"
@@ -106,12 +108,28 @@ export default function SolutionsHub() {
         </div>
       </Section>
 
-      <Section width="narrow" divide>
-        <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
+      <Section className="border-t border-slate-100" width="narrow">
+        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <ClosingCTA headline="See the connection, not a slide deck." />
+      <Section width="wide" className="border-t border-slate-100">
+        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
+          <h2 className="text-section font-semibold text-white">
+            See the connection, not a slide deck.
+          </h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button href="/request-demo">Request Demo</Button>
+            <Button
+              href="/platform"
+              variant="secondary"
+              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
+            >
+              See How It Works
+            </Button>
+          </div>
+        </div>
+      </Section>
     </>
   );
 }

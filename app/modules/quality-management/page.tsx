@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Section } from "@/components/Section";
 import { ModulePageLayout } from "@/components/ModulePageLayout";
 
 export const metadata: Metadata = {
@@ -10,14 +11,14 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <div className="bg-amber-50">
-        <div className="mx-auto max-w-7xl px-6 py-3 text-sm text-amber-900">
+      <Section width="wide" className="pb-0 pt-8">
+        <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
           This is the least-built of the platform&apos;s modules — written present-tense
           per product leadership&apos;s ruling, ahead of the build. Unlike the other two
           modules in this position, there isn&apos;t yet enough source detail here to
           function as a full specification.
         </div>
-      </div>
+      </Section>
       <ModulePageLayout
         eyebrow="Module — Quality Management"
         headline="The Module That Watches the Work Itself"

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import clsx from "clsx";
 
-type Variant = "primary" | "secondary" | "ghost" | "inverse";
+type Variant = "primary" | "secondary" | "ghost";
 
 const styles: Record<Variant, string> = {
   primary:
@@ -10,11 +10,6 @@ const styles: Record<Variant, string> = {
   secondary:
     "bg-white text-charcoal border border-slate-300 hover:border-brand hover:text-brand",
   ghost: "text-brand hover:text-brand-dark underline underline-offset-4",
-  // For use on a dark (charcoal) ground — a transparent outline that
-  // resolves to solid white on hover, so it reads clearly against charcoal
-  // without needing a per-instance className override.
-  inverse:
-    "border border-white/40 text-white hover:border-white hover:bg-white/10",
 };
 
 export function Button({

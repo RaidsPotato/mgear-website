@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Section } from "@/components/Section";
-import { SectionHeader } from "@/components/SectionHeader";
-import { PageHero } from "@/components/PageHero";
+import { Section, Eyebrow } from "@/components/Section";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
@@ -78,25 +76,33 @@ const faqs = [
 export default function AIPage() {
   return (
     <>
-      <PageHero
-        eyebrow="AI"
-        title="AI Assists Operations. Humans Remain Responsible."
-        lead="That's not a hedge — it's the reason a hospital can adopt it. Every AI capability on this platform is scoped to a specific operational task, and every decision it touches still belongs to a person."
-      />
+      <Section width="wide" className="pt-14 sm:pt-20">
+        <div className="max-w-3xl">
+          <Eyebrow>AI</Eyebrow>
+          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
+            AI Assists Operations. Humans Remain Responsible.
+          </h1>
+          <p className="mt-6 text-body text-slate-600">
+            That&apos;s not a hedge — it&apos;s the reason a hospital can adopt it. Every
+            AI capability on this platform is scoped to a specific operational task, and
+            every decision it touches still belongs to a person.
+          </p>
+        </div>
+      </Section>
 
-      <Section width="wide">
-        <SectionHeader
-          eyebrow="Named Capabilities"
-          heading="The seven capabilities"
-          lead="Each one is scoped to a module, not a general-purpose assistant layered on top of the platform."
-        />
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">The seven capabilities</h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          Each one is scoped to a module, not a general-purpose assistant layered on
+          top of the platform.
+        </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {capabilities.map((c) => (
             <Link
               key={c.name}
               href={c.href}
-              className="group block rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-sm transition-colors hover:border-brand/40 hover:shadow-md"
+              className="group block rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-xs transition-colors hover:border-brand/40"
             >
               <div className="flex items-center justify-between gap-4">
                 <h3 className="font-semibold text-charcoal group-hover:text-brand">
@@ -115,13 +121,17 @@ export default function AIPage() {
         </div>
       </Section>
 
-      <Section width="wide" tone="alt">
-        <SectionHeader
-          eyebrow="One Input, Five Modules"
-          heading="One contract, five modules updated"
-          lead="The clearest example of AI changing more than one screen: Contract Intelligence extracts reimbursement terms, covered services, authorization rules, notification rules, and operational requirements from an uploaded payer contract."
-        />
-        <ol className="mt-8 space-y-4">
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">
+          One contract, five modules updated
+        </h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          The clearest example of AI changing more than one screen: Contract
+          Intelligence extracts reimbursement terms, covered services, authorization
+          rules, notification rules, and operational requirements from an uploaded
+          payer contract.
+        </p>
+        <ol className="mt-6 space-y-4">
           {[
             ["Payor Grid gains that payer's rules", "without anyone typing them in."],
             ["Authorization knows what needs authorizing", "under this specific contract."],
@@ -149,9 +159,11 @@ export default function AIPage() {
         </p>
       </Section>
 
-      <Section width="wide">
-        <SectionHeader eyebrow="Governance" heading="Governed, not open" />
-        <p className="mt-6 max-w-3xl text-body text-slate-600">
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">
+          Governed, not open
+        </h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
           Conversational Analytics answers a plain-language question — &ldquo;show me
           missed admission opportunities this month&rdquo; — but it never computes its
           own version of a fact. It reads a governed, read-only feed from every module
@@ -166,21 +178,22 @@ export default function AIPage() {
         </p>
       </Section>
 
-      <Section width="narrow" tone="alt">
-        <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
+      <Section className="border-t border-slate-100" width="narrow">
+        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <Section width="wide" tone="dark">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-display font-semibold text-white">
+      <Section width="wide" className="border-t border-slate-100">
+        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
+          <h2 className="text-section font-semibold text-white">
             See where AI fits, module by module.
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button href="/request-demo">Request Demo</Button>
             <Button
               href="/modules"
-              variant="inverse"
+              variant="secondary"
+              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
             >
               Explore the Modules
             </Button>

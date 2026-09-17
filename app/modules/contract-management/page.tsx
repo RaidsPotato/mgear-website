@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Section } from "@/components/Section";
 import { ModulePageLayout } from "@/components/ModulePageLayout";
 
 export const metadata: Metadata = {
@@ -10,13 +11,13 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <div className="bg-amber-50">
-        <div className="mx-auto max-w-7xl px-6 py-3 text-sm text-amber-900">
+      <Section width="wide" className="pb-0 pt-8">
+        <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
           This module&apos;s AI extraction capability is being built ahead of
           go-to-market. This page is written present-tense per product leadership&apos;s
           ruling — and now doubles as the specification for that build.
         </div>
-      </div>
+      </Section>
       <ModulePageLayout
         eyebrow="Module — Contract Management"
         headline="One Contract, Five Modules Updated"

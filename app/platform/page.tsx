@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import { ZoomableImage } from "@/components/ZoomableImage";
 import { Section, Eyebrow } from "@/components/Section";
-import { SectionHeader } from "@/components/SectionHeader";
-import { PageHero } from "@/components/PageHero";
 import { WholeSystemDiagram } from "@/components/WholeSystemDiagram";
 import { ChainExplorer } from "@/components/ChainExplorer";
 import { DenialROICalculator } from "@/components/DenialROICalculator";
 import { StatTile } from "@/components/StatTile";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Platform Overview — How MGear Connects Every Hospital Department in Real Time",
@@ -43,25 +40,28 @@ const faqs = [
 export default function PlatformOverview() {
   return (
     <>
-      <PageHero
-        tone="dark"
-        eyebrow="How the Platform Works"
-        title="One Operating Platform. Every Department. Real Time."
-        lead="Not a suite of modules that happen to share a login. A single platform where every module continuously communicates with every other module — while the patient is still admitted."
-        actions={[
-          { label: "Request Demo", href: "/request-demo" },
-          { label: "See the Whole System", href: "#whole-system", variant: "inverse" },
-        ]}
-      />
+      <Section width="wide" className="pt-14 sm:pt-20">
+        <div className="max-w-3xl">
+          <Eyebrow>How the Platform Works</Eyebrow>
+          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
+            One Operating Platform. Every Department. Real Time.
+          </h1>
+          <p className="mt-6 text-body text-slate-600">
+            Not a suite of modules that happen to share a login. A single platform where
+            every module continuously communicates with every other module — while the
+            patient is still admitted.
+          </p>
+        </div>
+      </Section>
 
-      <Section width="wide">
-        <SectionHeader
-          eyebrow="The Flagship Chain"
-          heading="The chain, in full"
-          lead="This is the flagship example, run start to finish. An authorization has not come back, and the stay is still running."
-        />
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">The chain, in full</h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          This is the flagship example, run start to finish. An authorization has not
+          come back, and the stay is still running.
+        </p>
 
-        <ol className="mt-10 space-y-4">
+        <ol className="mt-8 space-y-4">
           {[
             [
               "Payer Communication is notified",
@@ -86,7 +86,7 @@ export default function PlatformOverview() {
             ],
           ].map(([bold, rest], i) => (
             <li key={i} className="flex gap-4">
-              <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
+              <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
                 {i + 1}
               </span>
               <p className="text-body text-slate-700">
@@ -96,54 +96,59 @@ export default function PlatformOverview() {
           ))}
         </ol>
 
-        <p className="mt-8 border-l-2 border-brand bg-[#f2f9f4] px-6 py-5 text-body text-charcoal">
+        <p className="mt-6 max-w-3xl text-body text-slate-600">
           What it earns: authorization efficiency, and one fewer preventable denial. No
           one re-keyed a case. No one emailed a spreadsheet. No one found out at the
           payer meeting three weeks later.
         </p>
       </Section>
 
-      <Section width="wide" tone="alt">
-        <SectionHeader
-          eyebrow="ROI Estimator"
-          heading="Estimate Your Opportunity Today"
-          lead="Enter your own denial write-off figures and targets below to estimate the financial impact for your organization."
-        />
-        <Reveal className="mt-8">
+      <Section className="border-t border-slate-100" width="wide">
+        <Eyebrow>ROI Estimator</Eyebrow>
+        <h2 className="text-section font-semibold text-charcoal">
+          Estimate Your Opportunity Today
+        </h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          Enter your own denial write-off figures and targets below to estimate the
+          financial impact for your organization.
+        </p>
+        <div className="mt-8">
           <DenialROICalculator />
-        </Reveal>
+        </div>
       </Section>
 
-      <Section width="wide">
-        <SectionHeader
-          eyebrow="Seven Real Chains"
-          heading="Seven chains. Pick one."
-          lead="The authorization delay above is one real chain out of seven. Every one of them is actual behavior in the working product, not an illustration built to look good. Pick a trigger and watch it move."
-        />
-        <Reveal className="mt-8">
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">Seven chains. Pick one.</h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          The authorization delay above is one real chain out of seven. Every one of
+          them is actual behavior in the working product, not an illustration built to
+          look good. Pick a trigger and watch it move.
+        </p>
+        <div className="mt-8">
           <ChainExplorer />
-        </Reveal>
+        </div>
       </Section>
 
-      <Section id="whole-system" width="wide" tone="alt">
-        <SectionHeader
-          eyebrow="The Whole System"
-          heading="The whole system, one picture"
-          lead="Extend that same chain across every department that touches revenue, and this is the platform. One frame holds all of it: the patient is still admitted. A tool that shows you this after discharge is a dashboard. This shows it while the outcome can still change. Click any box to see exactly what it receives and sends."
-        />
-        <Reveal className="mt-8">
+      <Section className="border-t border-slate-100" width="wide">
+        <h2 className="text-section font-semibold text-charcoal">The whole system, one picture</h2>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          Extend that same chain across every department that touches revenue, and this
+          is the platform. One frame holds all of it: the patient is still admitted.
+          That&apos;s not a design flourish — it&apos;s the entire difference between a
+          platform and a report. A tool that shows you this after discharge is a
+          dashboard. This shows it while the outcome can still change. Click any box
+          below to see exactly what it receives and sends.
+        </p>
+        <div className="mt-8">
           <WholeSystemDiagram />
-        </Reveal>
+        </div>
       </Section>
 
-      <Section width="narrow">
-        <SectionHeader
-          eyebrow="Why MGear"
-          heading="Why MGear, if you already have something"
-        />
+      <Section className="border-t border-slate-100" width="narrow">
+        <h2 className="text-section font-semibold text-charcoal">Why MGear, if you already have something</h2>
 
-        <div className="mt-8 space-y-6">
-          <div className="rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-sm">
+        <div className="mt-6 space-y-6">
+          <div className="rounded-lg border border-slate-200 bg-surface-alt px-5 py-4">
             <p className="font-semibold text-charcoal">
               &ldquo;We already have Epic&rdquo; (or Cerner, or another EHR).
             </p>
@@ -156,7 +161,7 @@ export default function PlatformOverview() {
               real time, while your EHR keeps the chart.
             </p>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-sm">
+          <div className="rounded-lg border border-slate-200 bg-surface-alt px-5 py-4">
             <p className="font-semibold text-charcoal">&ldquo;We already outsource this.&rdquo;</p>
             <p className="mt-2 text-body text-slate-600">
               An outsourced UM or denials vendor does the same work described above —
@@ -170,55 +175,51 @@ export default function PlatformOverview() {
         </div>
       </Section>
 
-      <Section width="wide" tone="brand">
+      <Section className="border-t border-slate-100" width="wide">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <Reveal>
-            <div>
-              <Eyebrow>Financial Impact</Eyebrow>
-              <p className="text-display font-semibold text-charcoal">
-                This chain earns authorization efficiency and fewer preventable denials.
-              </p>
-              <p className="mt-5 text-body text-slate-600">
-                At the platform level, the same coordination pattern is what produces the
-                outcome on the Results page — not a different mechanism, this same chain,
-                run continuously, across a whole program.
-              </p>
-              <div className="mt-6 grid grid-cols-2 gap-3">
-                <StatTile label="Annual program cost" value="$395K" />
-                <StatTile label="Net annual impact" value="$4.87M" />
-              </div>
-              <div className="mt-6">
-                <Button href="/results" variant="secondary">
-                  See the Full Case
-                </Button>
-              </div>
+          <div>
+            <Eyebrow>Financial Impact</Eyebrow>
+            <p className="text-section font-semibold text-charcoal">
+              This chain earns authorization efficiency and fewer preventable denials.
+            </p>
+            <p className="mt-4 text-body text-slate-600">
+              At the platform level, the same coordination pattern is what produces the
+              outcome on the Results page — not a different mechanism, this same chain,
+              run continuously, across a whole program.
+            </p>
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <StatTile label="Annual program cost" value="$395K" />
+              <StatTile label="Net annual impact" value="$4.87M" />
             </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="overflow-hidden rounded-2xl border border-white shadow-xl">
-              <ZoomableImage
-                src="/screenshots/um-04-live-ed-audit.png"
-                alt="MGear live ED audit view — real-time proof the chain resolves before discharge"
-                width={2000}
-                height={1250}
-                className="h-auto w-full"
-              />
+            <div className="mt-6">
+              <Button href="/results" variant="secondary">
+                See the Full Case
+              </Button>
             </div>
-          </Reveal>
+          </div>
+          <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
+            <ZoomableImage
+              src="/screenshots/um-04-live-ed-audit.png"
+              alt="MGear live ED audit view — real-time proof the chain resolves before discharge"
+              width={2000}
+              height={1250}
+              className="h-auto w-full"
+            />
+          </div>
         </div>
       </Section>
 
-      <Section width="narrow" divide>
-        <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
+      <Section className="border-t border-slate-100" width="narrow">
+        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <Section width="wide" tone="dark">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-display font-semibold text-white">
+      <Section width="wide" className="border-t border-slate-100">
+        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
+          <h2 className="text-section font-semibold text-white">
             See how each module works.
           </h2>
-          <p className="mt-4 text-lead text-slate-300">
+          <p className="mx-auto mt-3 max-w-xl text-body text-slate-300">
             Eleven connected modules, each opening with what it receives and what it
             sends before anything else.
           </p>
@@ -226,7 +227,8 @@ export default function PlatformOverview() {
             <Button href="/modules">Explore the Modules</Button>
             <Button
               href="/request-demo"
-              variant="inverse"
+              variant="secondary"
+              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
             >
               Request Demo
             </Button>

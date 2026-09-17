@@ -46,30 +46,20 @@
   --shadow-xl: 0 20px 25px rgba(22, 163, 74, 0.08);
   --shadow-2xl: 0 25px 50px rgba(22, 163, 74, 0.09);
 
-  /* Marketing type scale (16-18px body, generous line height — not the
-     product's dense 13px scale). Paired line-heights per Tailwind v4 convention.
-     Sizes sit inside 04-BRAND-KIT.md's stated ranges: hero 48-64px, page
-     title 32-40px, section heading 24-28px. */
-  --text-hero: 3.75rem;
-  --text-hero--line-height: 1.05;
-  --text-hero--letter-spacing: -0.02em;
-  --text-display: 2.5rem;
-  --text-display--line-height: 1.15;
-  --text-display--letter-spacing: -0.015em;
-  --text-page-title: 2.5rem;
-  --text-page-title--line-height: 1.12;
-  --text-page-title--letter-spacing: -0.015em;
-  --text-section: 1.75rem;
-  --text-section--line-height: 1.22;
-  --text-section--letter-spacing: -0.01em;
+  /* Marketing type scale (16-018px body, generous line height — not the
+     product's dense 13px scale). Paired line-heights per Tailwind v4 convention. */
+  --text-hero: 3.5rem;
+  --text-hero--line-height: 1.08;
+  --text-page-title: 2.25rem;
+  --text-page-title--line-height: 1.15;
+  --text-section: 1.625rem;
+  --text-section--line-height: 1.25;
   --text-body: 1.0625rem;
   --text-body--line-height: 1.65;
-  --text-lead: 1.25rem;
-  --text-lead--line-height: 1.55;
   --text-label: 0.75rem;
   --text-label--line-height: 1.4;
   --text-caption: 0.875rem;
-  --text-caption--line-height: 1.45;
+  --text-caption--line-height: 1.4;
 }
 
 body {

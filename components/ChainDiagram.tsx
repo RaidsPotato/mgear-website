@@ -252,7 +252,7 @@ export function ChainDiagram({
   return (
     <div
       ref={containerRef}
-      className="relative rounded-xl border border-brand/25 bg-gradient-to-b from-[#f2f9f4] to-white px-6 py-10 sm:px-10"
+      className="relative rounded-xl border border-brand/25 bg-[#f2f9f4] px-6 py-10 sm:px-10"
     >
       <span className="eyebrow absolute -top-3 left-6 bg-white px-3">
         {frameLabel}

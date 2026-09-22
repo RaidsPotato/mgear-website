@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Section, Eyebrow } from "@/components/Section";
+import { Section } from "@/components/Section";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -9,12 +10,14 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <Section width="narrow" className="pt-14 pb-20 sm:pt-20">
-      <Eyebrow>Privacy Policy</Eyebrow>
-      <h1 className="mt-2 text-page-title font-bold tracking-tight text-charcoal">
-        Privacy Policy
-      </h1>
-      <p className="mt-4 text-sm text-slate-500">Last updated: August 21, 2026</p>
+    <>
+      <PageHero
+        eyebrow="Legal"
+        title="Privacy Policy"
+        width="default"
+      />
+      <Section width="narrow">
+      <p className="text-sm text-slate-500">Last updated: August 21, 2026</p>
 
       <div className="mt-10 space-y-8 text-body text-slate-600">
         <p>
@@ -110,6 +113,7 @@ export default function PrivacyPage() {
           </p>
         </section>
       </div>
-    </Section>
+      </Section>
+    </>
   );
 }

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { ZoomableImage } from "@/components/ZoomableImage";
-import { Section, Eyebrow } from "@/components/Section";
-import { Button } from "@/components/Button";
+import { Section } from "@/components/Section";
+import { SectionHeader } from "@/components/SectionHeader";
+import { PageHero } from "@/components/PageHero";
+import { ClosingCTA } from "@/components/ModulePageLayout";
 import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion } from "@/components/FAQAccordion";
 
@@ -35,37 +37,26 @@ const faqs = [
 export default function SecurityPage() {
   return (
     <>
-      <Section width="wide" className="pt-14 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>Security</Eyebrow>
-          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
-            Access Controlled. Every Action Logged. Every Number Means What It Says.
-          </h1>
-          <p className="mt-6 text-body text-slate-600">
-            Security on this platform isn&apos;t only a policy document — role-based
-            access and audit logging are visible in the working product today, and the
-            platform is built to refuse a specific failure mode most analytics tools
-            don&apos;t even try to catch.
-          </p>
-        </div>
+      <PageHero
+        eyebrow="Security"
+        title="Access Controlled. Every Action Logged. Every Number Means What It Says."
+        lead="Security on this platform isn't only a policy document — role-based access and audit logging are visible in the working product today, and the platform is built to refuse a specific failure mode most analytics tools don't even try to catch."
+      />
+
+      <Section width="wide">
+        <SectionHeader
+          eyebrow="Demonstrable Today"
+          heading="Access control and audit logging — visible today"
+          lead="Role-based access and per-facility access controls govern exactly which users can see which data. Every action is recorded in an activity log as it happens — this is demonstrable in the working product, not a roadmap item."
+        />
       </Section>
 
-      <Section className="border-t border-slate-100" width="wide">
-        <h2 className="text-section font-semibold text-charcoal">
-          Access control and audit logging — visible today
-        </h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
-          Role-based access and per-facility access controls govern exactly which users
-          can see which data. Every action is recorded in an activity log as it happens
-          — this is demonstrable in the working product, not a roadmap item.
-        </p>
-      </Section>
-
-      <Section className="border-t border-slate-100" width="wide">
-        <h2 className="text-section font-semibold text-charcoal">
-          The platform tells you when it's missing a feed
-        </h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
+      <Section width="wide" tone="alt">
+        <SectionHeader
+          eyebrow="A Zero Means Zero"
+          heading="The platform tells you when it's missing a feed"
+        />
+        <p className="mt-6 max-w-3xl text-body text-slate-600">
           Every hospital in a multi-facility deployment carries only the modules it
           actually licensed. A module a facility didn&apos;t buy doesn&apos;t appear for
           its users — and its analytics don&apos;t quietly report a zero. The platform
@@ -81,19 +72,20 @@ export default function SecurityPage() {
         </p>
       </Section>
 
-      <Section className="border-t border-slate-100" width="wide">
-        <h2 className="text-section font-semibold text-charcoal">Enterprise security posture</h2>
-        <p className="mt-4 max-w-3xl text-body text-slate-600">
-          All stated platform capabilities, alongside the role-based access and audit
-          logging already demonstrable today.
-        </p>
-        <div className="mt-4">
+      <Section width="wide">
+        <SectionHeader
+          eyebrow="Enterprise Posture"
+          heading="Enterprise security posture"
+          lead="All stated platform capabilities, alongside the role-based access and audit logging already demonstrable today."
+        />
+        <div className="mt-8">
           <TagGrid items={["HIPAA architecture", "Enterprise security", "Cloud architecture", "Multi-hospital SaaS deployment", "Enterprise scalability"]} />
         </div>
       </Section>
 
-      <Section className="border-t border-slate-100" width="wide">
-        <div className="grid gap-6 sm:grid-cols-2">
+      <Section width="wide" tone="alt">
+        <SectionHeader eyebrow="The Product" heading="Users, roles, and the activity log — captured today" />
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
           <div className="overflow-hidden rounded-xl border border-slate-200 shadow-md">
             <ZoomableImage
               src="/screenshots/plat-02-users.png"
@@ -115,28 +107,15 @@ export default function SecurityPage() {
         </div>
       </Section>
 
-      <Section className="border-t border-slate-100" width="narrow">
-        <h2 className="text-section font-semibold text-charcoal mb-6">FAQs</h2>
+      <Section width="narrow" divide>
+        <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
         <FAQAccordion items={faqs} />
       </Section>
 
-      <Section width="wide" className="border-t border-slate-100">
-        <div className="rounded-2xl bg-charcoal px-8 py-14 text-center sm:px-16">
-          <h2 className="text-section font-semibold text-white">
-            See access control and audit logging live.
-          </h2>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/request-demo">Request Demo</Button>
-            <Button
-              href="/interoperability"
-              variant="secondary"
-              className="!bg-transparent !text-white !border-slate-500 hover:!border-white"
-            >
-              Interoperability
-            </Button>
-          </div>
-        </div>
-      </Section>
+      <ClosingCTA
+        headline="See access control and audit logging live."
+        secondary={{ label: "Interoperability", href: "/interoperability" }}
+      />
     </>
   );
 }

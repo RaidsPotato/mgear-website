@@ -1,27 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { Section, Eyebrow } from "@/components/Section";
+import { Section } from "@/components/Section";
+import { PageHero } from "@/components/PageHero";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
     <>
-      <Section width="wide" className="pt-14 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>Contact</Eyebrow>
-          <h1 className="text-page-title font-bold tracking-tight text-charcoal">
-            Talk to MGear
-          </h1>
-          <p className="mt-6 text-body text-slate-600">
-            For a live walkthrough, use Request Demo. For everything else, reach us
-            below.
-          </p>
-        </div>
-      </Section>
+      <PageHero
+        eyebrow="Contact"
+        title="Talk to MGear"
+        lead="For a live walkthrough, use Request Demo. For everything else, reach us below."
+      />
 
-      <Section className="border-t border-slate-100" width="narrow">
+      <Section width="narrow">
         <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
           A real sales alias and support contact are still placeholders — this form
           isn&apos;t yet connected to a live inbox or CRM. Submitting below only shows a

@@ -1,31 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { Logo } from "./Logo";
 import { Button } from "./Button";
 import { primaryNav } from "@/lib/nav";
 
-const HIDE_AFTER_PX = 120;
-
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
-  const [scrolledPast, setScrolledPast] = useState(false);
-
-  useEffect(() => {
-    function onScroll() {
-      setScrolledPast(window.scrollY > HIDE_AFTER_PX);
-    }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Never hide it out from under an open mobile menu.
-  const hidden = scrolledPast && !mobileOpen;
 
   return (
     <header
@@ -37,8 +22,7 @@ export function SiteHeader() {
         // hero). `fixed` takes it out of flow entirely, so the hero's
         // full-bleed background renders all the way up to the true top of
         // the page, visible behind and around the floating header.
-        "fixed inset-x-3 top-3 z-50 transition-all duration-300 ease-out sm:inset-x-5 sm:top-4 lg:inset-x-8",
-        hidden ? "-translate-y-[calc(100%+2rem)] opacity-0" : "translate-y-0 opacity-100"
+        "fixed inset-x-3 top-3 z-50 sm:inset-x-5 sm:top-4 lg:inset-x-8"
       )}
     >
       {/* The "island": inset from the viewport edges with its own rounded

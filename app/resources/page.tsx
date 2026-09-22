@@ -13,6 +13,7 @@ export default function ResourcesPage() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Resources"
         title="Resources"
         lead="This section is being built out. Today, the one published resource is the Providence behavioral health case study."

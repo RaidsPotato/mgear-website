@@ -30,6 +30,7 @@ export default function CompanyPage() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Company"
         title="About MGear"
         lead="MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational AI infrastructure for hospitals."

@@ -93,54 +93,59 @@ export function ModulePageLayout({
 }) {
   return (
     <>
-      <PageHero eyebrow={eyebrow} title={headline} lead={subheadline} />
+      <PageHero tone="dark" eyebrow={eyebrow} title={headline} lead={subheadline} />
 
-      {/* How this module connects — the first screen, per 01-PRODUCT-TRUTH.md */}
+      {/* How this module connects — the first screen, per 01-PRODUCT-TRUTH.md.
+          Overlaps up into the dark hero via negative margin, same pattern as
+          Home's Problem card — every page now opens with a floating panel
+          bridging the hero into the page instead of a hard seam. */}
       <Section width="wide">
-        <SectionHeader
-          eyebrow="How This Module Connects"
-          heading="Nothing here happens in isolation"
-        />
-        <div className="mt-8 grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">
-          <Reveal className="h-full">
-            <div className="flex h-full gap-3 rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5 shadow-sm">
-              <ReceivesIcon />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-brand">
-                  Receives
-                </p>
-                <p className="mt-1 text-body text-charcoal">{receives}</p>
+        <div className="relative z-10 -mt-24 rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl shadow-slate-900/10 sm:-mt-32 sm:p-12">
+          <SectionHeader
+            eyebrow="How This Module Connects"
+            heading="Nothing here happens in isolation"
+          />
+          <div className="mt-8 grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">
+            <Reveal className="h-full">
+              <div className="flex h-full gap-3 rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5 shadow-sm">
+                <ReceivesIcon />
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+                    Receives
+                  </p>
+                  <p className="mt-1 text-body text-charcoal">{receives}</p>
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
 
-          <div className="hidden items-center justify-center lg:flex" aria-hidden>
-            <svg
-              width="26"
-              height="26"
-              viewBox="0 0 24 24"
-              className="fill-none stroke-brand"
-              strokeWidth="2"
-            >
-              <path
-                d="M5 12h14M13 6l6 6-6 6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <div className="hidden items-center justify-center lg:flex" aria-hidden>
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                className="fill-none stroke-brand"
+                strokeWidth="2"
+              >
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+
+            <Reveal delay={0.1} className="h-full">
+              <div className="flex h-full gap-3 rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5 shadow-sm">
+                <SendsIcon />
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+                    Sends
+                  </p>
+                  <p className="mt-1 text-body text-charcoal">{sends}</p>
+                </div>
+              </div>
+            </Reveal>
           </div>
-
-          <Reveal delay={0.1} className="h-full">
-            <div className="flex h-full gap-3 rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5 shadow-sm">
-              <SendsIcon />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-brand">
-                  Sends
-                </p>
-                <p className="mt-1 text-body text-charcoal">{sends}</p>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </Section>
 

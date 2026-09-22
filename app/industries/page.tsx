@@ -63,6 +63,7 @@ export default function IndustriesHub() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Industries"
         title="Built for Every Hospital Type — One Platform Each Time"
         lead="MGear is a hospital-only platform. These five pages are entry points into the same connected system, organized by hospital type instead of by department."

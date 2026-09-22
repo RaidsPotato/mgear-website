@@ -62,6 +62,7 @@ export default function SolutionsHub() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Solutions by Department"
         title="The Same Connected Platform, From Where You Sit"
         lead="Every department below works inside the same platform described on Platform Overview. These four pages start from your seat first, and show you the specific chain that runs through your daily work."

@@ -32,6 +32,7 @@ export default function PricingPage() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Pricing"
         title="Priced Around Your Hospital, Not a List Price"
         lead="MGear doesn't publish a flat per-seat rate. Pricing is quoted per hospital, structured around scale and the modules actually licensed."

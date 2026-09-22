@@ -62,9 +62,15 @@ export function SolutionPageLayout({
 }) {
   return (
     <>
-      <PageHero eyebrow={eyebrow} title={headline} lead={subheadline} />
+      <PageHero tone="dark" eyebrow={eyebrow} title={headline} lead={subheadline} />
 
-      <Section width="wide">{children}</Section>
+      {/* Overlaps up into the dark hero via negative margin — same bridging
+          panel pattern as Home and the module page template. */}
+      <Section width="wide">
+        <div className="relative z-10 -mt-24 rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl shadow-slate-900/10 sm:-mt-32 sm:p-12">
+          {children}
+        </div>
+      </Section>
 
       {screenshots.length > 0 && (
         <Section width="wide" tone="alt">

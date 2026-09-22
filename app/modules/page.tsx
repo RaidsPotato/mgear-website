@@ -128,6 +128,7 @@ export default function ModulesHub() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="The Eleven Modules"
         title="Eleven Modules. One Continuous System."
         lead="Each module does real work on its own. None of them work alone — every one receives something from another module, and sends something to the next."

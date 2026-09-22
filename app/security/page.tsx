@@ -38,6 +38,7 @@ export default function SecurityPage() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Security"
         title="Access Controlled. Every Action Logged. Every Number Means What It Says."
         lead="Security on this platform isn't only a policy document — role-based access and audit logging are visible in the working product today, and the platform is built to refuse a specific failure mode most analytics tools don't even try to catch."

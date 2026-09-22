@@ -79,6 +79,7 @@ export default function AIPage() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="AI"
         title="AI Assists Operations. Humans Remain Responsible."
         lead="That's not a hedge — it's the reason a hospital can adopt it. Every AI capability on this platform is scoped to a specific operational task, and every decision it touches still belongs to a person."

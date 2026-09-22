@@ -12,6 +12,7 @@ export default function PrivacyPage() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Legal"
         title="Privacy Policy"
         width="default"

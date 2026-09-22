@@ -10,6 +10,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
+        tone="dark"
         eyebrow="Contact"
         title="Talk to MGear"
         lead="For a live walkthrough, use Request Demo. For everything else, reach us below."

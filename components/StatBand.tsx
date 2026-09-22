@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnimatedStat } from "@/components/AnimatedStat";
 
 export type Stat = { value: string; label: string };
 
@@ -48,15 +49,14 @@ export function StatBand({
           >
             <dt className="sr-only">{s.label}</dt>
             <dd>
-              <p
-                className={`font-bold tracking-tight text-brand ${
+              <AnimatedStat
+                value={s.value}
+                className={`block font-bold tracking-tight text-gradient-brand ${
                   size === "lg"
                     ? "text-3xl sm:text-4xl lg:text-5xl"
                     : "text-2xl sm:text-3xl"
                 }`}
-              >
-                {s.value}
-              </p>
+              />
               <p
                 className={`mt-2 text-caption ${
                   isDark ? "text-slate-400" : "text-slate-600"

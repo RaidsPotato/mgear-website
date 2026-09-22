@@ -5,6 +5,7 @@ import { ClosingCTA } from "@/components/ModulePageLayout";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { ProvidenceToggle } from "@/components/ProvidenceToggle";
 import { ScreenshotHotspots } from "@/components/ScreenshotHotspots";
+import { AnimatedStat } from "@/components/AnimatedStat";
 
 export const metadata: Metadata = {
   title: "Results — A Program That Cost $395K Returned $4.87M Net",
@@ -37,12 +38,12 @@ const faqs = [
 export default function ResultsPage() {
   return (
     <>
-      <section className="bg-charcoal">
+      <section className="hero-glow bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
           <div className="max-w-3xl">
             <p className="eyebrow text-brand">Results</p>
             <p className="mt-4 text-hero font-bold leading-[1.05] text-white">
-              <span className="text-brand">$4.87M</span> net
+              <AnimatedStat value="$4.87M" className="text-gradient-brand" /> net
             </p>
             <p className="mt-3 text-lead text-slate-300">
               on a program that cost $395K — the Providence behavioral health program,
@@ -71,7 +72,10 @@ export default function ResultsPage() {
               className="rounded-xl border border-brand/20 bg-[#f2f9f4] px-6 py-6"
             >
               <p className="text-sm text-slate-600">{label}</p>
-              <p className="mt-1.5 text-3xl font-bold tracking-tight text-charcoal">{value}</p>
+              <AnimatedStat
+                value={value}
+                className="mt-1.5 block text-3xl font-bold tracking-tight text-gradient-brand"
+              />
             </div>
           ))}
         </div>

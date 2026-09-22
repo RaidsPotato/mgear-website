@@ -43,7 +43,7 @@ export function PageHero({
   return (
     <section
       className={
-        isDark ? "bg-charcoal" : "border-b border-slate-200 bg-surface-alt"
+        isDark ? "hero-glow bg-charcoal" : "border-b border-slate-200 bg-surface-alt"
       }
     >
       <div

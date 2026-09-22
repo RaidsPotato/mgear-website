@@ -22,8 +22,10 @@ function Card({
 }) {
   return (
     <div
-      className={`h-full rounded-xl border p-6 shadow-sm ${
-        accent ? "border-brand/25 bg-[#f2f9f4]" : "border-slate-200 bg-white"
+      className={`h-full rounded-xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+        accent
+          ? "border-brand/25 bg-[#f2f9f4] hover:shadow-brand/10"
+          : "border-slate-200 bg-white hover:border-brand/30"
       }`}
     >
       <div className="flex items-center gap-3">

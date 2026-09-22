@@ -12,6 +12,7 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import { Reveal } from "@/components/Reveal";
 import { StatBand } from "@/components/StatBand";
 import { BeforeAfter } from "@/components/BeforeAfter";
+import { AnimatedStat } from "@/components/AnimatedStat";
 
 export const metadata: Metadata = {
   title: "MGear — Real-Time Hospital Revenue Cycle Operating Platform",
@@ -98,8 +99,8 @@ const faqs = [
 export default function Home() {
   return (
     <>
-      {/* Hero — full-bleed dark, chain diagram floated as a light panel on top of it */}
-      <section className="bg-charcoal">
+      {/* Hero — full-bleed dark, animated brand-green glow, chain diagram floated as a light panel on top */}
+      <section className="hero-glow bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
           <div className="max-w-3xl">
             <p className="eyebrow text-brand">Operational AI Infrastructure for Hospitals</p>
@@ -221,7 +222,7 @@ export default function Home() {
             <div>
               <Eyebrow>Financial Impact</Eyebrow>
               <p className="mt-3 text-hero font-bold leading-[1.05] text-charcoal">
-                <span className="text-brand">$4.87M</span> net
+                <AnimatedStat value="$4.87M" className="text-gradient-brand" /> net
               </p>
               <p className="mt-2 text-lead text-slate-600">
                 on a program that cost $395K.

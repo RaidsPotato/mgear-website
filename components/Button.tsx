@@ -5,8 +5,7 @@ import clsx from "clsx";
 type Variant = "primary" | "secondary" | "ghost" | "inverse";
 
 const styles: Record<Variant, string> = {
-  primary:
-    "bg-brand text-white hover:bg-brand-dark shadow-sm hover:shadow-md",
+  primary: "btn-gradient-brand text-white shadow-sm hover:shadow-md",
   secondary:
     "bg-white text-charcoal border border-slate-300 hover:border-brand hover:text-brand",
   ghost: "text-brand hover:text-brand-dark underline underline-offset-4",

@@ -7,7 +7,11 @@ type Width = "default" | "narrow" | "wide";
 const toneClass: Record<Tone, string> = {
   default: "bg-background",
   alt: "bg-surface-alt",
-  dark: "bg-charcoal text-slate-200",
+  // hero-glow: every dark band gets the animated brand-green ambient glow,
+  // not just page heroes — that's what keeps the dark moments feeling
+  // alive instead of flat, per leadership's 2026-09-21 gradients/motion
+  // override.
+  dark: "hero-glow bg-charcoal text-slate-200",
   brand: "bg-[#f2f9f4]",
 };
 

@@ -134,47 +134,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Problem — siloed vs. connected */}
-      <Section width="wide">
-        <SectionHeader
-          eyebrow="The Problem"
-          heading="The problem isn't visibility"
-          lead="Ten departments, each with a piece of the job, each working from software that doesn't talk to the others."
-        />
-        <div className="mt-10">
-          <BeforeAfter
-            before={{
-              eyebrow: "Hospitals today",
-              heading: "Ten disconnected systems",
-              points: [
-                "Utilization Management, Case Management, Physician Advisors, Patient Access, Admitting, Business Office, Revenue Cycle, Authorization, Denial Management, and Payer Communication each work independently.",
-                "The software under them doesn't share what it knows.",
-                "Problems surface after discharge, in a report, when the outcome can no longer change.",
-                "No single owner, limited visibility, reactive instead of proactive.",
-              ],
-            }}
-            after={{
-              eyebrow: "With MGear",
-              heading: "One operating platform",
-              points: [
-                "Every module continuously communicates with every other module.",
-                "A change in one department automatically reaches the departments it affects.",
-                "A human is told while the patient is still admitted.",
-                "The problem is resolved before discharge, not documented after it.",
-              ],
-            }}
+      {/* Problem — siloed vs. connected. The card overlaps up into the hero
+          above via negative margin, so this reads as one continuous piece
+          flowing out of the hero instead of a plain section dropped below
+          it — the fix for "the middle white part looks slapped there." */}
+      <Section width="wide" tone="alt">
+        <div className="relative z-10 -mt-28 rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl shadow-slate-900/10 sm:-mt-36 sm:p-14">
+          <SectionHeader
+            eyebrow="The Problem"
+            heading="The problem isn't visibility"
+            lead="Ten departments, each with a piece of the job, each working from software that doesn't talk to the others."
           />
-        </div>
+          <div className="mt-10">
+            <BeforeAfter
+              before={{
+                eyebrow: "Hospitals today",
+                heading: "Ten disconnected systems",
+                points: [
+                  "Utilization Management, Case Management, Physician Advisors, Patient Access, Admitting, Business Office, Revenue Cycle, Authorization, Denial Management, and Payer Communication each work independently.",
+                  "The software under them doesn't share what it knows.",
+                  "Problems surface after discharge, in a report, when the outcome can no longer change.",
+                  "No single owner, limited visibility, reactive instead of proactive.",
+                ],
+              }}
+              after={{
+                eyebrow: "With MGear",
+                heading: "One operating platform",
+                points: [
+                  "Every module continuously communicates with every other module.",
+                  "A change in one department automatically reaches the departments it affects.",
+                  "A human is told while the patient is still admitted.",
+                  "The problem is resolved before discharge, not documented after it.",
+                ],
+              }}
+            />
+          </div>
 
-        <Reveal>
-          <p className="mt-10 border-l-2 border-brand bg-[#f2f9f4] px-6 py-5 text-lead text-charcoal">
-            <strong>The problem is not simply visibility.</strong> It is the absence of
-            one operational platform coordinating every department responsible for
-            protecting revenue <em>while the patient is still admitted.</em> A platform
-            that reports what went wrong after discharge is a dashboard. MGear acts
-            while the outcome can still change.
-          </p>
-        </Reveal>
+          <Reveal>
+            <p className="mt-10 border-l-2 border-brand bg-[#f2f9f4] px-6 py-5 text-lead text-charcoal">
+              <strong>The problem is not simply visibility.</strong> It is the absence of
+              one operational platform coordinating every department responsible for
+              protecting revenue <em>while the patient is still admitted.</em> A platform
+              that reports what went wrong after discharge is a dashboard. MGear acts
+              while the outcome can still change.
+            </p>
+          </Reveal>
+        </div>
       </Section>
 
       {/* The shape of every chain — full-bleed dark band */}

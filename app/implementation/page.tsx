@@ -31,6 +31,7 @@ export default function ImplementationPage() {
     <>
       <PageHero
         tone="dark"
+        compact
         eyebrow="Implementation"
         title="Getting MGear Live at Your Hospital"
         lead="The shape of a rollout, outlined ahead of a finalized timeline and support commitment."

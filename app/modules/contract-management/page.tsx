@@ -18,6 +18,7 @@ export default function Page() {
         </div>
       </div>
       <ModulePageLayout
+        number={7}
         eyebrow="Module — Contract Management"
         headline="One Contract, Five Modules Updated"
         subheadline="Upload a payer contract once. Every module that needs its terms gets them — without anyone typing a single rule by hand."

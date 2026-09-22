@@ -64,13 +64,12 @@ export function SolutionPageLayout({
     <>
       <PageHero tone="dark" eyebrow={eyebrow} title={headline} lead={subheadline} />
 
-      {/* Overlaps up into the dark hero via negative margin — same bridging
-          panel pattern as Home and the module page template. */}
-      <Section width="wide">
-        <div className="relative z-10 -mt-24 rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl shadow-slate-900/10 sm:-mt-32 sm:p-12">
-          {children}
-        </div>
-      </Section>
+      {/* Deliberately NOT the boxed floating-card treatment ModulePageLayout
+          uses — module pages are a catalog of uniform data fields, these
+          are narrative content that varies page to page, so it reads
+          better as an open flow straight onto the section tone than boxed
+          into an identical white card shape every time. */}
+      <Section width="wide">{children}</Section>
 
       {screenshots.length > 0 && (
         <Section width="wide" tone="alt">

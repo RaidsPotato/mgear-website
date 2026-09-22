@@ -83,6 +83,7 @@ export default function AIPage() {
         eyebrow="AI"
         title="AI Assists Operations. Humans Remain Responsible."
         lead="That's not a hedge — it's the reason a hospital can adopt it. Every AI capability on this platform is scoped to a specific operational task, and every decision it touches still belongs to a person."
+        badges={capabilities.map((c) => c.name)}
       />
 
       <Section width="wide">

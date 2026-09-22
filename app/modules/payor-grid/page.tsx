@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ModulePageLayout
+      number={3}
       eyebrow="Module — Payor Grid"
       headline="The Binder Every Hospital Has, Turned Into Something That Enforces Itself"
       subheadline="Payer requirements don't just sit in a document somebody has to remember to check. They watch the actual work in real time, and flag the moment it drifts."

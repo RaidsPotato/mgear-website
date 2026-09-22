@@ -12,6 +12,7 @@ export default function RequestDemoPage() {
     <>
       <PageHero
         tone="dark"
+        compact
         eyebrow="Request Demo"
         title="See the Connection, Not a Slide Deck"
         lead="A live walkthrough of how an authorization delay gets caught and resolved automatically — while the patient is still admitted."

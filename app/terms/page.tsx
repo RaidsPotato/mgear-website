@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <PageHero tone="dark" eyebrow="Legal" title="Terms of Service" width="default" />
+      <PageHero tone="dark" compact eyebrow="Legal" title="Terms of Service" width="default" />
       <Section width="narrow">
       <p className="text-sm text-slate-500">Last updated: August 21, 2026</p>
 

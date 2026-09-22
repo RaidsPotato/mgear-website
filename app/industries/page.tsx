@@ -70,22 +70,22 @@ export default function IndustriesHub() {
       />
 
       <Section width="wide">
-        <div className="grid gap-4 sm:grid-cols-2">
+        {/* Three-up, not two — a different rhythm from Solutions' full-width
+            rows and Modules' numbered-circle grid. */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {industries.map((s) => (
             <Link
               key={s.href}
               href={s.href}
-              className="group flex flex-col rounded-xl border border-slate-200 bg-white px-6 py-6 shadow-sm transition-colors hover:border-brand/40 hover:shadow-md"
+              className="group flex h-full flex-col rounded-xl border border-slate-200 bg-white px-6 py-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lg"
             >
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="text-lg font-semibold text-charcoal group-hover:text-brand">
-                  {s.name}
-                </h3>
-                <span className="text-brand opacity-40 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
-                  &rarr;
-                </span>
-              </div>
-              <p className="mt-2 text-sm text-slate-600">{s.desc}</p>
+              <h3 className="text-lg font-semibold text-charcoal group-hover:text-brand">
+                {s.name}
+              </h3>
+              <p className="mt-2 flex-1 text-sm text-slate-600">{s.desc}</p>
+              <span className="mt-3 text-sm text-brand opacity-40 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
+                Learn more &rarr;
+              </span>
             </Link>
           ))}
         </div>

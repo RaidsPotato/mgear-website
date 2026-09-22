@@ -14,6 +14,7 @@ export default function ResourcesPage() {
     <>
       <PageHero
         tone="dark"
+        compact
         eyebrow="Resources"
         title="Resources"
         lead="This section is being built out. Today, the one published resource is the Providence behavioral health case study."

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ModulePageLayout
+      number={11}
       eyebrow="Module — EMR Integration"
       headline="The Layer Underneath Every Other Module"
       subheadline="Every module on this platform runs on data that has to arrive continuously from your EHR. This is how it does."

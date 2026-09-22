@@ -69,23 +69,26 @@ export default function SolutionsHub() {
       />
 
       <Section width="wide">
-        <div className="grid gap-4 sm:grid-cols-2">
+        {/* Full-width rows, not a card grid — deliberately different rhythm
+            from the Modules hub's numbered-circle grid, and there are only
+            four of these, so each one gets room to lead with its chain. */}
+        <div className="flex flex-col gap-4">
           {solutions.map((s) => (
             <Link
               key={s.href}
               href={s.href}
-              className="group flex flex-col rounded-xl border border-slate-200 bg-white px-6 py-6 shadow-sm transition-colors hover:border-brand/40 hover:shadow-md"
+              className="group flex flex-col gap-4 rounded-2xl border border-l-4 border-slate-200 border-l-brand bg-white px-7 py-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:border-l-brand hover:shadow-lg sm:flex-row sm:items-center sm:justify-between"
             >
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="text-lg font-semibold text-charcoal group-hover:text-brand">
+              <div>
+                <p className="text-lg font-semibold text-brand">{s.chain}</p>
+                <h3 className="mt-1 text-xl font-semibold text-charcoal group-hover:text-brand">
                   {s.name}
                 </h3>
-                <span className="text-brand opacity-40 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
-                  &rarr;
-                </span>
+                <p className="mt-2 max-w-2xl text-sm text-slate-600">{s.desc}</p>
               </div>
-              <p className="mt-2 text-sm font-medium text-brand">{s.chain}</p>
-              <p className="mt-2 text-sm text-slate-600">{s.desc}</p>
+              <span className="hidden flex-none text-2xl text-brand opacity-40 transition-all group-hover:translate-x-1 group-hover:opacity-100 sm:block">
+                &rarr;
+              </span>
             </Link>
           ))}
         </div>

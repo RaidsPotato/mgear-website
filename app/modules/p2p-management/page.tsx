@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ModulePageLayout
+      number={5}
       eyebrow="Module — P2P Management"
       headline="One Outcome, and It Routes Itself"
       subheadline="A denial becomes a scheduled peer-to-peer call automatically. What the advisor decides on that call determines what happens next — without anyone re-entering the case."

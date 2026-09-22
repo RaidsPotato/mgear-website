@@ -19,6 +19,7 @@ export default function Page() {
         </div>
       </div>
       <ModulePageLayout
+        number={9}
         eyebrow="Module — Quality Management"
         headline="The Module That Watches the Work Itself"
         subheadline="Not a review of outcomes after the fact — auditing of review quality, workflow compliance, and documentation as the work happens."

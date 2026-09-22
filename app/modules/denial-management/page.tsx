@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ModulePageLayout
+      number={6}
       eyebrow="Module — Denial Management"
       headline="The Appeal Starts Itself. The Underpayment Doesn't Stay Hidden."
       subheadline="When a P2P call is upheld, the appeal is created and linked back to that case automatically. When a payer pays less than the contract says they owe, this module is what makes that visible."

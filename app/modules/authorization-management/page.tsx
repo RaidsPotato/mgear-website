@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ModulePageLayout
+      number={2}
       eyebrow="Module — Authorization Management"
       headline="The Chain Starts Here"
       subheadline="An authorization delay doesn't sit in a queue. It notifies the departments that can still fix it — automatically, while the stay is still open."

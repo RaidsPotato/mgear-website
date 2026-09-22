@@ -21,6 +21,7 @@ export default function Page() {
         </div>
       </div>
       <ModulePageLayout
+        number={8}
         eyebrow="Module — Conversational Analytics"
         headline="One Question. One Governed Answer. One Number Everywhere Else Agrees With."
         subheadline="Ask in plain language. Get an answer inside your hospital's own permission model — not an open chatbot over the chart, and not a dashboard that quietly disagrees with the workflow that produced it."

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ModulePageLayout
+      number={1}
       eyebrow="Module — Utilization Management"
       headline="Every Review, Connected to What Happens Next"
       subheadline="Utilization Management doesn't just decide medical necessity — that decision sets off everything downstream that protects the revenue tied to it."

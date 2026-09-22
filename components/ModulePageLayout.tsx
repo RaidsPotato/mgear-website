@@ -55,6 +55,7 @@ function Card({
 }
 
 export function ModulePageLayout({
+  number,
   eyebrow,
   headline,
   subheadline,
@@ -73,6 +74,7 @@ export function ModulePageLayout({
   faqs,
   closingHeadline = "See the connection, not a slide deck.",
 }: {
+  number: number;
   eyebrow: string;
   headline: string;
   subheadline: string;
@@ -93,7 +95,13 @@ export function ModulePageLayout({
 }) {
   return (
     <>
-      <PageHero tone="dark" eyebrow={eyebrow} title={headline} lead={subheadline} />
+      <PageHero
+        tone="dark"
+        numeral={String(number).padStart(2, "0")}
+        eyebrow={eyebrow}
+        title={headline}
+        lead={subheadline}
+      />
 
       {/* How this module connects — the first screen, per 01-PRODUCT-TRUTH.md.
           Overlaps up into the dark hero via negative margin, same pattern as

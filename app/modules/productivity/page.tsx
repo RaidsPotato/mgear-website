@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ModulePageLayout
+      number={10}
       eyebrow="Module — Productivity"
       headline="Is It a Process Problem, or a Staffing Problem?"
       subheadline="When a workflow delay shows up elsewhere on the platform, this module is where a manager finds out whether the team had the capacity to catch it."

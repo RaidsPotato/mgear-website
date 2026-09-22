@@ -40,6 +40,7 @@ export default function InteroperabilityPage() {
         eyebrow="Interoperability"
         title="The Data Layer Underneath Every Chain on This Site"
         lead="None of the connection chains described elsewhere on this site work without a continuous, reliable feed of clinical, administrative, and payer data. This is how that feed reaches the platform, and how the platform reaches back out."
+        badges={["FHIR", "HL7", "SMART on FHIR", "Epic", "Cerner", "Meditech", "Paragon", "Health Samurai Aidbox"]}
       />
 
       <Section width="wide">

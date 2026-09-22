@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <ModulePageLayout
+      number={4}
       eyebrow="Module — Payer Communication"
       headline="Every Call and Document, Logged and Compliant by Default"
       subheadline="When Payor Grid's rules say what a payer needs, Payer Communication is the module that actually sends it — and proves it was sent."

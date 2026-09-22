@@ -1,22 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { Logo } from "./Logo";
 import { Button } from "./Button";
 import { primaryNav } from "@/lib/nav";
 
+const HIDE_AFTER_PX = 120;
+
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
+  const [scrolledPast, setScrolledPast] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolledPast(window.scrollY > HIDE_AFTER_PX);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Never hide it out from under an open mobile menu.
+  const hidden = scrolledPast && !mobileOpen;
 
   return (
-    <header className="sticky top-3 z-50 mt-3 px-3 sm:top-4 sm:mt-4 sm:px-5 lg:px-8">
+    <header
+      className={clsx(
+        // `fixed`, not `sticky` — a sticky header stays in normal document
+        // flow, which pushes the page's first section down and leaves the
+        // margin around the island showing the plain body background
+        // (white) instead of that section's own background (e.g. the dark
+        // hero). `fixed` takes it out of flow entirely, so the hero's
+        // full-bleed background renders all the way up to the true top of
+        // the page, visible behind and around the floating header.
+        "fixed inset-x-3 top-3 z-50 transition-all duration-300 ease-out sm:inset-x-5 sm:top-4 lg:inset-x-8",
+        hidden ? "-translate-y-[calc(100%+2rem)] opacity-0" : "translate-y-0 opacity-100"
+      )}
+    >
       {/* The "island": inset from the viewport edges with its own rounded
           corners, border and shadow, rather than a flush edge-to-edge bar —
-          still spans nearly the full monitor width via the outer padding
+          still spans nearly the full monitor width via the outer inset
           above, it just no longer touches the edges. */}
       <div className="rounded-2xl border border-slate-200/80 bg-white/95 shadow-lg shadow-slate-900/5 backdrop-blur-md">
         <div className="flex w-full items-center justify-between gap-4 px-5 py-3 sm:px-7">

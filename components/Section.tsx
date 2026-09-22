@@ -5,14 +5,18 @@ type Tone = "default" | "alt" | "dark" | "brand";
 type Width = "default" | "narrow" | "wide";
 
 const toneClass: Record<Tone, string> = {
-  default: "bg-background",
-  alt: "bg-surface-alt",
+  // light-wash: a very faint brand-green radial wash instead of flat white —
+  // a flat white band next to the glowing dark/brand bands read as a dead
+  // stop, "stiff." Same gradients-now-allowed override as hero-glow, just
+  // dialed down since this sits behind ordinary body copy.
+  default: "bg-background light-wash",
+  alt: "bg-surface-alt light-wash",
   // hero-glow: every dark band gets the animated brand-green ambient glow,
   // not just page heroes — that's what keeps the dark moments feeling
   // alive instead of flat, per leadership's 2026-09-21 gradients/motion
   // override.
   dark: "hero-glow bg-charcoal text-slate-200",
-  brand: "bg-[#f2f9f4]",
+  brand: "bg-gradient-to-br from-[#eafbf1] via-[#f2f9f4] to-[#edf8f1]",
 };
 
 const widthClass: Record<Width, string> = {

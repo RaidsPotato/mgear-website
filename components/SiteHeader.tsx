@@ -14,7 +14,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
+      <div className="flex w-full items-center justify-between gap-4 px-6 py-3 sm:px-10">
         <Logo />
 
         <nav className="hidden items-center gap-1 xl:flex">

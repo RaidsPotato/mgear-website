@@ -151,11 +151,44 @@ body {
   transform: translateY(-1px);
 }
 
+/* A faint, fixed (non-animated) brand-green wash for otherwise-flat light
+   sections — see the `default`/`alt` tone comment in Section.tsx. Fixed,
+   not drifting, so body copy stays calm and readable; only the dark bands
+   get the moving glow. */
+.light-wash {
+  background-image:
+    radial-gradient(55% 70% at 100% 0%, rgba(22, 163, 74, 0.06), transparent 60%),
+    radial-gradient(45% 55% at 0% 100%, rgba(22, 163, 74, 0.04), transparent 65%);
+}
+
+/* Page-transition entrance, applied by app/template.tsx — App Router
+   remounts template.tsx on every navigation, so this fade+rise replays on
+   each page load without needing an exit animation. Deliberately NOT using
+   framer-motion's AnimatePresence here: it proved unreliable for exit
+   transitions elsewhere in this codebase (see ChainDiagram's history) —
+   an entrance-only replay sidesteps that entirely and needs no cleanup. */
+.page-enter {
+  animation: page-enter 0.35s ease-out both;
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-glow::before {
     animation: none;
   }
   .btn-gradient-brand {
     transition: none;
+  }
+  .page-enter {
+    animation: none;
   }
 }

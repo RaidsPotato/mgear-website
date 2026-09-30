@@ -7,6 +7,9 @@ import { Logo, LogoMark } from "./Logo";
 import { Button } from "./Button";
 import { primaryNav } from "@/lib/nav";
 
+// Logo + every primaryNav link + the CTA/hamburger group, in display order.
+const NAV_ITEM_COUNT = primaryNav.length + 2;
+
 // How far past the top the bar collapses into a bubble by default.
 const COLLAPSE_AFTER_PX = 140;
 // Below this, it's always the full bar — the "back at the top" reset.
@@ -19,6 +22,23 @@ const REEXPAND_SCROLL_DELTA = 80;
 // draws the bubble has to be computed in JS.
 const BUBBLE_BASE = 48;
 const BUBBLE_SM = 56;
+
+// Content items fade in/out in sequence rather than all at once — firing
+// every opacity transition simultaneously was reading as "ghosting" where
+// several words cross-fade on top of each other at once. Step is deliberately
+// small: with logo + 9 nav links + CTA that's 11 items, and the full cascade
+// (10 * STEP) should land close to the shape's own 400ms clip-path duration
+// so the two animations finish together instead of one visibly trailing.
+const STAGGER_STEP_MS = 25;
+// Order follows the clip-path's own shrink/grow direction: collapsing eats
+// the bar from the right and bottom toward the top-left corner, so the
+// right-most content (CTA/hamburger) should disappear first and the Logo —
+// which is what the bubble actually morphs into — should be the last thing
+// to fade. Expanding just runs that in reverse.
+function staggerDelay(index: number, total: number, collapsed: boolean) {
+  const order = collapsed ? total - 1 - index : index;
+  return order * STAGGER_STEP_MS;
+}
 
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -123,20 +143,34 @@ export function SiteHeader() {
             absolutely-positioned ones (under a `position: fixed` header)
             made the browser silently fail to paint it at all in testing,
             even though every computed style said it was visible. Keeping
-            all three layers the same positioning type avoids that. */}
+            all three layers the same positioning type avoids that.
+            Opacity lives on each child individually (staggered via
+            staggerDelay), not on this row — see STAGGER_STEP_MS above. */}
         <div
           className={clsx(
-            "absolute inset-0 flex h-12 items-center justify-between gap-4 px-5 transition-opacity duration-150 sm:h-14 sm:px-7",
-            collapsed ? "pointer-events-none opacity-0" : "opacity-100"
+            "absolute inset-0 flex h-12 items-center justify-between gap-4 px-5 sm:h-14 sm:px-7",
+            collapsed && "pointer-events-none"
           )}
         >
-          <Logo />
+          <div
+            className="transition-opacity duration-150"
+            style={{
+              opacity: collapsed ? 0 : 1,
+              transitionDelay: `${staggerDelay(0, NAV_ITEM_COUNT, collapsed)}ms`,
+            }}
+          >
+            <Logo />
+          </div>
 
           <nav className="hidden items-center gap-1 xl:flex">
-            {primaryNav.map((item) => (
+            {primaryNav.map((item, i) => (
               <div
                 key={item.href}
-                className="relative"
+                className="relative transition-opacity duration-150"
+                style={{
+                  opacity: collapsed ? 0 : 1,
+                  transitionDelay: `${staggerDelay(i + 1, NAV_ITEM_COUNT, collapsed)}ms`,
+                }}
                 onMouseEnter={() => item.children && setOpenMenu(item.href)}
                 onMouseLeave={() => item.children && setOpenMenu(null)}
               >
@@ -175,12 +209,22 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="hidden xl:block">
+          <div
+            className="hidden transition-opacity duration-150 xl:block"
+            style={{
+              opacity: collapsed ? 0 : 1,
+              transitionDelay: `${staggerDelay(NAV_ITEM_COUNT - 1, NAV_ITEM_COUNT, collapsed)}ms`,
+            }}
+          >
             <Button href="/request-demo">Request Demo</Button>
           </div>
 
           <button
-            className="xl:hidden"
+            className="transition-opacity duration-150 xl:hidden"
+            style={{
+              opacity: collapsed ? 0 : 1,
+              transitionDelay: `${staggerDelay(NAV_ITEM_COUNT - 1, NAV_ITEM_COUNT, collapsed)}ms`,
+            }}
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
           >

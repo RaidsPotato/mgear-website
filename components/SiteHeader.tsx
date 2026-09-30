@@ -72,7 +72,14 @@ export function SiteHeader() {
         // `fixed`, not `sticky` — see the earlier note: a sticky header
         // stays in flow and leaves plain white showing around the island,
         // fixed lets the page's own background render behind it.
-        "fixed left-3 top-3 z-50 overflow-hidden border border-slate-200/80 bg-white/95 shadow-lg shadow-slate-900/5 backdrop-blur-md transition-[width,height,border-radius] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:left-5 sm:top-4 lg:left-8",
+        // No overflow-hidden here — the desktop dropdown submenus render as
+        // absolutely-positioned children that extend below this box, and
+        // overflow-hidden on the header was clipping them out of view. The
+        // collapse animation doesn't actually need it: the full-bar content
+        // fades out via opacity faster than the width transition runs, so
+        // there's nothing left visible to clip by the time the box has
+        // narrowed enough for it to matter.
+        "fixed left-3 top-3 z-50 border border-slate-200/80 bg-white/95 shadow-lg shadow-slate-900/5 backdrop-blur-md transition-[width,height,border-radius] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:left-5 sm:top-4 lg:left-8",
         collapsed
           ? "h-12 w-12 rounded-full sm:h-14 sm:w-14"
           : clsx(

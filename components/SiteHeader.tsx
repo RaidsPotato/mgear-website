@@ -117,10 +117,16 @@ export function SiteHeader() {
           <LogoMark />
         </button>
 
-        {/* Full bar: fades out first, then the shape shrinks around it. */}
+        {/* Full bar: fades out first, then the shape shrinks around it.
+            `absolute inset-0`, matching the shape/bubble layers above —
+            mixing this as a normal static-flow sibling alongside those
+            absolutely-positioned ones (under a `position: fixed` header)
+            made the browser silently fail to paint it at all in testing,
+            even though every computed style said it was visible. Keeping
+            all three layers the same positioning type avoids that. */}
         <div
           className={clsx(
-            "flex h-12 w-full items-center justify-between gap-4 px-5 transition-opacity duration-150 sm:h-14 sm:px-7",
+            "absolute inset-0 flex h-12 items-center justify-between gap-4 px-5 transition-opacity duration-150 sm:h-14 sm:px-7",
             collapsed ? "pointer-events-none opacity-0" : "opacity-100"
           )}
         >

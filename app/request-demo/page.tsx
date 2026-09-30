@@ -1,13 +1,19 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Section } from "@/components/Section";
 import { PageHero } from "@/components/PageHero";
+import { Button } from "@/components/Button";
+
+const BOOKING_URL =
+  "https://bookings.cloud.microsoft/book/MGearDemo@bserved.us/?ismsaljsauthenabled";
+
+export const metadata: Metadata = {
+  title: "Request Demo",
+  description:
+    "Schedule a live walkthrough of how an authorization delay gets caught and resolved automatically — while the patient is still admitted.",
+};
 
 export default function RequestDemoPage() {
-  const [submitted, setSubmitted] = useState(false);
-
   return (
     <>
       <PageHero
@@ -19,79 +25,22 @@ export default function RequestDemoPage() {
       />
 
       <Section width="narrow">
-        <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
-          This form isn&apos;t yet connected to a live calendar or CRM — the demo
-          booking destination and sales email are still placeholders. Submitting below
-          only shows a local confirmation.
+        <div className="rounded-2xl border border-slate-200 bg-white px-8 py-10 text-center shadow-sm">
+          <p className="text-section font-semibold text-charcoal">
+            Pick a time that works for you
+          </p>
+          <p className="mx-auto mt-3 max-w-md text-body text-slate-600">
+            Scheduling opens in Microsoft Bookings. Choose a slot and you&apos;ll get a
+            calendar invite with the details.
+          </p>
+          <div className="mt-8">
+            <Button href={BOOKING_URL} target="_blank">
+              Schedule Your Demo
+            </Button>
+          </div>
         </div>
 
-        {submitted ? (
-          <div className="mt-8 rounded-xl border border-brand/20 bg-[#f2f9f4] px-6 py-8 text-center">
-            <p className="text-section font-semibold text-charcoal">Thanks — we&apos;ll be in touch.</p>
-            <p className="mt-2 text-body text-slate-600">
-              This confirmation is a placeholder until demo scheduling is wired up.
-            </p>
-          </div>
-        ) : (
-          <form
-            className="mt-8 space-y-5"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSubmitted(true);
-            }}
-          >
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block">
-                <span className="text-sm font-medium text-charcoal">Full name</span>
-                <input
-                  required
-                  type="text"
-                  className="mt-1.5 w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-body text-charcoal focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
-                />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-charcoal">Work email</span>
-                <input
-                  required
-                  type="email"
-                  className="mt-1.5 w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-body text-charcoal focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
-                />
-              </label>
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block">
-                <span className="text-sm font-medium text-charcoal">Hospital / health system</span>
-                <input
-                  required
-                  type="text"
-                  className="mt-1.5 w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-body text-charcoal focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
-                />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-charcoal">Job title</span>
-                <input
-                  type="text"
-                  className="mt-1.5 w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-body text-charcoal focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
-                />
-              </label>
-            </div>
-            <label className="block">
-              <span className="text-sm font-medium text-charcoal">What would you like to see? (optional)</span>
-              <textarea
-                rows={4}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-body text-charcoal focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
-              />
-            </label>
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-dark hover:shadow-md"
-            >
-              Request Demo
-            </button>
-          </form>
-        )}
-
-        <p className="mt-8 text-sm text-slate-500">
+        <p className="mt-8 text-center text-sm text-slate-500">
           Prefer email?{" "}
           <Link href="/contact" className="font-medium text-brand hover:text-brand-dark">
             Contact us directly

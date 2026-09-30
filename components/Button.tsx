@@ -21,15 +21,21 @@ export function Button({
   children,
   variant = "primary",
   className = "",
+  target,
 }: {
   href: string;
   children: ReactNode;
   variant?: Variant;
   className?: string;
+  /** Pass "_blank" for an external destination (e.g. a booking page) —
+   * adds rel="noopener noreferrer" automatically. */
+  target?: "_blank";
 }) {
   return (
     <Link
       href={href}
+      target={target}
+      rel={target === "_blank" ? "noopener noreferrer" : undefined}
       className={clsx(
         "inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors",
         styles[variant],

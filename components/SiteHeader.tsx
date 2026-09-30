@@ -1,36 +1,108 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
-import { Logo } from "./Logo";
+import { Logo, LogoMark } from "./Logo";
 import { Button } from "./Button";
 import { primaryNav } from "@/lib/nav";
+
+// How far past the top the bar collapses into a bubble by default.
+const COLLAPSE_AFTER_PX = 140;
+// Below this, it's always the full bar — the "back at the top" reset.
+const TOP_RESET_PX = 40;
+// Once manually re-expanded, how much further scroll (either direction)
+// before it folds itself back into the bubble.
+const REEXPAND_SCROLL_DELTA = 80;
 
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
+  const [collapsed, setCollapsed] = useState(false);
+  // Scroll position at the moment the user last clicked to re-expand it —
+  // null whenever collapse state is just following the default scroll rule.
+  const expandedAtRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    function onScroll() {
+      const y = window.scrollY;
+
+      if (y < TOP_RESET_PX) {
+        setCollapsed(false);
+        expandedAtRef.current = null;
+        return;
+      }
+
+      if (expandedAtRef.current !== null) {
+        if (Math.abs(y - expandedAtRef.current) > REEXPAND_SCROLL_DELTA) {
+          setCollapsed(true);
+          expandedAtRef.current = null;
+        }
+        return;
+      }
+
+      setCollapsed(y > COLLAPSE_AFTER_PX);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  function expand() {
+    setCollapsed(false);
+    expandedAtRef.current = window.scrollY;
+  }
+
+  // A collapse should never leave a dropdown or the mobile panel stranded
+  // open behind the bubble.
+  useEffect(() => {
+    if (collapsed) {
+      setOpenMenu(null);
+      setMobileOpen(false);
+      setMobileSection(null);
+    }
+  }, [collapsed]);
+
+  const barIsOpen = !collapsed && mobileOpen;
 
   return (
     <header
       className={clsx(
-        // `fixed`, not `sticky` — a sticky header stays in normal document
-        // flow, which pushes the page's first section down and leaves the
-        // margin around the island showing the plain body background
-        // (white) instead of that section's own background (e.g. the dark
-        // hero). `fixed` takes it out of flow entirely, so the hero's
-        // full-bleed background renders all the way up to the true top of
-        // the page, visible behind and around the floating header.
-        "fixed inset-x-3 top-3 z-50 sm:inset-x-5 sm:top-4 lg:inset-x-8"
+        // `fixed`, not `sticky` — see the earlier note: a sticky header
+        // stays in flow and leaves plain white showing around the island,
+        // fixed lets the page's own background render behind it.
+        "fixed left-3 top-3 z-50 overflow-hidden border border-slate-200/80 bg-white/95 shadow-lg shadow-slate-900/5 backdrop-blur-md transition-[width,height,border-radius] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:left-5 sm:top-4 lg:left-8",
+        collapsed
+          ? "h-12 w-12 rounded-full sm:h-14 sm:w-14"
+          : clsx(
+              "w-[calc(100vw-1.5rem)] rounded-2xl sm:w-[calc(100vw-2.5rem)] lg:w-[calc(100vw-4rem)]",
+              barIsOpen ? "h-auto" : "h-12 sm:h-14"
+            )
       )}
     >
-      {/* The "island": inset from the viewport edges with its own rounded
-          corners, border and shadow, rather than a flush edge-to-edge bar —
-          still spans nearly the full monitor width via the outer inset
-          above, it just no longer touches the edges. */}
-      <div className="rounded-2xl border border-slate-200/80 bg-white/95 shadow-lg shadow-slate-900/5 backdrop-blur-md">
-        <div className="flex w-full items-center justify-between gap-4 px-5 py-3 sm:px-7">
+      {/* Bubble: only ever visible while collapsed, fades in under the
+          shrinking box rather than popping in at the end. */}
+      <button
+        type="button"
+        onClick={expand}
+        aria-label="Show navigation"
+        className={clsx(
+          "absolute inset-0 flex items-center justify-center transition-opacity duration-200",
+          collapsed ? "opacity-100 delay-200" : "pointer-events-none opacity-0"
+        )}
+      >
+        <LogoMark />
+      </button>
+
+      {/* Full bar: fades out first, then the box shrinks around it. */}
+      <div
+        className={clsx(
+          "transition-opacity duration-150",
+          collapsed ? "pointer-events-none opacity-0" : "opacity-100"
+        )}
+      >
+        <div className="flex h-12 w-full items-center justify-between gap-4 px-5 sm:h-14 sm:px-7">
           <Logo />
 
           <nav className="hidden items-center gap-1 xl:flex">

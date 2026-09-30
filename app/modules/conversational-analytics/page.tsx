@@ -25,8 +25,8 @@ export default function Page() {
         eyebrow="Module — Conversational Analytics"
         headline="One Question. One Governed Answer. One Number Everywhere Else Agrees With."
         subheadline="Ask in plain language. Get an answer inside your hospital's own permission model — not an open chatbot over the chart, and not a dashboard that quietly disagrees with the workflow that produced it."
-        receives="a governed, read-only feed from every module on the platform. This module never holds its own version of a fact."
-        sends="answers to natural-language executive questions, inside the hospital's own permission model and data boundaries; honest disclosure when a facility's data is excluded rather than a false zero."
+        receives="A governed, read-only feed from every module on the platform. This module never holds its own version of a fact."
+        sends="Answers to natural-language executive questions, inside the hospital's own permission model and data boundaries; honest disclosure when a facility's data is excluded rather than a false zero."
         problem="Two problems, both familiar to any hospital executive. First: getting an answer to an operational question usually means asking someone to build a report, and waiting. Second: when two dashboards disagree — and they often do — nobody can say which one is right. This module answers questions directly, from one place, so there's nothing left to disagree with."
         whatItDoes={'Executives ask in natural language — "show me missed admission opportunities this month." Governed enterprise analytics, not unrestricted AI.'}
         workflow={

@@ -14,8 +14,8 @@ export default function Page() {
       eyebrow="Module — Authorization Management"
       headline="The Chain Starts Here"
       subheadline="An authorization delay doesn't sit in a queue. It notifies the departments that can still fix it — automatically, while the stay is still open."
-      receives="completed reviews from Utilization Management."
-      sends="notifications to Payer Communication; requirement checks to Payor Grid; denials trigger a case in P2P Management."
+      receives="Completed reviews from Utilization Management."
+      sends="Notifications to Payer Communication; requirement checks to Payor Grid; denials trigger a case in P2P Management."
       problem="Authorization delays, missed payer notifications, and preventable denials are three of the most direct revenue risks named across the platform — and all three start, or are caught, right here. A delayed authorization that no one notices until the payer meeting is the exact failure this module exists to prevent."
       whatItDoes="Authorization requests. Pending, approved, and denied status tracking. TAR management. Escalations."
       workflow={

@@ -14,8 +14,8 @@ export default function Page() {
       eyebrow="Module — Denial Management"
       headline="The Appeal Starts Itself. The Underpayment Doesn't Stay Hidden."
       subheadline="When a P2P call is upheld, the appeal is created and linked back to that case automatically. When a payer pays less than the contract says they owe, this module is what makes that visible."
-      receives="upheld outcomes from P2P Management; denials recorded in Authorization Management; expected reimbursement terms from Payor Grid."
-      sends="appeal and reimbursement data to Analytics."
+      receives="Upheld outcomes from P2P Management; denials recorded in Authorization Management; expected reimbursement terms from Payor Grid."
+      sends="Appeal and reimbursement data to Analytics."
       problem="Preventable denials, underpayments, unpaid claims, and revenue leakage are named directly among the platform's core problems. An underpayment that no one catches because reconciling actual payment against the contract takes hours nobody has is revenue lost as surely as a denial that's never appealed."
       whatItDoes="All appeal levels. Appeal status and outcomes. Reimbursement reconciliation. Expected reimbursement. Underpayments. Unpaid claims. Proactive escalations."
       workflow={

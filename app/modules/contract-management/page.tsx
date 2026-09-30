@@ -22,8 +22,8 @@ export default function Page() {
         eyebrow="Module — Contract Management"
         headline="One Contract, Five Modules Updated"
         subheadline="Upload a payer contract once. Every module that needs its terms gets them — without anyone typing a single rule by hand."
-        receives="payer contracts, uploaded directly by the hospital."
-        sends="extracted reimbursement terms, covered services, authorization/notification rules to Payor Grid — which reaches Authorization, Payer Communication, Denial Management, and Analytics from there."
+        receives="Payer contracts, uploaded directly by the hospital."
+        sends="Extracted reimbursement terms, covered services, authorization/notification rules to Payor Grid — which reaches Authorization, Payer Communication, Denial Management, and Analytics from there."
         problem="A standalone contract management tool extracts a contract's terms and puts them in a document. Then nobody reads that document at the moment it actually matters — when an authorization request goes out, when a notification window is about to close, when a payment comes in short. Contract Management exists so the terms don't sit in a document at all. They go directly into the systems doing the work."
         whatItDoes="Hospitals upload payer contracts. Contract Intelligence extracts reimbursement terms, covered services, authorization rules, notification rules, and operational requirements — feeding Payor Grid, Denial Management, Analytics, Authorization Management, and Payer Communication."
         workflow={

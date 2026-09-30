@@ -34,8 +34,8 @@ const nodes: {
     sub: "",
     row: 1,
     col: 1,
-    receives: "the patient at admission.",
-    sends: "admission data to Utilization Management the moment a patient is registered.",
+    receives: "The patient at admission.",
+    sends: "Admission data to Utilization Management the moment a patient is registered.",
   },
   {
     id: "um",
@@ -43,8 +43,8 @@ const nodes: {
     sub: "ED / OBS / IP, medical necessity",
     row: 1,
     col: 2,
-    receives: "admission data from Patient Access and Admitting.",
-    sends: "completed reviews to Authorization Management; physician escalations to Physician Advisors when a case needs an advisor.",
+    receives: "Admission data from Patient Access and Admitting.",
+    sends: "Completed reviews to Authorization Management; physician escalations to Physician Advisors when a case needs an advisor.",
   },
   {
     id: "auth",
@@ -52,8 +52,8 @@ const nodes: {
     sub: "requests, TAR, defers",
     row: 1,
     col: 3,
-    receives: "completed reviews from Utilization Management.",
-    sends: "notifications to Payer Communication; requirement checks to Payor Grid; denials trigger a case in Physician Advisors.",
+    receives: "Completed reviews from Utilization Management.",
+    sends: "Notifications to Payer Communication; requirement checks to Payor Grid; denials trigger a case in Physician Advisors.",
   },
   {
     id: "payerComm",
@@ -61,8 +61,8 @@ const nodes: {
     sub: "notifications, calls, documents",
     row: 1,
     col: 4,
-    receives: "notifications from Authorization Management; that payer's specific requirements from Payor Grid.",
-    sends: "compliance data to Analytics.",
+    receives: "Notifications from Authorization Management; that payer's specific requirements from Payor Grid.",
+    sends: "Compliance data to Analytics.",
   },
   {
     id: "physicianAdvisors",
@@ -70,8 +70,8 @@ const nodes: {
     sub: "P2P scheduling, overturn rates",
     row: 2,
     col: 2,
-    receives: "physician escalations from Utilization Management; denial cases from Authorization Management.",
-    sends: "overturned outcomes back to Authorization; upheld outcomes to Denial Management; overturn rates and advisor performance to Analytics.",
+    receives: "Physician escalations from Utilization Management; denial cases from Authorization Management.",
+    sends: "Overturned outcomes back to Authorization; upheld outcomes to Denial Management; overturn rates and advisor performance to Analytics.",
   },
   {
     id: "payorGrid",
@@ -79,8 +79,8 @@ const nodes: {
     sub: "payer rules, notification requirements",
     row: 2,
     col: 3,
-    receives: "extracted terms from Contract Intelligence; requirement checks from Authorization and Payer Communication.",
-    sends: "payer rules and notification requirements that govern how both of those modules work; deviation data to Analytics.",
+    receives: "Extracted terms from Contract Intelligence; requirement checks from Authorization and Payer Communication.",
+    sends: "Payer rules and notification requirements that govern how both of those modules work; deviation data to Analytics.",
   },
   {
     id: "contract",
@@ -88,8 +88,8 @@ const nodes: {
     sub: "extracted terms",
     row: 2,
     col: 4,
-    receives: "payer contracts, uploaded directly by the hospital.",
-    sends: "extracted reimbursement terms, covered services, and authorization/notification rules to Payor Grid.",
+    receives: "Payer contracts, uploaded directly by the hospital.",
+    sends: "Extracted reimbursement terms, covered services, and authorization/notification rules to Payor Grid.",
   },
   {
     id: "denial",
@@ -97,8 +97,8 @@ const nodes: {
     sub: "appeals, underpayments, unpaid claims",
     row: 3,
     col: 3,
-    receives: "upheld outcomes from Physician Advisors; denials from Authorization; expected reimbursement from Payor Grid.",
-    sends: "appeal and reimbursement data to Analytics.",
+    receives: "Upheld outcomes from Physician Advisors; denials from Authorization; expected reimbursement from Payor Grid.",
+    sends: "Appeal and reimbursement data to Analytics.",
   },
   {
     id: "quality",
@@ -106,8 +106,8 @@ const nodes: {
     sub: "workflow audit",
     row: 4,
     col: 1,
-    receives: "review and workflow data from Utilization Management and Authorization Management.",
-    sends: "workflow-delay flags to managers; review-quality data to Analytics.",
+    receives: "Review and workflow data from Utilization Management and Authorization Management.",
+    sends: "Workflow-delay flags to managers; review-quality data to Analytics.",
   },
   {
     id: "productivity",
@@ -115,8 +115,8 @@ const nodes: {
     sub: "staffing, workload",
     row: 4,
     col: 2,
-    receives: "staffing, scheduling, and workload data across departments.",
-    sends: "performance data to Analytics.",
+    receives: "Staffing, scheduling, and workload data across departments.",
+    sends: "Performance data to Analytics.",
   },
   {
     id: "alerts",
@@ -124,8 +124,8 @@ const nodes: {
     sub: "the human is told",
     row: 4,
     col: 3,
-    receives: "workflow-delay flags and threshold breaches from across the platform.",
-    sends: "the notification that gets a manager to act — the step before a human intervenes.",
+    receives: "Workflow-delay flags and threshold breaches from across the platform.",
+    sends: "The notification that gets a manager to act — the step before a human intervenes.",
   },
   // Analytics reads from every module here — six converging lines into one
   // small box, from every corner of the diagram, is exactly what made this
@@ -138,8 +138,8 @@ const nodes: {
     sub: "dashboards",
     row: 0,
     col: 0,
-    receives: "a read-only feed from every module on the platform — it never holds its own version of a fact.",
-    sends: "the same canonical numbers to every dashboard and role that reads them.",
+    receives: "A read-only feed from every module on the platform — it never holds its own version of a fact.",
+    sends: "The same canonical numbers to every dashboard and role that reads them.",
   },
 ];
 

@@ -26,8 +26,8 @@ const chain1Steps = [
   "Payor Grid verifies that payer's requirements",
   "Analytics updates the dashboards",
   "Quality identifies the workflow delay",
-  "the Manager is alerted",
-  "the team resolves it before discharge",
+  "The Manager is alerted",
+  "The team resolves it before discharge",
 ];
 
 const providenceStats = [

@@ -14,8 +14,8 @@ export default function Page() {
       eyebrow="Module — Utilization Management"
       headline="Every Review, Connected to What Happens Next"
       subheadline="Utilization Management doesn't just decide medical necessity — that decision sets off everything downstream that protects the revenue tied to it."
-      receives="admission data from Patient Access and Admitting the moment a patient is registered."
-      sends="completed reviews to Authorization Management, which starts the authorization process automatically; physician escalations to P2P Management when a case needs an advisor."
+      receives="Admission data from Patient Access and Admitting the moment a patient is registered."
+      sends="Completed reviews to Authorization Management, which starts the authorization process automatically; physician escalations to P2P Management when a case needs an advisor."
       problem="Missed admission opportunities and observation overutilization both start here — a review that happens too late, or a level-of-care decision made without full information, becomes lost revenue before the patient is ever discharged. UM's job is to catch that in real time, not reconstruct it afterward."
       whatItDoes="ED, observation, and inpatient reviews. Medical necessity determinations. Physician escalation when a case needs advisor judgment. Avoidable-days tracking. Level-of-care validation."
       workflow={

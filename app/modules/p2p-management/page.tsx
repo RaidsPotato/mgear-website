@@ -15,8 +15,8 @@ export default function Page() {
       eyebrow="Module — P2P Management"
       headline="One Outcome, and It Routes Itself"
       subheadline="A denial becomes a scheduled peer-to-peer call automatically. What the advisor decides on that call determines what happens next — without anyone re-entering the case."
-      receives="physician escalations from Utilization Management; denial cases from Authorization Management."
-      sends="overturned outcomes back to Authorization (stay authorized, no appeal needed); upheld outcomes to Denial Management, where an appeal is drafted automatically; overturn rates and advisor performance to Analytics."
+      receives="Physician escalations from Utilization Management; denial cases from Authorization Management."
+      sends="Overturned outcomes back to Authorization (stay authorized, no appeal needed); upheld outcomes to Denial Management, where an appeal is drafted automatically; overturn rates and advisor performance to Analytics."
       problem="In most hospitals, the handoff between authorization staff, physician advisors, and the appeals team means re-keying a case or emailing a spreadsheet at every step. This module exists so that handoff happens without anyone doing that — the case moves itself."
       whatItDoes="Physician-advisor escalations. Peer-to-peer scheduling. Outcome capture. Overturn rates. Advisor performance. Denial prevention."
       workflow={

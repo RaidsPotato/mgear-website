@@ -14,15 +14,30 @@ const TOP_RESET_PX = 40;
 // Once manually re-expanded, how much further scroll (either direction)
 // before it folds itself back into the bubble.
 const REEXPAND_SCROLL_DELTA = 80;
+// Bubble diameter in px, matching h-12/w-12 and sm:h-14/sm:w-14 below —
+// kept as numbers (not just Tailwind classes) because the clip-path that
+// draws the bubble has to be computed in JS.
+const BUBBLE_BASE = 48;
+const BUBBLE_SM = 56;
 
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const [collapsed, setCollapsed] = useState(false);
+  const [bubbleSize, setBubbleSize] = useState(BUBBLE_BASE);
   // Scroll position at the moment the user last clicked to re-expand it —
   // null whenever collapse state is just following the default scroll rule.
   const expandedAtRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    function updateBubbleSize() {
+      setBubbleSize(window.innerWidth >= 640 ? BUBBLE_SM : BUBBLE_BASE);
+    }
+    updateBubbleSize();
+    window.addEventListener("resize", updateBubbleSize);
+    return () => window.removeEventListener("resize", updateBubbleSize);
+  }, []);
 
   useEffect(() => {
     function onScroll() {
@@ -64,52 +79,51 @@ export function SiteHeader() {
     }
   }, [collapsed]);
 
-  const barIsOpen = !collapsed && mobileOpen;
+  // The pill-to-circle morph, as a clip-path rather than animating width/
+  // height directly. width/height are layout properties — every frame of
+  // that animation forced the browser to re-run layout for the header's
+  // subtree, which is what read as choppy. clip-path is paint-only (no
+  // layout pass), and both states below use the same `inset()` function so
+  // the browser interpolates smoothly between them instead of snapping.
+  const clipPath = collapsed
+    ? `inset(0px calc(100% - ${bubbleSize}px) calc(100% - ${bubbleSize}px) 0px round 9999px)`
+    : "inset(0px round 16px)";
 
   return (
-    <header
-      className={clsx(
-        // `fixed`, not `sticky` — see the earlier note: a sticky header
-        // stays in flow and leaves plain white showing around the island,
-        // fixed lets the page's own background render behind it.
-        // No overflow-hidden here — the desktop dropdown submenus render as
-        // absolutely-positioned children that extend below this box, and
-        // overflow-hidden on the header was clipping them out of view. The
-        // collapse animation doesn't actually need it: the full-bar content
-        // fades out via opacity faster than the width transition runs, so
-        // there's nothing left visible to clip by the time the box has
-        // narrowed enough for it to matter.
-        "fixed left-3 top-3 z-50 border border-slate-200/80 bg-white/95 shadow-lg shadow-slate-900/5 backdrop-blur-md transition-[width,height,border-radius] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:left-5 sm:top-4 lg:left-8",
-        collapsed
-          ? "h-12 w-12 rounded-full sm:h-14 sm:w-14"
-          : clsx(
-              "w-[calc(100vw-1.5rem)] rounded-2xl sm:w-[calc(100vw-2.5rem)] lg:w-[calc(100vw-4rem)]",
-              barIsOpen ? "h-auto" : "h-12 sm:h-14"
-            )
-      )}
-    >
-      {/* Bubble: only ever visible while collapsed, fades in under the
-          shrinking box rather than popping in at the end. */}
-      <button
-        type="button"
-        onClick={expand}
-        aria-label="Show navigation"
-        className={clsx(
-          "absolute inset-0 flex items-center justify-center transition-opacity duration-200",
-          collapsed ? "opacity-100 delay-200" : "pointer-events-none opacity-0"
-        )}
-      >
-        <LogoMark />
-      </button>
+    <header className="fixed left-3 top-3 z-50 sm:left-5 sm:top-4 lg:left-8">
+      {/* This wrapper's own size never changes — only the shape drawn
+          inside it (via clip-path) and the content's opacity do. Nothing
+          here ever animates width/height, and nothing here clips the
+          dropdowns: the shape layer below is a sibling of the nav content,
+          not an ancestor, so its clip-path can never cut them off. */}
+      <div className="relative h-12 w-[calc(100vw-1.5rem)] sm:h-14 sm:w-[calc(100vw-2.5rem)] lg:w-[calc(100vw-4rem)]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 border border-slate-200/80 bg-white shadow-lg shadow-slate-900/5 transition-[clip-path] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] [will-change:clip-path]"
+          style={{ clipPath }}
+        />
 
-      {/* Full bar: fades out first, then the box shrinks around it. */}
-      <div
-        className={clsx(
-          "transition-opacity duration-150",
-          collapsed ? "pointer-events-none opacity-0" : "opacity-100"
-        )}
-      >
-        <div className="flex h-12 w-full items-center justify-between gap-4 px-5 sm:h-14 sm:px-7">
+        {/* Bubble: only ever visible while collapsed, fades in under the
+            shrinking shape rather than popping in at the end. */}
+        <button
+          type="button"
+          onClick={expand}
+          aria-label="Show navigation"
+          className={clsx(
+            "absolute left-0 top-0 flex h-12 w-12 items-center justify-center transition-opacity duration-200 sm:h-14 sm:w-14",
+            collapsed ? "opacity-100 delay-200" : "pointer-events-none opacity-0"
+          )}
+        >
+          <LogoMark />
+        </button>
+
+        {/* Full bar: fades out first, then the shape shrinks around it. */}
+        <div
+          className={clsx(
+            "flex h-12 w-full items-center justify-between gap-4 px-5 transition-opacity duration-150 sm:h-14 sm:px-7",
+            collapsed ? "pointer-events-none opacity-0" : "opacity-100"
+          )}
+        >
           <Logo />
 
           <nav className="hidden items-center gap-1 xl:flex">
@@ -169,66 +183,70 @@ export function SiteHeader() {
             </svg>
           </button>
         </div>
+      </div>
 
-        {mobileOpen && (
-          <div className="border-t border-slate-200 px-5 py-4 xl:hidden">
-            <nav className="flex flex-col gap-1">
-              {primaryNav.map((item) => (
-                <div key={item.href}>
-                  <div className="flex items-center justify-between">
-                    <Link
-                      href={item.href}
-                      className="flex-1 rounded-md px-2 py-2 text-sm font-medium text-slate-700 hover:text-brand"
-                      onClick={() => setMobileOpen(false)}
+      {/* Mobile dropdown panel — its own background/shadow, deliberately
+          separate from the shape layer above rather than trying to make
+          one clip-path cover both a collapsible bar and a variable-height
+          panel. */}
+      {mobileOpen && !collapsed && (
+        <div className="w-[calc(100vw-1.5rem)] rounded-b-2xl border border-t-0 border-slate-200/80 bg-white px-5 py-4 shadow-lg shadow-slate-900/5 sm:w-[calc(100vw-2.5rem)] lg:w-[calc(100vw-4rem)] xl:hidden">
+          <nav className="flex flex-col gap-1">
+            {primaryNav.map((item) => (
+              <div key={item.href}>
+                <div className="flex items-center justify-between">
+                  <Link
+                    href={item.href}
+                    className="flex-1 rounded-md px-2 py-2 text-sm font-medium text-slate-700 hover:text-brand"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                  {item.children && (
+                    <button
+                      type="button"
+                      aria-label={`Toggle ${item.label} submenu`}
+                      onClick={() =>
+                        setMobileSection((prev) => (prev === item.href ? null : item.href))
+                      }
+                      className="p-2 text-slate-500"
                     >
-                      {item.label}
-                    </Link>
-                    {item.children && (
-                      <button
-                        type="button"
-                        aria-label={`Toggle ${item.label} submenu`}
-                        onClick={() =>
-                          setMobileSection((prev) => (prev === item.href ? null : item.href))
-                        }
-                        className="p-2 text-slate-500"
+                      <svg
+                        width="10"
+                        height="6"
+                        viewBox="0 0 10 6"
+                        className={clsx(
+                          "fill-current transition-transform",
+                          mobileSection === item.href && "rotate-180"
+                        )}
                       >
-                        <svg
-                          width="10"
-                          height="6"
-                          viewBox="0 0 10 6"
-                          className={clsx(
-                            "fill-current transition-transform",
-                            mobileSection === item.href && "rotate-180"
-                          )}
-                        >
-                          <path d="M0 0 L5 6 L10 0 Z" />
-                        </svg>
-                      </button>
-                    )}
-                  </div>
-                  {item.children && mobileSection === item.href && (
-                    <div className="ml-3 flex flex-col gap-1 border-l border-slate-200 pl-3">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="rounded-md px-2 py-2 text-sm text-slate-600 hover:text-brand"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
+                        <path d="M0 0 L5 6 L10 0 Z" />
+                      </svg>
+                    </button>
                   )}
                 </div>
-              ))}
-            </nav>
-            <Button href="/request-demo" className="mt-3 w-full">
-              Request Demo
-            </Button>
-          </div>
-        )}
-      </div>
+                {item.children && mobileSection === item.href && (
+                  <div className="ml-3 flex flex-col gap-1 border-l border-slate-200 pl-3">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="rounded-md px-2 py-2 text-sm text-slate-600 hover:text-brand"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+          <Button href="/request-demo" className="mt-3 w-full">
+            Request Demo
+          </Button>
+        </div>
+      )}
     </header>
   );
 }

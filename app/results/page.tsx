@@ -39,7 +39,7 @@ export default function ResultsPage() {
   return (
     <>
       <section className="hero-glow bg-charcoal">
-        <div className="mx-auto max-w-7xl px-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
+        <div className="mx-auto max-w-7xl px-6 pt-28 pb-16 sm:pt-40 sm:pb-24">
           <div className="max-w-3xl">
             <p className="eyebrow text-brand">Results</p>
             <p className="mt-4 text-hero font-bold leading-[1.05] text-white">

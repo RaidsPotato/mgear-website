@@ -101,7 +101,7 @@ export default function Home() {
     <>
       {/* Hero — full-bleed dark, animated brand-green glow, chain diagram floated as a light panel on top */}
       <section className="hero-glow bg-charcoal">
-        <div className="mx-auto max-w-7xl px-6 pt-16 pb-16 sm:pt-24 sm:pb-24">
+        <div className="mx-auto max-w-7xl px-6 pt-28 pb-16 sm:pt-40 sm:pb-24">
           <div className="max-w-3xl">
             <p className="eyebrow text-brand">Operational AI Infrastructure for Hospitals</p>
             <h1 className="mt-4 text-hero font-bold text-white">

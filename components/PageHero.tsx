@@ -79,7 +79,10 @@ export function PageHero({
       <div
         className={clsx(
           "relative mx-auto px-6",
-          compact ? "pt-14 pb-12 sm:pt-16 sm:pb-14" : "pt-16 pb-14 sm:pt-24 sm:pb-20",
+          // Extra top padding clears the fixed floating header with real
+          // breathing room, not just the minimum — it was reading as tight
+          // against the island above it.
+          compact ? "pt-24 pb-12 sm:pt-28 sm:pb-14" : "pt-28 pb-14 sm:pt-40 sm:pb-20",
           width === "wide" ? "max-w-7xl" : "max-w-5xl"
         )}
       >

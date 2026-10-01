@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import clsx from "clsx";
 import { Logo, LogoMark } from "./Logo";
@@ -22,6 +23,11 @@ const BUBBLE_SM = 56;
 
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  // Where the open dropdown should render — it's portaled to document.body
+  // (see the comment above the portal below for why), so it needs its own
+  // screen position rather than relying on normal DOM-flow positioning
+  // relative to its trigger.
+  const [dropdownPos, setDropdownPos] = useState<{ left: number; top: number } | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const [collapsed, setCollapsed] = useState(false);
@@ -29,6 +35,30 @@ export function SiteHeader() {
   // Scroll position at the moment the user last clicked to re-expand it —
   // null whenever collapse state is just following the default scroll rule.
   const expandedAtRef = useRef<number | null>(null);
+  // Debounces closing the dropdown so moving the mouse from the trigger
+  // down into the portaled panel below it doesn't flicker-close it.
+  const closeMenuTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function openDropdown(href: string, trigger: HTMLElement) {
+    if (closeMenuTimerRef.current) {
+      clearTimeout(closeMenuTimerRef.current);
+      closeMenuTimerRef.current = null;
+    }
+    const rect = trigger.getBoundingClientRect();
+    setDropdownPos({ left: rect.left, top: rect.bottom });
+    setOpenMenu(href);
+  }
+
+  function scheduleCloseDropdown() {
+    closeMenuTimerRef.current = setTimeout(() => setOpenMenu(null), 150);
+  }
+
+  function cancelCloseDropdown() {
+    if (closeMenuTimerRef.current) {
+      clearTimeout(closeMenuTimerRef.current);
+      closeMenuTimerRef.current = null;
+    }
+  }
 
   useEffect(() => {
     function updateBubbleSize() {
@@ -73,6 +103,7 @@ export function SiteHeader() {
   // open behind the bubble.
   useEffect(() => {
     if (collapsed) {
+      cancelCloseDropdown();
       setOpenMenu(null);
       setMobileOpen(false);
       setMobileSection(null);
@@ -93,22 +124,32 @@ export function SiteHeader() {
   // corner, not just opacity-faded — see the comment on the content div
   // below for why: a separate opacity fade can't track the shape's heavily
   // front-loaded easing, so text was left exposed over bare background
-  // after the shape already looked done shrinking. Goes one step further
-  // than the shape's own target and collapses to a zero-size point (not
-  // bubbleSize) so the Logo is fully gone by the time the LogoMark bubble
-  // button fades in — otherwise both would render in the same spot at once.
+  // after the shape already looked done shrinking. Deliberately the exact
+  // same structural form as the shape's own two states above (same units,
+  // same `inset()` shape, just a different end target) rather than some
+  // "large negative inset = unclipped" trick — that's what the shape
+  // itself already demonstrably animates smoothly, so content gets the
+  // identical, proven-safe transition instead of a novel one. Goes one
+  // step further than the shape's own target and collapses to a
+  // zero-size point (not bubbleSize) so the Logo is fully gone by the
+  // time the LogoMark bubble button fades in — otherwise both would
+  // render in the same spot at once. The expanded state now matches the
+  // box exactly (same as the shape's `inset(0px round 16px)`), which
+  // would clip the hover dropdowns if they were still DOM descendants —
+  // they're portaled to document.body instead (see below) specifically
+  // so this clip-path can stay this simple.
   const contentClipPath = collapsed
     ? "inset(0px 100% 100% 0px round 9999px)"
-    : "inset(-9999px round 16px)";
+    : "inset(0px round 16px)";
 
   return (
     <header className="fixed left-3 top-3 z-50 sm:left-5 sm:top-4 lg:left-8">
       {/* This wrapper's own size never changes — only the clip-path drawn
           on the shape and content layers inside it does. Nothing here ever
-          animates width/height. The content layer's own clip-path only
-          ever restricts it to this wrapper's own box or wider (see
-          contentClipPath below) — it never clips the dropdowns, which
-          extend below that box. */}
+          animates width/height. The content layer's clip-path matches this
+          box's own edges while expanded, which would clip the hover
+          dropdowns if they were descendants of it — they're portaled to
+          document.body instead (see below), so that's never an issue. */}
       <div className="relative h-12 w-[calc(100vw-1.5rem)] sm:h-14 sm:w-[calc(100vw-2.5rem)] lg:w-[calc(100vw-4rem)]">
         <div
           aria-hidden
@@ -162,8 +203,8 @@ export function SiteHeader() {
               <div
                 key={item.href}
                 className="relative"
-                onMouseEnter={() => item.children && setOpenMenu(item.href)}
-                onMouseLeave={() => item.children && setOpenMenu(null)}
+                onMouseEnter={(e) => item.children && openDropdown(item.href, e.currentTarget)}
+                onMouseLeave={() => item.children && scheduleCloseDropdown()}
               >
                 <Link
                   href={item.href}
@@ -176,26 +217,6 @@ export function SiteHeader() {
                     </svg>
                   )}
                 </Link>
-                {item.children && (
-                  <div
-                    className={clsx(
-                      "absolute left-0 top-full w-72 rounded-lg border border-slate-200 bg-white p-2 shadow-lg transition-all",
-                      openMenu === item.href
-                        ? "visible opacity-100 translate-y-0"
-                        : "invisible -translate-y-1 opacity-0"
-                    )}
-                  >
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block rounded-md px-3 py-2 text-sm text-slate-700 hover:bg-surface-alt hover:text-brand"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
           </nav>
@@ -215,6 +236,45 @@ export function SiteHeader() {
           </button>
         </div>
       </div>
+
+      {/* Modules/Solutions/Industries hover panel, portaled to document.body.
+          It used to live inside the content row above, but that row now
+          gets clipped to the box's exact edges while expanded (see
+          contentClipPath above) — a DOM descendant would get clipped off
+          too, since it extends below the row's own bottom edge. A portal
+          sidesteps that: it isn't a descendant of the clipped element at
+          all, regardless of any clip-path/containing-block edge case, so
+          it needs its own screen position instead of relying on `top-full`
+          relative to its trigger (set in openDropdown via
+          getBoundingClientRect). openDropdown/scheduleCloseDropdown/
+          cancelCloseDropdown debounce the open/close so moving the mouse
+          from the trigger down into this panel doesn't flicker-close it
+          despite the two no longer being nested in the DOM. */}
+      {openMenu &&
+        dropdownPos &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className="fixed z-50 w-72 rounded-lg border border-slate-200 bg-white p-2 shadow-lg"
+            style={{ left: dropdownPos.left, top: dropdownPos.top }}
+            onMouseEnter={cancelCloseDropdown}
+            onMouseLeave={scheduleCloseDropdown}
+          >
+            {primaryNav
+              .find((item) => item.href === openMenu)
+              ?.children?.map((child) => (
+                <Link
+                  key={child.href}
+                  href={child.href}
+                  className="block rounded-md px-3 py-2 text-sm text-slate-700 hover:bg-surface-alt hover:text-brand"
+                  onClick={() => setOpenMenu(null)}
+                >
+                  {child.label}
+                </Link>
+              ))}
+          </div>,
+          document.body
+        )}
 
       {/* Mobile dropdown panel — its own background/shadow, deliberately
           separate from the shape layer above rather than trying to make

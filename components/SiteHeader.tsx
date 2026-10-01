@@ -25,19 +25,37 @@ const BUBBLE_SM = 56;
 
 // Content items fade in/out in sequence rather than all at once — firing
 // every opacity transition simultaneously was reading as "ghosting" where
-// several words cross-fade on top of each other at once. Step is deliberately
-// small: with logo + 9 nav links + CTA that's 11 items, and the full cascade
-// (10 * STEP) should land close to the shape's own 400ms clip-path duration
-// so the two animations finish together instead of one visibly trailing.
-const STAGGER_STEP_MS = 25;
+// several words cross-fade on top of each other at once.
+//
+// Expanding and collapsing use different paces on purpose. Expanding grows
+// the shape to fit growing content, so a cascade that takes the full 400ms
+// (matching the shape's own clip-path duration) reads as content "filling
+// in" the bar as it opens. Collapsing is the opposite: the shape's
+// cubic-bezier(0.22,1,0.36,1) easing is heavily front-loaded, so the bar
+// visually *looks* done shrinking well before the transition's literal
+// 400ms end. A collapse cascade timed to also finish at 400ms meant the
+// last item (the Logo) was still visibly fading out well after the bar
+// already read as a finished bubble — reported as the text "lingering."
+// Collapsing now fades everything out fast (well under half the shape's
+// duration) so nothing is left to fade by the time the bubble looks done.
+const EXPAND_STAGGER_STEP_MS = 25;
+const EXPAND_FADE_DURATION_MS = 150;
+const COLLAPSE_STAGGER_STEP_MS = 12;
+const COLLAPSE_FADE_DURATION_MS = 90;
+
 // Order follows the clip-path's own shrink/grow direction: collapsing eats
 // the bar from the right and bottom toward the top-left corner, so the
 // right-most content (CTA/hamburger) should disappear first and the Logo —
 // which is what the bubble actually morphs into — should be the last thing
 // to fade. Expanding just runs that in reverse.
 function staggerDelay(index: number, total: number, collapsed: boolean) {
+  const step = collapsed ? COLLAPSE_STAGGER_STEP_MS : EXPAND_STAGGER_STEP_MS;
   const order = collapsed ? total - 1 - index : index;
-  return order * STAGGER_STEP_MS;
+  return order * step;
+}
+
+function fadeDurationMs(collapsed: boolean) {
+  return collapsed ? COLLAPSE_FADE_DURATION_MS : EXPAND_FADE_DURATION_MS;
 }
 
 export function SiteHeader() {
@@ -145,7 +163,8 @@ export function SiteHeader() {
             even though every computed style said it was visible. Keeping
             all three layers the same positioning type avoids that.
             Opacity lives on each child individually (staggered via
-            staggerDelay), not on this row — see STAGGER_STEP_MS above. */}
+            staggerDelay), not on this row — see the EXPAND_/COLLAPSE_
+            constants above. */}
         <div
           className={clsx(
             "absolute inset-0 flex h-12 items-center justify-between gap-4 px-5 sm:h-14 sm:px-7",
@@ -153,10 +172,11 @@ export function SiteHeader() {
           )}
         >
           <div
-            className="transition-opacity duration-150"
+            className="transition-opacity"
             style={{
               opacity: collapsed ? 0 : 1,
               transitionDelay: `${staggerDelay(0, NAV_ITEM_COUNT, collapsed)}ms`,
+              transitionDuration: `${fadeDurationMs(collapsed)}ms`,
             }}
           >
             <Logo />
@@ -166,10 +186,11 @@ export function SiteHeader() {
             {primaryNav.map((item, i) => (
               <div
                 key={item.href}
-                className="relative transition-opacity duration-150"
+                className="relative transition-opacity"
                 style={{
                   opacity: collapsed ? 0 : 1,
                   transitionDelay: `${staggerDelay(i + 1, NAV_ITEM_COUNT, collapsed)}ms`,
+                  transitionDuration: `${fadeDurationMs(collapsed)}ms`,
                 }}
                 onMouseEnter={() => item.children && setOpenMenu(item.href)}
                 onMouseLeave={() => item.children && setOpenMenu(null)}
@@ -210,20 +231,22 @@ export function SiteHeader() {
           </nav>
 
           <div
-            className="hidden transition-opacity duration-150 xl:block"
+            className="hidden transition-opacity xl:block"
             style={{
               opacity: collapsed ? 0 : 1,
               transitionDelay: `${staggerDelay(NAV_ITEM_COUNT - 1, NAV_ITEM_COUNT, collapsed)}ms`,
+              transitionDuration: `${fadeDurationMs(collapsed)}ms`,
             }}
           >
             <Button href="/request-demo">Request Demo</Button>
           </div>
 
           <button
-            className="transition-opacity duration-150 xl:hidden"
+            className="transition-opacity xl:hidden"
             style={{
               opacity: collapsed ? 0 : 1,
               transitionDelay: `${staggerDelay(NAV_ITEM_COUNT - 1, NAV_ITEM_COUNT, collapsed)}ms`,
+              transitionDuration: `${fadeDurationMs(collapsed)}ms`,
             }}
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"

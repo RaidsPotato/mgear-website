@@ -7,9 +7,6 @@ import { Logo, LogoMark } from "./Logo";
 import { Button } from "./Button";
 import { primaryNav } from "@/lib/nav";
 
-// Logo + every primaryNav link + the CTA/hamburger group, in display order.
-const NAV_ITEM_COUNT = primaryNav.length + 2;
-
 // How far past the top the bar collapses into a bubble by default.
 const COLLAPSE_AFTER_PX = 140;
 // Below this, it's always the full bar — the "back at the top" reset.
@@ -22,41 +19,6 @@ const REEXPAND_SCROLL_DELTA = 80;
 // draws the bubble has to be computed in JS.
 const BUBBLE_BASE = 48;
 const BUBBLE_SM = 56;
-
-// Content items fade in/out in sequence rather than all at once — firing
-// every opacity transition simultaneously was reading as "ghosting" where
-// several words cross-fade on top of each other at once.
-//
-// Expanding and collapsing use different paces on purpose. Expanding grows
-// the shape to fit growing content, so a cascade that takes the full 400ms
-// (matching the shape's own clip-path duration) reads as content "filling
-// in" the bar as it opens. Collapsing is the opposite: the shape's
-// cubic-bezier(0.22,1,0.36,1) easing is heavily front-loaded, so the bar
-// visually *looks* done shrinking well before the transition's literal
-// 400ms end. A collapse cascade timed to also finish at 400ms meant the
-// last item (the Logo) was still visibly fading out well after the bar
-// already read as a finished bubble — reported as the text "lingering."
-// Collapsing now fades everything out fast (well under half the shape's
-// duration) so nothing is left to fade by the time the bubble looks done.
-const EXPAND_STAGGER_STEP_MS = 25;
-const EXPAND_FADE_DURATION_MS = 150;
-const COLLAPSE_STAGGER_STEP_MS = 12;
-const COLLAPSE_FADE_DURATION_MS = 90;
-
-// Order follows the clip-path's own shrink/grow direction: collapsing eats
-// the bar from the right and bottom toward the top-left corner, so the
-// right-most content (CTA/hamburger) should disappear first and the Logo —
-// which is what the bubble actually morphs into — should be the last thing
-// to fade. Expanding just runs that in reverse.
-function staggerDelay(index: number, total: number, collapsed: boolean) {
-  const step = collapsed ? COLLAPSE_STAGGER_STEP_MS : EXPAND_STAGGER_STEP_MS;
-  const order = collapsed ? total - 1 - index : index;
-  return order * step;
-}
-
-function fadeDurationMs(collapsed: boolean) {
-  return collapsed ? COLLAPSE_FADE_DURATION_MS : EXPAND_FADE_DURATION_MS;
-}
 
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -127,13 +89,26 @@ export function SiteHeader() {
     ? `inset(0px calc(100% - ${bubbleSize}px) calc(100% - ${bubbleSize}px) 0px round 9999px)`
     : "inset(0px round 16px)";
 
+  // The content row (logo/nav/CTA) gets clipped by this SAME shrinking
+  // corner, not just opacity-faded — see the comment on the content div
+  // below for why: a separate opacity fade can't track the shape's heavily
+  // front-loaded easing, so text was left exposed over bare background
+  // after the shape already looked done shrinking. Goes one step further
+  // than the shape's own target and collapses to a zero-size point (not
+  // bubbleSize) so the Logo is fully gone by the time the LogoMark bubble
+  // button fades in — otherwise both would render in the same spot at once.
+  const contentClipPath = collapsed
+    ? "inset(0px 100% 100% 0px round 9999px)"
+    : "inset(-9999px round 16px)";
+
   return (
     <header className="fixed left-3 top-3 z-50 sm:left-5 sm:top-4 lg:left-8">
-      {/* This wrapper's own size never changes — only the shape drawn
-          inside it (via clip-path) and the content's opacity do. Nothing
-          here ever animates width/height, and nothing here clips the
-          dropdowns: the shape layer below is a sibling of the nav content,
-          not an ancestor, so its clip-path can never cut them off. */}
+      {/* This wrapper's own size never changes — only the clip-path drawn
+          on the shape and content layers inside it does. Nothing here ever
+          animates width/height. The content layer's own clip-path only
+          ever restricts it to this wrapper's own box or wider (see
+          contentClipPath below) — it never clips the dropdowns, which
+          extend below that box. */}
       <div className="relative h-12 w-[calc(100vw-1.5rem)] sm:h-14 sm:w-[calc(100vw-2.5rem)] lg:w-[calc(100vw-4rem)]">
         <div
           aria-hidden
@@ -155,43 +130,38 @@ export function SiteHeader() {
           <LogoMark />
         </button>
 
-        {/* Full bar: fades out first, then the shape shrinks around it.
-            `absolute inset-0`, matching the shape/bubble layers above —
-            mixing this as a normal static-flow sibling alongside those
-            absolutely-positioned ones (under a `position: fixed` header)
-            made the browser silently fail to paint it at all in testing,
-            even though every computed style said it was visible. Keeping
-            all three layers the same positioning type avoids that.
-            Opacity lives on each child individually (staggered via
-            staggerDelay), not on this row — see the EXPAND_/COLLAPSE_
-            constants above. */}
+        {/* Full bar content, clipped by the SAME shrinking corner as the
+            shape layer above (contentClipPath), not just opacity-faded.
+            Why: opacity on a timer can't track the shape's heavily
+            front-loaded easing (cubic-bezier(0.22,1,0.36,1) — the shape
+            visually finishes shrinking well before its transition's
+            literal 400ms end), so a staggered fade kept leaving text
+            exposed over bare background after the bar already looked
+            collapsed. Clipping with the exact same geometry guarantees
+            content can never be visible outside where the white shape
+            is — and the left-to-right "wipe" that creates is what gives
+            the chronological disappear/reappear order, with no per-item
+            delay math needed. `absolute inset-0`, matching the shape/
+            bubble layers above — mixing this as a normal static-flow
+            sibling alongside those absolutely-positioned ones (under a
+            `position: fixed` header) made the browser silently fail to
+            paint it at all in testing, even though every computed style
+            said it was visible. Keeping all three layers the same
+            positioning type avoids that. */}
         <div
           className={clsx(
-            "absolute inset-0 flex h-12 items-center justify-between gap-4 px-5 sm:h-14 sm:px-7",
+            "absolute inset-0 flex h-12 items-center justify-between gap-4 px-5 transition-[clip-path] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] [will-change:clip-path] sm:h-14 sm:px-7",
             collapsed && "pointer-events-none"
           )}
+          style={{ clipPath: contentClipPath }}
         >
-          <div
-            className="transition-opacity"
-            style={{
-              opacity: collapsed ? 0 : 1,
-              transitionDelay: `${staggerDelay(0, NAV_ITEM_COUNT, collapsed)}ms`,
-              transitionDuration: `${fadeDurationMs(collapsed)}ms`,
-            }}
-          >
-            <Logo />
-          </div>
+          <Logo />
 
           <nav className="hidden items-center gap-1 xl:flex">
-            {primaryNav.map((item, i) => (
+            {primaryNav.map((item) => (
               <div
                 key={item.href}
-                className="relative transition-opacity"
-                style={{
-                  opacity: collapsed ? 0 : 1,
-                  transitionDelay: `${staggerDelay(i + 1, NAV_ITEM_COUNT, collapsed)}ms`,
-                  transitionDuration: `${fadeDurationMs(collapsed)}ms`,
-                }}
+                className="relative"
                 onMouseEnter={() => item.children && setOpenMenu(item.href)}
                 onMouseLeave={() => item.children && setOpenMenu(null)}
               >
@@ -230,24 +200,12 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div
-            className="hidden transition-opacity xl:block"
-            style={{
-              opacity: collapsed ? 0 : 1,
-              transitionDelay: `${staggerDelay(NAV_ITEM_COUNT - 1, NAV_ITEM_COUNT, collapsed)}ms`,
-              transitionDuration: `${fadeDurationMs(collapsed)}ms`,
-            }}
-          >
+          <div className="hidden xl:block">
             <Button href="/request-demo">Request Demo</Button>
           </div>
 
           <button
-            className="transition-opacity xl:hidden"
-            style={{
-              opacity: collapsed ? 0 : 1,
-              transitionDelay: `${staggerDelay(NAV_ITEM_COUNT - 1, NAV_ITEM_COUNT, collapsed)}ms`,
-              transitionDuration: `${fadeDurationMs(collapsed)}ms`,
-            }}
+            className="xl:hidden"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
           >

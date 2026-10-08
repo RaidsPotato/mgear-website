@@ -97,7 +97,19 @@ export function ZoomableImage({
         aria-label={`Enlarge screenshot: ${alt}`}
         className="group relative block w-full cursor-zoom-in text-left"
       >
-        <Image src={src} alt={alt} width={width} height={height} className={className} />
+        {/* `sizes`: without it Next assumes the image fills the viewport and
+            serves up to a 3840px-wide file to high-DPI screens — decoded,
+            that's tens of MB per screenshot, which is a real source of
+            scroll jank. The widest any of these ever displays is the
+            site's max container (~1200px), so tell the browser that. */}
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes="(min-width: 1280px) 1200px, 100vw"
+          className={className}
+        />
         <span className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-charcoal/80 px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">
           <ZoomIcon />
           Enlarge

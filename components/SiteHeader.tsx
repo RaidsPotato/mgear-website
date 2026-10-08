@@ -153,7 +153,7 @@ export function SiteHeader() {
       <div className="relative h-12 w-[calc(100vw-1.5rem)] sm:h-14 sm:w-[calc(100vw-2.5rem)] lg:w-[calc(100vw-4rem)]">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 border border-slate-200/80 bg-white shadow-lg shadow-slate-900/5 transition-[clip-path] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] [will-change:clip-path]"
+          className="pointer-events-none absolute inset-0 border border-slate-200/80 bg-white transition-[clip-path] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] [will-change:clip-path]"
           style={{ clipPath }}
         />
 

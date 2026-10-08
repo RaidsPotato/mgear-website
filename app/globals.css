@@ -168,21 +168,23 @@ body {
    transitions elsewhere in this codebase (see ChainDiagram's history) —
    an entrance-only replay sidesteps that entirely and needs no cleanup. */
 .page-enter {
-  animation: page-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* `backwards`, not `both`: with `both` the final keyframe's transform/
+     filter stayed applied forever, which kept this wrapper (the ENTIRE
+     page) as a permanent GPU layer and a stacking context. `backwards`
+     only applies the "from" state before the animation starts, then lets
+     go of everything once it ends. No `filter: blur` — blurring a full-
+     page-height element is the most expensive thing in this animation
+     and Lighthouse flags it as a non-composited animation. */
+  animation: page-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 @keyframes page-enter {
   from {
     opacity: 0;
     transform: translateY(18px) scale(0.99);
-    filter: blur(4px);
-  }
-  60% {
-    filter: blur(0);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-    filter: blur(0);
   }
 }
 

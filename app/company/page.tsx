@@ -4,6 +4,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { BOOKING_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Company — About MGear",
@@ -80,11 +81,8 @@ export default function CompanyPage() {
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button href="/platform">Platform Overview</Button>
-            <Button
-              href="/contact"
-              variant="inverse"
-            >
-              Contact
+            <Button href={BOOKING_URL} target="_blank" variant="inverse">
+              Request Demo
             </Button>
           </div>
         </div>

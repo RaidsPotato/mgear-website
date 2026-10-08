@@ -25,7 +25,7 @@ export type HeroAction = {
  *     Interoperability), giving those conceptual pages a hero that
  *     previews their actual content instead of plain text on the glow.
  *   - `compact` — shorter vertical padding, for lower-key utility pages
- *     (Contact, legal, Company) so they don't carry the same towering
+ *     (Request Demo, legal, Company) so they don't carry the same towering
  *     weight as a flagship or product page.
  *   - `size="lg"` is the homepage-scale hero (text-hero); default is the
  *     inner-page scale (text-page-title).

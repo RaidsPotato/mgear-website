@@ -5,6 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/Button";
 import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { BOOKING_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Pricing — MGear Hospital Revenue Cycle Operating Platform",
@@ -74,11 +75,7 @@ export default function PricingPage() {
             Get a quote structured to your hospital.
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button href="/contact">Contact Sales</Button>
-            <Button
-              href="/request-demo"
-              variant="inverse"
-            >
+            <Button href={BOOKING_URL} target="_blank">
               Request Demo
             </Button>
           </div>

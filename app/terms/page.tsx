@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Section } from "@/components/Section";
 import { PageHero } from "@/components/PageHero";
+import { BOOKING_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -79,11 +79,16 @@ export default function TermsPage() {
           <h2 className="text-section font-semibold text-charcoal">Governing law</h2>
           <p className="mt-3">
             [State/jurisdiction of incorporation to be added.] Questions about these terms can be
-            sent through the{" "}
-            <Link href="/contact" className="font-medium text-brand hover:text-brand-dark">
-              Contact
-            </Link>{" "}
-            page.
+            raised by{" "}
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-brand hover:text-brand-dark"
+            >
+              booking a call
+            </a>
+            .
           </p>
         </section>
       </div>

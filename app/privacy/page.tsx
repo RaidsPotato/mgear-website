@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Section } from "@/components/Section";
 import { PageHero } from "@/components/PageHero";
+import { BOOKING_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-section font-semibold text-charcoal">Information we collect</h2>
           <p className="mt-3">
-            When you submit a form on this site — Request Demo, Contact, or similar — we collect
+            When you submit a form on this site — Request Demo or similar — we collect
             what you provide directly: name, work email, hospital or health system, job title,
             phone number if given, and any message content. Like most websites, our servers also
             log standard technical information automatically: IP address, browser and device
@@ -80,11 +80,16 @@ export default function PrivacyPage() {
           <h2 className="text-section font-semibold text-charcoal">Your choices</h2>
           <p className="mt-3">
             To ask what information we hold about you, or to request that it be corrected or
-            deleted, reach us through the{" "}
-            <Link href="/contact" className="font-medium text-brand hover:text-brand-dark">
-              Contact
-            </Link>{" "}
-            page.
+            deleted, reach us by{" "}
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-brand hover:text-brand-dark"
+            >
+              booking a call
+            </a>
+            .
           </p>
         </section>
 
@@ -107,11 +112,17 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-section font-semibold text-charcoal">Governing law</h2>
           <p className="mt-3">
-            [State/jurisdiction of incorporation to be added.] Contact us through the{" "}
-            <Link href="/contact" className="font-medium text-brand hover:text-brand-dark">
-              Contact
-            </Link>{" "}
-            page with any questions about this policy.
+            [State/jurisdiction of incorporation to be added.] Questions about this policy
+            can be raised by{" "}
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-brand hover:text-brand-dark"
+            >
+              booking a call
+            </a>
+            .
           </p>
         </section>
       </div>

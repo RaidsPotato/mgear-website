@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Section } from "@/components/Section";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/Button";
-
-const BOOKING_URL =
-  "https://bookings.cloud.microsoft/book/MGearDemo@bserved.us/?ismsaljsauthenabled";
+import { BOOKING_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Request Demo",
@@ -39,14 +36,6 @@ export default function RequestDemoPage() {
             </Button>
           </div>
         </div>
-
-        <p className="mt-8 text-center text-sm text-slate-500">
-          Prefer email?{" "}
-          <Link href="/contact" className="font-medium text-brand hover:text-brand-dark">
-            Contact us directly
-          </Link>
-          .
-        </p>
       </Section>
     </>
   );

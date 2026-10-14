@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ZoomableImage } from "@/components/ZoomableImage";
@@ -37,11 +38,30 @@ const providenceStats = [
   { value: "100%", label: "Authorization approval rate" },
 ];
 
+// Wording expanded per Max's website review (2026-10-14): the trigger isn't
+// always "something changes" (it can be a mismatch between criteria, patient
+// status and payer authorization), and "a human is told" is only part of it —
+// most steps are automated. 02-CONNECTION-MAP.md's original four-beat shape is
+// unchanged; only the labels are fuller.
 const chainShape = [
-  "Something changes",
-  "The right modules learn about it automatically",
-  "A human is told",
-  "It is fixed before discharge",
+  {
+    title: "A trigger fires",
+    detail:
+      "A delay, a denial, or a mismatch between InterQual or MCG criteria, the patient's status and the payer's authorization.",
+  },
+  {
+    title: "The right modules learn automatically",
+    detail: "Every connected department sees it the moment it happens — no one has to pass it along.",
+  },
+  {
+    title: "MGear acts, or tells the right person",
+    detail:
+      "It resolves what it can automatically, and tells the responsible person exactly what to do about the rest.",
+  },
+  {
+    title: "It is fixed before discharge",
+    detail: "While the patient is still admitted and the outcome can still change.",
+  },
 ];
 
 const consequences = [
@@ -189,22 +209,52 @@ export default function Home() {
           eyebrow="How It Works"
           heading="Every chain in the platform has the same shape"
         />
-        <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div role="list" className="mt-10 flex flex-col items-stretch lg:flex-row">
           {chainShape.map((step, i) => (
-            <Reveal key={step} delay={i * 0.08}>
-              <li className="flex h-full flex-col rounded-xl border border-white/15 bg-white/5 p-5">
-                <span className="text-caption font-semibold text-brand">
-                  {String(i + 1).padStart(2, "0")}
+            <Fragment key={step.title}>
+              <Reveal delay={i * 0.08} className="flex min-w-0 lg:flex-1">
+                <div role="listitem" className="flex w-full flex-col rounded-xl border border-white/15 bg-white/5 p-5">
+                  <span className="text-body font-semibold leading-snug text-white">
+                    {step.title}
+                  </span>
+                  <span className="mt-2 text-caption leading-relaxed text-slate-300">
+                    {step.detail}
+                  </span>
+                </div>
+              </Reveal>
+              {i < chainShape.length - 1 && (
+                <span
+                  aria-hidden
+                  className="flex h-8 flex-none items-center justify-center text-brand lg:h-auto lg:w-10"
+                >
+                  <svg
+                    width="22"
+                    height="12"
+                    viewBox="0 0 22 12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="rotate-90 lg:rotate-0"
+                  >
+                    <path d="M1 6h19M15 1.5 20 6l-5 4.5" />
+                  </svg>
                 </span>
-                <span className="mt-2 text-body leading-snug text-slate-100">
-                  {step}
-                </span>
-              </li>
-            </Reveal>
+              )}
+            </Fragment>
           ))}
-        </ol>
+        </div>
         <p className="mt-6 text-caption text-slate-400">
           The last step is what makes it MGear and not a report.
+        </p>
+        <p className="mt-6 max-w-3xl text-body text-slate-300">
+          Today these workflows run in separate departments, with handoffs where cases get
+          re-keyed, delayed or dropped. MGear runs them as one connected process and
+          automates the routine steps — so there are fewer handoff errors and fewer missed
+          deadlines, and staff spend their time on decisions instead of chasing a case from
+          one department to the next. AI assists; people remain responsible for every
+          clinical and operational decision.
         </p>
       </Section>
 
@@ -213,7 +263,7 @@ export default function Home() {
         <SectionHeader
           eyebrow="The Platform"
           heading="One platform. Constant communication."
-          lead="Not a suite of tools that happen to share a login — a single operating platform where something changing in one department automatically reaches the departments it affects."
+          lead="Not a suite of tools that happen to share a login. One operating platform where an event in any department automatically reaches every department it affects — and MGear resolves it, or tells the right person exactly what to do. It covers the mid-revenue cycle end to end."
         />
         <Reveal className="mt-10">
           <ModuleStrip />

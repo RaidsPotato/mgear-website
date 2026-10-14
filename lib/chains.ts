@@ -1,6 +1,11 @@
-// Sourced verbatim (arrow-joined sentences reformatted as step arrays) from
-// 02-CONNECTION-MAP.md. Every chain here is real behavior in the working
-// product, with its own citation in that file — nothing here is invented.
+// Chains 1 and 3-8 are sourced from 02-CONNECTION-MAP.md (arrow-joined
+// sentences reformatted as step arrays), each with its own citation there.
+// Two chains carry additions from Max's website review of 2026-10-14, not yet
+// in that file: the extra denial-path steps in "A denial becomes a
+// peer-to-peer", and the whole "A status mismatch is caught and corrected"
+// chain (Utilization Management). Per the package's provenance rule they are
+// attributed to a named person and date; they should be added to
+// 02-CONNECTION-MAP.md and confirmed against the product.
 export type Chain = {
   id: string;
   title: string;
@@ -23,7 +28,24 @@ export const chains: Chain[] = [
       "the Manager is alerted",
       "the team resolves it before discharge",
     ],
-    earns: "Authorization efficiency, and one fewer preventable denial.",
+    earns:
+      "Increased authorization efficiency, fewer preventable denials, and fewer avoidable days — the delay is caught and fixed while the stay is still open, instead of surfacing at a payer meeting weeks later, when the outcome can no longer change.",
+  },
+  {
+    id: "status-mismatch",
+    title: "A status mismatch is caught and corrected",
+    trigger:
+      "A criteria review, the patient's status, the physician's order and the payer's authorization stop agreeing — for example, a patient meets inpatient criteria but is on an observation order.",
+    steps: [
+      "An InterQual or MCG review is run — automatically, or by the case manager",
+      "MGear checks it against the patient's status, the physician's order and the payer authorization, and catches the mismatch in real time",
+      "it re-runs the criteria itself where the hospital has automated reviews — otherwise the case manager is asked to double-check",
+      "if inpatient criteria are met, the attending physician or case manager is asked to enter the inpatient order — the physician decides",
+      "the patient's status moves from observation to inpatient",
+      "Analytics tracks timeliness, criteria accuracy, the payer's authorization, and whether the hospital was paid correctly",
+    ],
+    earns:
+      "Increased inpatient admissions, reduced observation overutilization, and increased reimbursement accuracy — the hospital is paid for the level of care it actually delivered.",
   },
   {
     id: "denial-to-p2p",
@@ -31,9 +53,11 @@ export const chains: Chain[] = [
     trigger: "A payer denies while the patient is in-house.",
     steps: [
       "Denial recorded in Authorizations",
-      "a P2P case is created and scheduled with the physician advisor",
+      "MGear checks whether the case is appealable and whether the payer allows a concurrent peer-to-peer",
+      "a P2P case is created and scheduled with the physician advisor, and the appeal process starts alongside it",
       "the advisor works the call, the outcome is captured",
       "overturned means the stay is authorized, no appeal needed — upheld means an appeal is drafted automatically, deep-linked back into the case that produced it",
+      "if the payer is right and the case does not meet criteria, MGear recommends a lower level of care — a change of status, or billing at a lower level",
       "overturn rates and advisor performance update in Analytics",
     ],
     earns: "Denial prevention, reduced avoidable days, faster appeal turnaround.",

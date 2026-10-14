@@ -4,7 +4,12 @@ import { useState } from "react";
 
 type Mode = "total" | "category";
 
-const reductionOptions = ["10", "15", "25", "50"];
+const reductionOptions = ["10", "15", "25", "30", "40", "50"];
+// Prefilled so the estimator never opens on an empty "Select %" and $0 results.
+// 30% is the low end of the 30-40% year-one figure in the footnote below (that
+// figure itself is still an unsourced open item), so the default is the more
+// conservative end.
+const DEFAULT_REDUCTION = "30";
 
 const categoryDefs = [
   { id: "clinicals", label: "Lack of Clinicals" },
@@ -122,9 +127,9 @@ function PillToggle<T extends string>({
 export function DenialROICalculator() {
   const [totalWriteOffs, setTotalWriteOffs] = useState("");
   const [mode, setMode] = useState<Mode>("category");
-  const [totalReduction, setTotalReduction] = useState("");
+  const [totalReduction, setTotalReduction] = useState(DEFAULT_REDUCTION);
   const [rows, setRows] = useState(
-    categoryDefs.map((c) => ({ ...c, amount: "", reduction: "" }))
+    categoryDefs.map((c) => ({ ...c, amount: "", reduction: DEFAULT_REDUCTION }))
   );
 
   const total = parseFloat(totalWriteOffs) || 0;

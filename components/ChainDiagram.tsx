@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useLayoutEffect, useRef, useState } from "react";
 import { motion, animate, motionValue, type MotionValue } from "framer-motion";
 
 type Rect = { x: number; y: number; width: number; height: number };
@@ -258,9 +258,14 @@ export function ChainDiagram({
         {frameLabel}
       </span>
 
-      <div className="flex flex-col items-stretch gap-0 sm:flex-row sm:items-center sm:gap-0">
+      {/* A flat row of equal-width, equal-height cards with a real arrow
+          between each pair. It used to wrap each card + connector in its
+          own flex-1 wrapper, which made the LAST card wider than the rest
+          (it has no connector eating into its share) and let heights follow
+          each card's text — together that read as "unfinished or raw." */}
+      <div className="flex flex-col items-stretch sm:flex-row">
         {steps.map((step, i) => (
-          <div key={i} className="flex flex-1 items-center">
+          <Fragment key={i}>
             <motion.div
               ref={(el) => {
                 boxRefs.current[i] = el;
@@ -269,18 +274,32 @@ export function ChainDiagram({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.45, delay: i * 0.12, ease: "easeOut" }}
-              className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm leading-snug text-charcoal shadow-xs"
+              className="flex min-w-0 flex-1 items-center rounded-lg border border-slate-200 bg-white px-3.5 py-3.5 text-sm leading-snug text-charcoal shadow-xs sm:min-h-[6.25rem] sm:justify-center sm:text-center"
             >
               {displayCase(step)}
             </motion.div>
 
             {i < steps.length - 1 && (
-              <div className="mx-2 hidden h-px flex-none w-8 bg-slate-300 sm:block" />
+              <span
+                aria-hidden
+                className="flex h-7 flex-none items-center justify-center text-brand/60 sm:h-auto sm:w-9"
+              >
+                <svg
+                  width="22"
+                  height="12"
+                  viewBox="0 0 22 12"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="rotate-90 sm:rotate-0"
+                >
+                  <path d="M1 6h19M15 1.5 20 6l-5 4.5" />
+                </svg>
+              </span>
             )}
-            {i < steps.length - 1 && (
-              <div className="my-1 ml-3 h-6 w-px flex-none bg-slate-300 sm:hidden" />
-            )}
-          </div>
+          </Fragment>
         ))}
       </div>
 

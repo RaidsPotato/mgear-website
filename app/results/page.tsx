@@ -3,7 +3,7 @@ import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ClosingCTA } from "@/components/ModulePageLayout";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { ProvidenceToggle } from "@/components/ProvidenceToggle";
+import { ProvidenceComparison } from "@/components/ProvidenceComparison";
 import { ScreenshotHotspots } from "@/components/ScreenshotHotspots";
 import { AnimatedStat } from "@/components/AnimatedStat";
 
@@ -51,7 +51,7 @@ export default function ResultsPage() {
             </p>
           </div>
           <div className="mt-12 rounded-2xl bg-white p-4 shadow-2xl sm:p-6">
-            <ProvidenceToggle />
+            <ProvidenceComparison />
           </div>
         </div>
       </section>
@@ -86,11 +86,22 @@ export default function ResultsPage() {
         <p className="mt-6 max-w-3xl text-body text-slate-600">
           This isn&apos;t a different mechanism from what&apos;s described on Platform
           Overview — it&apos;s the same chain, run continuously, across a whole program.
-          An authorization delay is caught and resolved before discharge instead of
-          becoming a denial. A denial that does occur routes itself to a physician
-          advisor automatically, and the outcome — overturned or upheld — routes itself
-          from there without anyone re-keying a case. An underpayment against the
-          contracted rate becomes visible instead of invisible.
+        </p>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          It starts with Utilization Management. MGear continuously monitors medical
+          necessity and utilization, identifying mismatches between InterQual or MCG
+          criteria, the patient&apos;s actual status, the physician&apos;s admission
+          order and the payer&apos;s authorization. When a discrepancy is detected, MGear
+          flags it and escalates the case to the attending physician, Case Manager or
+          other responsible party for timely review and resolution — helping prevent an
+          inappropriate patient status, authorization gaps and avoidable denials.
+        </p>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          From there, an authorization delay is caught and resolved before discharge
+          instead of becoming a denial. A denial that does occur routes itself to a
+          physician advisor automatically, and the outcome — overturned or upheld —
+          routes itself from there without anyone re-keying a case. An underpayment
+          against the contracted rate becomes visible instead of invisible.
         </p>
       </Section>
 
@@ -100,13 +111,18 @@ export default function ResultsPage() {
           heading="One number, one owner, everywhere it appears"
         />
         <p className="mt-6 max-w-3xl text-body text-slate-600">
-          The reason executives distrust hospital dashboards is that two reports
-          disagree and nobody can say which is right. MGear&apos;s answer is
-          structural: the P2P module owns the case record — it&apos;s the only place an
-          outcome can be changed — and every P2P metric anywhere in Analytics, including
-          the numbers behind this page, reads from that same record instead of
-          recomputing its own version. A row in a dashboard links back to the live case
-          that produced it.
+          The main benefit of MGear is the connection between every part of the revenue
+          cycle — Utilization Management, Authorization Management, P2P Management,
+          Denial Management, Payer Communication and Analytics. The reason executives
+          distrust hospital dashboards is that two reports disagree and nobody can say
+          which is right. MGear&apos;s answer is structural: each fact has one owner, and
+          everything else reads from it instead of recomputing its own version.
+        </p>
+        <p className="mt-4 max-w-3xl text-body text-slate-600">
+          P2P is the clearest example. The P2P module owns the case record — it&apos;s
+          the only place an outcome can be changed — and every P2P metric anywhere in
+          Analytics, including the numbers behind this page, reads from that same
+          record. A row in a dashboard links back to the live case that produced it.
         </p>
       </Section>
 

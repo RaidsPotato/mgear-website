@@ -46,23 +46,47 @@ export default function PlatformOverview() {
       <PageHero
         tone="dark"
         eyebrow="How the Platform Works"
-        title="One Operating Platform. Every Department. Real Time."
-        lead="Not a suite of modules that happen to share a login. A single platform where every module continuously communicates with every other module — while the patient is still admitted."
+        title="One Mid-Revenue Cycle Operating Platform. Every Department. Real Time."
+        lead="Not a suite of modules that happen to share a login. A single platform where every module continuously communicates with every other module — covering the mid-revenue cycle end to end, while the patient is still admitted."
         actions={[
           { label: "Request Demo", href: "/request-demo" },
           { label: "See the Whole System", href: "#whole-system", variant: "inverse" },
         ]}
       />
 
+      <Section width="narrow">
+        <div className="rounded-2xl border border-slate-200 bg-white px-7 py-6 shadow-sm">
+          <p className="eyebrow">In plain language</p>
+          <p className="mt-3 text-body text-slate-700">
+            MGear is the real-time mid-revenue cycle operating platform for hospitals. It
+            connects utilization management, authorization, peer-to-peer reviews, denials,
+            payer communication and analytics into one process — and automates the routine
+            steps in them, so every department sees where each case stands while the
+            patient is still admitted. It works the same way for an academic medical
+            center, a community hospital or a critical access hospital: the hospital gains
+            live visibility into processes that today run department by department, out of
+            view.
+          </p>
+        </div>
+      </Section>
+
       <Section width="wide">
         <SectionHeader
           eyebrow="The Flagship Chain"
           heading="The chain, in full"
-          lead="This is the flagship example, run start to finish. An authorization has not come back, and the stay is still running."
+          lead="This is the flagship example, run start to finish — from the review that starts it to the resolution before discharge."
         />
 
         <ol className="mt-10 space-y-4">
           {[
+            [
+              "Utilization Management completes the review",
+              "and the authorization request starts automatically, with no second data-entry step.",
+            ],
+            [
+              "The authorization is delayed:",
+              "it has not come back and the stay is still running.",
+            ],
             [
               "Payer Communication is notified",
               "the moment the delay is detected — not at the next status meeting.",
@@ -79,7 +103,14 @@ export default function PlatformOverview() {
               "Quality identifies",
               "this as a workflow delay, not just a missed authorization — the pattern gets tracked, not just the instance.",
             ],
-            ["The manager is alerted.", ""],
+            [
+              "MGear works out what is holding it up",
+              "— for example, medical records that were never sent to the payer — then recommends the fix, or applies it automatically where it can.",
+            ],
+            [
+              "The manager is alerted",
+              "to anything MGear cannot resolve on its own.",
+            ],
             [
               "The team resolves it before discharge",
               "— because the patient is still in the building, the outcome can still change.",
@@ -97,9 +128,53 @@ export default function PlatformOverview() {
         </ol>
 
         <p className="mt-8 border-l-2 border-brand bg-[#f2f9f4] px-6 py-5 text-body text-charcoal">
-          What it earns: authorization efficiency, and one fewer preventable denial. No
-          one re-keyed a case. No one emailed a spreadsheet. No one found out at the
-          payer meeting three weeks later.
+          <strong className="font-semibold">What it earns:</strong> increased authorization
+          efficiency, fewer preventable denials, and fewer avoidable days. The delay is
+          caught and fixed while the stay is still open — instead of surfacing at a payer
+          meeting weeks later, when the outcome can no longer change.
+        </p>
+
+        <h3 className="mt-14 text-xl font-semibold text-charcoal">And if the payer denies</h3>
+        <p className="mt-2 max-w-3xl text-body text-slate-600">
+          The same chain carries on without anyone re-keying the case.
+        </p>
+        <ol className="mt-6 space-y-4">
+          {[
+            ["The denial is recorded", "in Authorizations while the patient is still in-house."],
+            [
+              "MGear checks",
+              "whether the case is appealable, and whether this payer allows a concurrent peer-to-peer.",
+            ],
+            [
+              "A P2P case is created and scheduled",
+              "with the physician advisor, and the appeal process starts alongside it.",
+            ],
+            [
+              "The advisor works the call and the outcome is captured.",
+              "Overturned: the stay is authorized and no appeal is needed. Upheld: an appeal is drafted automatically, deep-linked back into the case that produced it.",
+            ],
+            [
+              "If the payer is right and the case does not meet criteria,",
+              "MGear recommends a lower level of care — a change of admission status, or billing at a lower level. The physician makes the call.",
+            ],
+            [
+              "Overturn rates and advisor performance update in Analytics.",
+              "",
+            ],
+          ].map(([bold, rest], i) => (
+            <li key={i} className="flex gap-4">
+              <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
+                {i + 1}
+              </span>
+              <p className="text-body text-slate-700">
+                <strong className="font-semibold text-charcoal">{bold}</strong> {rest}
+              </p>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-6 border-l-2 border-brand bg-[#f2f9f4] px-6 py-5 text-body text-charcoal">
+          <strong className="font-semibold">What it earns:</strong> denial prevention,
+          fewer avoidable days, and faster appeal turnaround.
         </p>
       </Section>
 
@@ -116,9 +191,9 @@ export default function PlatformOverview() {
 
       <Section width="wide">
         <SectionHeader
-          eyebrow="Seven Real Chains"
-          heading="Seven chains. Pick one."
-          lead="The authorization delay above is one real chain out of seven. Every one of them is actual behavior in the working product, not an illustration built to look good. Pick a trigger and watch it move."
+          eyebrow="Eight Real Chains"
+          heading="Eight chains. Pick one."
+          lead="The authorization delay above is one real chain out of eight. Every one of them is actual behavior in the working product, not an illustration built to look good. Pick a trigger and watch it move."
         />
         <Reveal className="mt-8">
           <ChainExplorer />
@@ -149,11 +224,14 @@ export default function PlatformOverview() {
             </p>
             <p className="mt-2 text-body text-slate-600">
               Your EHR is the system of record — documentation, scheduling, the clinical
-              chart. That&apos;s a different job from the one described above. MGear
-              doesn&apos;t replace your EHR; it integrates with it via FHIR and HL7 and
-              sits on top as the operational coordination layer — the thing that notices
-              an authorization is stalling and gets the right department moving on it in
-              real time, while your EHR keeps the chart.
+              chart. Coordinating authorizations, denials and payer communication across
+              departments is a different job. You can export reports and reconcile them
+              yourself in a BI tool, but that typically takes months to build, and it still
+              only tells you what already happened. MGear doesn&apos;t replace your EHR; it
+              integrates with it via FHIR and HL7 and sits on top as the operational
+              coordination layer. It automates the workflows — not just the analytics —
+              noticing that an authorization is stalling and getting the right department
+              moving on it in real time, while your EHR keeps the chart.
             </p>
           </div>
           <div className="rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-sm">
@@ -162,9 +240,11 @@ export default function PlatformOverview() {
               An outsourced UM or denials vendor does the same work described above —
               but usually alone, disconnected from the other nine departments. You get a
               report back after the fact instead of a live alert while the stay is still
-              open. The problem was never that this work wasn&apos;t getting done
-              somewhere. It&apos;s that nowhere was it <em>connected</em> to everything
-              else protecting the same revenue.
+              open, and typically only the summary the vendor chooses to report — not
+              live, case-level analytics you can look into yourself. The problem was
+              never that this work wasn&apos;t getting done somewhere. It&apos;s that
+              nowhere was it <em>connected</em> to everything else protecting the same
+              revenue.
             </p>
           </div>
         </div>

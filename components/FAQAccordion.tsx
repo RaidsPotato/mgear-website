@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import clsx from "clsx";
+import { JsonLd } from "./JsonLd";
 
 export type FAQItem = { question: string; answer: string };
 
@@ -9,6 +10,18 @@ export function FAQAccordion({ items }: { items: FAQItem[] }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: items.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }}
+      />
     <div className="divide-y divide-slate-200 border-t border-b border-slate-200">
       {items.map((item, i) => {
         const isOpen = open === i;
@@ -44,5 +57,6 @@ export function FAQAccordion({ items }: { items: FAQItem[] }) {
         );
       })}
     </div>
+    </>
   );
 }

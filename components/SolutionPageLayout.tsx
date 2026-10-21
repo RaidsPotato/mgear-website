@@ -9,34 +9,7 @@ import { AI_BACKEND_STATEMENT } from "@/lib/copy";
 import { FinancialIcon, AIIcon, IntegrationIcon } from "@/components/ModuleIcons";
 import { ZoomableImage } from "@/components/ZoomableImage";
 import { Reveal } from "@/components/Reveal";
-
-function Card({
-  icon,
-  title,
-  children,
-  accent = false,
-}: {
-  icon: ReactNode;
-  title: string;
-  children: ReactNode;
-  accent?: boolean;
-}) {
-  return (
-    <div
-      className={`h-full rounded-xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-        accent
-          ? "border-brand/25 bg-[#f2f9f4] hover:shadow-brand/10"
-          : "border-slate-200 bg-white hover:border-brand/30"
-      }`}
-    >
-      <div className="flex items-center gap-3">
-        {icon}
-        <h3 className="text-lg font-semibold text-charcoal">{title}</h3>
-      </div>
-      <div className="mt-4 text-body text-slate-600">{children}</div>
-    </div>
-  );
-}
+import { Card, CardPair } from "@/components/CardPair";
 
 export function SolutionPageLayout({
   eyebrow,
@@ -103,29 +76,30 @@ export function SolutionPageLayout({
           heading="What it earns or protects"
           lead="Every capability on this page ties back to a financial outcome."
         />
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <Reveal className="h-full">
-            <Card icon={<FinancialIcon />} title="Financial Impact" accent>
-              {financialImpact}
-            </Card>
-          </Reveal>
-          {aiCapabilities ? (
-            <Reveal delay={0.1} className="h-full">
-              <Card icon={<AIIcon />} title="AI Capabilities">
-                {aiCapabilities}
-                <p className="mt-4 border-t border-slate-200 pt-4 text-sm text-slate-500">
-                  {AI_BACKEND_STATEMENT}
-                </p>
-              </Card>
-            </Reveal>
-          ) : (
-            <Reveal delay={0.1} className="h-full">
-              <Card icon={<IntegrationIcon />} title="Integration Capabilities">
-                {integrationCapabilities}
-              </Card>
-            </Reveal>
-          )}
-        </div>
+        <CardPair
+          left={{ icon: <FinancialIcon />, title: "Financial Impact", accent: true, children: financialImpact }}
+          right={
+            aiCapabilities
+              ? {
+                  icon: <AIIcon />,
+                  title: "AI Capabilities",
+                  bonus: 90,
+                  children: (
+                    <>
+                      {aiCapabilities}
+                      <p className="mt-4 border-t border-slate-200 pt-4 text-sm text-slate-500">
+                        {AI_BACKEND_STATEMENT}
+                      </p>
+                    </>
+                  ),
+                }
+              : {
+                  icon: <IntegrationIcon />,
+                  title: "Integration Capabilities",
+                  children: integrationCapabilities,
+                }
+          }
+        />
         {aiCapabilities && (
           <Reveal>
             <div className="mt-6">

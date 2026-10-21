@@ -62,7 +62,7 @@ export function ModuleStrip() {
 
   return (
     <div>
-      <div className="flex flex-col items-stretch lg:flex-row">
+      <div className="flex flex-col items-stretch lg:flex-row lg:items-start">
         {stages.map((stage, si) => (
           <Fragment key={stage.label}>
             <motion.div
@@ -91,7 +91,7 @@ export function ModuleStrip() {
             {si < stages.length - 1 && (
               <span
                 aria-hidden
-                className="flex h-8 flex-none items-center justify-center text-brand/60 lg:h-auto lg:w-10"
+                className="flex h-8 flex-none items-center justify-center text-brand/60 lg:h-24 lg:w-10 lg:self-start"
               >
                 <svg
                   width="22"

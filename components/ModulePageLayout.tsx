@@ -6,6 +6,7 @@ import { Button } from "@/components/Button";
 import { TagGrid } from "@/components/TagGrid";
 import { ZoomableImage } from "@/components/ZoomableImage";
 import { Reveal } from "@/components/Reveal";
+import { Card, CardPair } from "@/components/CardPair";
 import { AI_BACKEND_STATEMENT } from "@/lib/copy";
 import { FAQAccordion, type FAQItem } from "@/components/FAQAccordion";
 import {
@@ -25,34 +26,6 @@ function splitCapabilities(text: string): string[] {
     .split(".")
     .map((s) => s.trim())
     .filter(Boolean);
-}
-
-function Card({
-  icon,
-  title,
-  children,
-  accent = false,
-}: {
-  icon: ReactNode;
-  title: string;
-  children: ReactNode;
-  accent?: boolean;
-}) {
-  return (
-    <div
-      className={`h-full rounded-xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-        accent
-          ? "border-brand/25 bg-[#f2f9f4] hover:shadow-brand/10"
-          : "border-slate-200 bg-white hover:border-brand/30"
-      }`}
-    >
-      <div className="flex items-center gap-3">
-        {icon}
-        <h3 className="text-lg font-semibold text-charcoal">{title}</h3>
-      </div>
-      <div className="mt-4 text-body text-slate-600">{children}</div>
-    </div>
-  );
 }
 
 export function ModulePageLayout({
@@ -177,18 +150,10 @@ export function ModulePageLayout({
 
       <Section width="wide">
         <SectionHeader eyebrow="In Practice" heading="How the work actually runs" />
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <Reveal className="h-full">
-            <Card icon={<WorkflowIcon />} title="Operational Workflow">
-              {workflow}
-            </Card>
-          </Reveal>
-          <Reveal delay={0.1} className="h-full">
-            <Card icon={<ValueIcon />} title="Business Value">
-              {businessValue}
-            </Card>
-          </Reveal>
-        </div>
+        <CardPair
+          left={{ icon: <WorkflowIcon />, title: "Operational Workflow", children: workflow }}
+          right={{ icon: <ValueIcon />, title: "Business Value", children: businessValue }}
+        />
       </Section>
 
       {interactiveDemo && (
@@ -236,29 +201,30 @@ export function ModulePageLayout({
           heading="What it earns or protects"
           lead="Every feature here ties to a financial outcome — that pairing is the point."
         />
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <Reveal className="h-full">
-            <Card icon={<FinancialIcon />} title="Financial Impact" accent>
-              {financialImpact}
-            </Card>
-          </Reveal>
-          {aiCapabilities ? (
-            <Reveal delay={0.1} className="h-full">
-              <Card icon={<AIIcon />} title="AI Capabilities">
-                {aiCapabilities}
-                <p className="mt-4 border-t border-slate-200 pt-4 text-sm text-slate-500">
-                  {AI_BACKEND_STATEMENT}
-                </p>
-              </Card>
-            </Reveal>
-          ) : (
-            <Reveal delay={0.1} className="h-full">
-              <Card icon={<IntegrationIcon />} title="Integration Capabilities">
-                {integrationCapabilities}
-              </Card>
-            </Reveal>
-          )}
-        </div>
+        <CardPair
+          left={{ icon: <FinancialIcon />, title: "Financial Impact", accent: true, children: financialImpact }}
+          right={
+            aiCapabilities
+              ? {
+                  icon: <AIIcon />,
+                  title: "AI Capabilities",
+                  bonus: 90,
+                  children: (
+                    <>
+                      {aiCapabilities}
+                      <p className="mt-4 border-t border-slate-200 pt-4 text-sm text-slate-500">
+                        {AI_BACKEND_STATEMENT}
+                      </p>
+                    </>
+                  ),
+                }
+              : {
+                  icon: <IntegrationIcon />,
+                  title: "Integration Capabilities",
+                  children: integrationCapabilities,
+                }
+          }
+        />
 
         {aiCapabilities && (
           <Reveal>

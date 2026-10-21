@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Reveal } from "./Reveal";
 
 type Panel = {
@@ -19,8 +20,19 @@ type Panel = {
  * MGear side," nothing more.
  */
 export function BeforeAfter({ before, after }: { before: Panel; after: Panel }) {
+  // The panel with more text gets a little more width so the two end up about
+  // the same height instead of one stretching with empty space inside (same
+  // idea as CardPair, with a tighter clamp since these should read as equals).
+  const wb = before.points.join(" ").length;
+  const wa = after.points.join(" ").length * 1.10; // its check icons take more width than the "before" dots
+  const share = Math.min(0.60, Math.max(0.40, wb / (wb + wa || 1)));
+  const cols = { "--cols": `${share}fr auto ${1 - share}fr` } as CSSProperties;
+
   return (
-    <div className="grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">
+    <div
+      className="grid items-stretch gap-4 lg:[grid-template-columns:var(--cols)]"
+      style={cols}
+    >
       <Reveal className="h-full">
         <div className="flex h-full flex-col rounded-xl border border-slate-200 bg-surface-alt p-6 sm:p-7">
           <p className="text-label font-semibold uppercase tracking-[0.06em] text-slate-500">

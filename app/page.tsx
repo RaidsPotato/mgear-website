@@ -48,20 +48,20 @@ const chainShape = [
   {
     title: "A trigger fires",
     detail:
-      "A delay, a denial, or a mismatch between InterQual or MCG criteria, the patient's status and the payer's authorization.",
+      "A delay, a denial, or a mismatch between InterQual/MCG criteria, patient status and payer authorization.",
   },
   {
     title: "The right modules learn automatically",
-    detail: "Every connected department sees it the moment it happens — no one has to pass it along.",
+    detail: "Every connected department sees it the moment it happens — no one has to pass it along or chase it.",
   },
   {
     title: "MGear acts, or tells the right person",
     detail:
-      "It resolves what it can automatically, and tells the responsible person exactly what to do about the rest.",
+      "It resolves what it can on its own and tells the right person exactly what to do about the rest.",
   },
   {
     title: "It is fixed before discharge",
-    detail: "While the patient is still admitted and the outcome can still change.",
+    detail: "While the patient is still admitted, when the outcome can still change — not documented after discharge.",
   },
 ];
 
@@ -215,7 +215,7 @@ export default function Home() {
             <Fragment key={step.title}>
               <Reveal delay={i * 0.08} className="flex min-w-0 lg:flex-1">
                 <div role="listitem" className="flex w-full flex-col rounded-xl border border-white/15 bg-white/5 p-5">
-                  <span className="text-body font-semibold leading-snug text-white">
+                  <span className="text-body font-semibold leading-snug text-white lg:min-h-[3.1rem]">
                     {step.title}
                   </span>
                   <span className="mt-2 text-caption leading-relaxed text-slate-300">

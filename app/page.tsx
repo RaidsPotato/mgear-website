@@ -14,6 +14,7 @@ import { Reveal } from "@/components/Reveal";
 import { StatBand } from "@/components/StatBand";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { AnimatedStat } from "@/components/AnimatedStat";
+import { EMR_LIST, AI_BACKEND_STATEMENT } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "MGear — Real-Time Hospital Revenue Cycle Operating Platform",
@@ -98,12 +99,12 @@ const faqs = [
   {
     question: "Does AI replace clinical or operational staff?",
     answer:
-      "No. AI assists operations. Humans remain responsible for every clinical and operational decision.",
+      `No. AI assists operations. Humans remain responsible for every clinical and operational decision. ${AI_BACKEND_STATEMENT}`,
   },
   {
     question: "Which EHRs does MGear integrate with?",
     answer:
-      "FHIR and HL7 interoperability, with connectivity to Epic, Cerner, Meditech, Paragon, and Health Samurai Aidbox.",
+      `FHIR and HL7 interoperability, with connectivity to ${EMR_LIST}.`,
   },
   {
     question: "Is MGear only for large hospital systems?",
@@ -183,7 +184,7 @@ export default function Home() {
                 points: [
                   "Every module continuously communicates with every other module.",
                   "A change in one department automatically reaches the departments it affects.",
-                  "A human is told while the patient is still admitted.",
+                  "MGear acts automatically where it can, and tells the right person while the patient is still admitted.",
                   "The problem is resolved before discharge, not documented after it.",
                 ],
               }}
@@ -315,6 +316,7 @@ export default function Home() {
           heading="AI assists operations. It doesn't replace judgment."
           lead="Humans remain responsible for every clinical and operational decision. Governed — analytics answer inside the hospital's own permission model, not an open chatbot over the chart."
         />
+        <p className="mt-4 max-w-2xl text-body text-slate-600">{AI_BACKEND_STATEMENT}</p>
         <Reveal className="mt-8">
           <TagGrid items={aiCapabilities} tone="brand" />
         </Reveal>

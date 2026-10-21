@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SolutionPageLayout } from "@/components/SolutionPageLayout";
+import { EMR_LIST } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "MGear for Utilization & Case Management — Reviews Connected to What Happens Next",
@@ -24,8 +25,7 @@ export default function Page() {
           and <strong className="text-charcoal">one fewer preventable denial</strong>.
         </p>
       }
-      aiCapabilities="Utilization Management itself doesn't carry a named AI feature of its own. The AI capability that touches it is downstream: AI Quality Auditor, part of Quality Management, audits review quality and workflow compliance using the data UM sends it. AI does not replace clinicians. AI assists operations. Humans remain responsible for every medical necessity and level-of-care decision."
-      integrationCapabilities="Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — Epic, Cerner, Meditech, Paragon, or Health Samurai Aidbox — feeding the ED and inpatient dashboards continuously."
+      integrationCapabilities={`Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — ${EMR_LIST} — feeding the ED and inpatient dashboards continuously.`}
       screenshots={[
         { src: "/screenshots/um-03-daily-um-log.png", alt: "MGear daily UM log" },
         { src: "/screenshots/um-04-live-ed-audit.png", alt: "MGear live ED audit view" },
@@ -42,7 +42,7 @@ export default function Page() {
         },
         {
           question: "Does AI make the medical necessity or level-of-care decision?",
-          answer: "No. AI assists with review-quality auditing downstream in Quality Management. The medical necessity and level-of-care decisions remain with UM staff and physicians.",
+          answer: "No. AI plays no part in medical necessity or level-of-care decisions — those remain with UM staff and physicians.",
         },
       ]}
     >

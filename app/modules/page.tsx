@@ -1,3 +1,4 @@
+import { EMR_LIST } from "@/lib/copy";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ZoomableImage } from "@/components/ZoomableImage";
@@ -19,16 +20,16 @@ const modules = [
     n: 1,
     href: "/modules/utilization-management",
     name: "Utilization Management",
-    receives: "Admission data from Patient Access and Admitting.",
-    sends: "Reviews to Authorization Management; physician escalations to P2P Management.",
-    desc: "ED, observation, and inpatient reviews — medical necessity, avoidable days, level-of-care validation.",
+    receives: "Demographic and clinical data from the patient's chart.",
+    sends: "Medical necessity reviews to Authorization Management, Payer Communication, P2P Management and Denial Management.",
+    desc: "Initial, Admission and Concurrent Reviews — medical necessity, avoidable days, level-of-care validation, reconciliation with the patient's actual and authorization statuses.",
   },
   {
     n: 2,
     href: "/modules/authorization-management",
     name: "Authorization Management",
     receives: "Reviews from Utilization Management.",
-    sends: "Notifications to Payer Communication; requirement checks to Payor Grid; denials trigger P2P Management.",
+    sends: "Notifications to Payer Communication; requirement checks to Payor Grid; denials trigger P2P Management and Denial Management.",
     desc: "Authorization requests, status tracking, TAR management, escalations.",
   },
   {
@@ -43,8 +44,8 @@ const modules = [
     n: 4,
     href: "/modules/payer-communication",
     name: "Payer Communication",
-    receives: "Notifications from Authorization Management; requirements from Payor Grid.",
-    sends: "Compliance data to Analytics.",
+    receives: "Notifications from Authorization Management; requirements from Payor Grid; authorization status and supporting documentation from payer portals.",
+    sends: "Medical necessity reviews and supporting clinical documentation to payers via payer portals, fax, email and other channels; compliance data to Analytics.",
     desc: "Notifications, calls, submitted documentation, payer interactions.",
   },
   {
@@ -102,8 +103,8 @@ const modules = [
     href: "/modules/emr-integration",
     name: "EMR Integration",
     receives: "Clinical and administrative data via FHIR and HL7 from the hospital's EHR.",
-    sends: "That data to every module above, continuously — not a one-time sync.",
-    desc: "Epic, Cerner, Meditech, Paragon, Health Samurai Aidbox connectivity.",
+    sends: "That data to every module above, continuously — not a one-time sync. Some data also goes back to the EHR, such as authorization numbers and copies of InterQual/MCG reviews.",
+    desc: `${EMR_LIST} connectivity.`,
   },
 ];
 

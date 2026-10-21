@@ -5,6 +5,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { AI_BACKEND_STATEMENT } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "AI at MGear — Governed AI That Assists Operations, Never Replaces Clinical Judgment",
@@ -64,6 +65,10 @@ const faqs = [
       "No. AI does not replace clinicians. AI assists operations. Humans remain responsible for operational and clinical decisions — this applies across every named capability on this page.",
   },
   {
+    question: "Can AI see patient data, or send it anywhere?",
+    answer: `${AI_BACKEND_STATEMENT} It is never a way for data to leave MGear, and it makes no clinical decisions.`,
+  },
+  {
     question: "Are all seven AI capabilities available today?",
     answer:
       "Most are. AI Quality Auditor, Contract Intelligence, and Conversational Analytics are being built ahead of go-to-market and are written present-tense as the specification for that build — see each module's page for its current build status.",
@@ -85,6 +90,19 @@ export default function AIPage() {
         lead="That's not a hedge — it's the reason a hospital can adopt it. Every AI capability on this platform is scoped to a specific operational task, and every decision it touches still belongs to a person."
         badges={capabilities.map((c) => c.name)}
       />
+
+      <Section width="narrow">
+        <div className="rounded-2xl border border-brand/30 bg-[#f2f9f4] px-7 py-6">
+          <p className="eyebrow">Where AI runs</p>
+          <p className="mt-3 text-lead text-charcoal">{AI_BACKEND_STATEMENT}</p>
+          <p className="mt-3 text-body text-slate-600">
+            Hospitals are right to be careful about AI near patient data. Here, AI is a
+            backend helper for simple workflow steps — it is not a chatbot over the chart,
+            it has no way to reach outside MGear, and every decision it touches still
+            belongs to a person.
+          </p>
+        </div>
+      </Section>
 
       <Section width="wide">
         <SectionHeader

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SolutionPageLayout } from "@/components/SolutionPageLayout";
+import { EMR_LIST } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "MGear for Community Hospitals — One Platform Instead of a Point Solution for Every Department",
@@ -24,7 +25,7 @@ export default function Page() {
         </p>
       }
       aiCapabilities="AI does not replace clinicians or staff. AI assists operations — Authorization Assistant reduces manual tracking and routing work, and Workflow Automation creates an appeal automatically when a P2P outcome is upheld. Humans remain responsible for every operational and clinical decision."
-      integrationCapabilities="Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — Epic, Cerner, Meditech, Paragon, or Health Samurai Aidbox. Where a direct interface isn't available, AI-assisted ingestion and RPA bring the data in anyway."
+      integrationCapabilities={`Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — ${EMR_LIST}. Where a direct interface isn't available, AI-assisted ingestion and RPA bring the data in anyway.`}
       screenshots={[
         { src: "/screenshots/auth-01-authorizations.png", alt: "MGear authorization tracker" },
       ]}

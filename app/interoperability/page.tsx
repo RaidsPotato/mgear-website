@@ -6,17 +6,18 @@ import { PageHero } from "@/components/PageHero";
 import { ClosingCTA } from "@/components/ModulePageLayout";
 import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { EMR_LIST, EMR_BADGES } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "Interoperability — FHIR, HL7, and CMS-0057-F Connectivity for Hospitals",
   description:
-    "Continuous FHIR and HL7 data flow from Epic, Cerner, Meditech, Paragon, and Health Samurai Aidbox, plus a payer-rules engine that enforces compliance automatically — CMS-0057-F readiness included.",
+    "Continuous FHIR and HL7 data flow from Epic, Oracle Health (Cerner), MEDITECH, athenahealth and other major EHRs, plus a payer-rules engine that enforces compliance automatically — CMS-0057-F readiness included.",
 };
 
 const faqs = [
   {
     question: "Which EHRs does MGear integrate with?",
-    answer: "Epic, Cerner, Meditech, Paragon, and Health Samurai Aidbox, via FHIR and HL7.",
+    answer: `${EMR_LIST}, via FHIR and HL7.`,
   },
   {
     question: "What happens when a system doesn't support a direct interface?",
@@ -40,7 +41,7 @@ export default function InteroperabilityPage() {
         eyebrow="Interoperability"
         title="The Data Layer Underneath Every Chain on This Site"
         lead="None of the connection chains described elsewhere on this site work without a continuous, reliable feed of clinical, administrative, and payer data. This is how that feed reaches the platform, and how the platform reaches back out."
-        badges={["FHIR", "HL7", "SMART on FHIR", "Epic", "Cerner", "Meditech", "Paragon", "Health Samurai Aidbox"]}
+        badges={["FHIR", "HL7", "SMART on FHIR", ...EMR_BADGES]}
       />
 
       <Section width="wide">
@@ -51,7 +52,7 @@ export default function InteroperabilityPage() {
         />
         <div className="mt-8">
           <TagGrid
-            items={["FHIR", "HL7", "SMART on FHIR", "Epic", "Cerner", "Meditech", "Paragon", "Health Samurai Aidbox"]}
+            items={["FHIR", "HL7", "SMART on FHIR", ...EMR_BADGES]}
             tone="brand"
           />
         </div>

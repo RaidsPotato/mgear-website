@@ -4,6 +4,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { PageHero } from "@/components/PageHero";
 import { ClosingCTA } from "@/components/ModulePageLayout";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { EMR_LIST } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "Implementation — Getting MGear Live at Your Hospital",
@@ -50,7 +51,7 @@ export default function ImplementationPage() {
         />
         <ol className="mt-8 space-y-4">
           {[
-            ["EHR connectivity is established", "via FHIR and HL7, to whichever EHR your hospital runs — Epic, Cerner, Meditech, Paragon, or Health Samurai Aidbox."],
+            ["EHR connectivity is established", `via FHIR and HL7, to whichever EHR your hospital runs — ${EMR_LIST}.`],
             ["Licensed modules are configured", "to your hospital's payer mix and existing workflows — you only configure what you've licensed."],
             ["Role-based access is set up", "so each user and facility sees exactly what they're permitted to."],
             ["Teams are trained", "on the modules they'll use day to day."],

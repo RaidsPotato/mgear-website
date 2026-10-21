@@ -16,7 +16,7 @@ const descriptors: Record<string, string> = {
   "/modules/conversational-analytics": "governed, natural-language answers",
   "/modules/quality-management": "review and workflow auditing",
   "/modules/productivity": "staffing, scheduling, performance",
-  "/modules/emr-integration": "FHIR, HL7, Epic, Cerner, Meditech",
+  "/modules/emr-integration": "FHIR, HL7, Epic, Oracle Health, MEDITECH",
 };
 
 // The stage groupings follow the order work moves in 02-CONNECTION-MAP.md's

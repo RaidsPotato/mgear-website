@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SolutionPageLayout } from "@/components/SolutionPageLayout";
+import { EMR_LIST } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "MGear for Academic Medical Centers — One Platform Coordinating Every Department",
@@ -43,7 +44,7 @@ export default function Page() {
         },
         {
           question: "Does this replace our EHR?",
-          answer: "No. MGear integrates with Epic, Cerner, Meditech, Paragon, and Health Samurai Aidbox via FHIR and HL7. Your EHR remains the system of record; MGear is the operational coordination layer on top of it.",
+          answer: `No. MGear integrates with ${EMR_LIST} via FHIR and HL7. Your EHR remains the system of record; MGear is the operational coordination layer on top of it.`,
         },
       ]}
     >

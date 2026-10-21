@@ -40,11 +40,11 @@ const nodes: {
   {
     id: "um",
     title: "Utilization Management",
-    sub: "ED / OBS / IP, medical necessity",
+    sub: "initial / admission / concurrent reviews",
     row: 1,
     col: 2,
-    receives: "Admission data from Patient Access and Admitting.",
-    sends: "Completed reviews to Authorization Management; physician escalations to Physician Advisors when a case needs an advisor.",
+    receives: "Demographic and clinical data from the patient's chart.",
+    sends: "Medical necessity reviews to Authorization Management, Payer Communication, Physician Advisors and Denial Management.",
   },
   {
     id: "auth",
@@ -53,7 +53,7 @@ const nodes: {
     row: 1,
     col: 3,
     receives: "Completed reviews from Utilization Management.",
-    sends: "Notifications to Payer Communication; requirement checks to Payor Grid; denials trigger a case in Physician Advisors.",
+    sends: "Notifications to Payer Communication; requirement checks to Payor Grid; denials trigger a case in Physician Advisors and Denial Management.",
   },
   {
     id: "payerComm",
@@ -61,8 +61,8 @@ const nodes: {
     sub: "notifications, calls, documents",
     row: 1,
     col: 4,
-    receives: "Notifications from Authorization Management; that payer's specific requirements from Payor Grid.",
-    sends: "Compliance data to Analytics.",
+    receives: "Notifications from Authorization Management; that payer's specific requirements from Payor Grid; authorization status and supporting documentation from payer portals.",
+    sends: "Medical necessity reviews and supporting clinical documentation to payers via payer portals, fax, email and other channels; compliance data to Analytics.",
   },
   {
     id: "physicianAdvisors",
@@ -319,7 +319,7 @@ export function WholeSystemDiagram() {
       </button>
 
       <div className="mt-3 rounded-lg border border-dashed border-brand/40 bg-brand/5 px-4 py-3 text-center text-xs font-medium text-brand">
-        EMR Integration — FHIR · HL7 · Epic · Cerner · Meditech · Paragon — feeds every box above, continuously
+        EMR Integration — FHIR · HL7 · Epic · Oracle Health · MEDITECH · athenahealth · and more — feeds every box above, continuously
       </div>
 
       <div className="mt-5 min-h-[4.5rem] rounded-lg border border-slate-200 bg-white px-5 py-4">

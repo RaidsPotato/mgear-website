@@ -10,6 +10,7 @@ import { StatTile } from "@/components/StatTile";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { Reveal } from "@/components/Reveal";
+import { EMR_LIST } from "@/lib/copy";
 
 export const metadata: Metadata = {
   title: "Platform Overview — How MGear Connects Every Hospital Department in Real Time",
@@ -21,7 +22,7 @@ const faqs = [
   {
     question: "Does MGear replace my EHR?",
     answer:
-      "No. MGear integrates with Epic, Cerner, Meditech, Paragon, and other EHRs via FHIR and HL7. Your EHR remains the system of record; MGear is the real-time operational coordination layer on top of it.",
+      `No. MGear integrates with ${EMR_LIST} via FHIR and HL7. Your EHR remains the system of record; MGear is the real-time operational coordination layer on top of it.`,
   },
   {
     question: "We already have point solutions for UM, denials, and authorization — why add MGear?",

@@ -6,6 +6,7 @@ import { Button } from "@/components/Button";
 import { TagGrid } from "@/components/TagGrid";
 import { ZoomableImage } from "@/components/ZoomableImage";
 import { Reveal } from "@/components/Reveal";
+import { AI_BACKEND_STATEMENT } from "@/lib/copy";
 import { FAQAccordion, type FAQItem } from "@/components/FAQAccordion";
 import {
   ReceivesIcon,
@@ -85,7 +86,9 @@ export function ModulePageLayout({
   workflow: ReactNode;
   businessValue: ReactNode;
   financialImpact: ReactNode;
-  aiCapabilities: ReactNode;
+  // Optional: omit it and the AI card is dropped (Utilization Management has
+  // none — MGear does not apply AI to InterQual/MCG criteria).
+  aiCapabilities?: ReactNode;
   integrationCapabilities: ReactNode;
   futureRoadmap?: ReactNode;
   interactiveDemo?: ReactNode;
@@ -239,20 +242,33 @@ export function ModulePageLayout({
               {financialImpact}
             </Card>
           </Reveal>
-          <Reveal delay={0.1} className="h-full">
-            <Card icon={<AIIcon />} title="AI Capabilities">
-              {aiCapabilities}
-            </Card>
-          </Reveal>
+          {aiCapabilities ? (
+            <Reveal delay={0.1} className="h-full">
+              <Card icon={<AIIcon />} title="AI Capabilities">
+                {aiCapabilities}
+                <p className="mt-4 border-t border-slate-200 pt-4 text-sm text-slate-500">
+                  {AI_BACKEND_STATEMENT}
+                </p>
+              </Card>
+            </Reveal>
+          ) : (
+            <Reveal delay={0.1} className="h-full">
+              <Card icon={<IntegrationIcon />} title="Integration Capabilities">
+                {integrationCapabilities}
+              </Card>
+            </Reveal>
+          )}
         </div>
 
-        <Reveal>
-          <div className="mt-6">
-            <Card icon={<IntegrationIcon />} title="Integration Capabilities">
-              <div className="max-w-3xl">{integrationCapabilities}</div>
-            </Card>
-          </div>
-        </Reveal>
+        {aiCapabilities && (
+          <Reveal>
+            <div className="mt-6">
+              <Card icon={<IntegrationIcon />} title="Integration Capabilities">
+                <div className="max-w-3xl">{integrationCapabilities}</div>
+              </Card>
+            </div>
+          </Reveal>
+        )}
 
         {futureRoadmap && (
           <Reveal>

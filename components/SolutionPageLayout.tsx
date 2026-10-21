@@ -5,6 +5,7 @@ import { PageHero } from "@/components/PageHero";
 import { ClosingCTA } from "@/components/ModulePageLayout";
 import { FAQAccordion, type FAQItem } from "@/components/FAQAccordion";
 import type { ModuleScreenshot } from "@/components/ModulePageLayout";
+import { AI_BACKEND_STATEMENT } from "@/lib/copy";
 import { FinancialIcon, AIIcon, IntegrationIcon } from "@/components/ModuleIcons";
 import { ZoomableImage } from "@/components/ZoomableImage";
 import { Reveal } from "@/components/Reveal";
@@ -54,7 +55,7 @@ export function SolutionPageLayout({
   subheadline: string;
   children: ReactNode;
   financialImpact: ReactNode;
-  aiCapabilities: ReactNode;
+  aiCapabilities?: ReactNode;
   integrationCapabilities: ReactNode;
   screenshots: ModuleScreenshot[];
   faqs: FAQItem[];
@@ -108,19 +109,32 @@ export function SolutionPageLayout({
               {financialImpact}
             </Card>
           </Reveal>
-          <Reveal delay={0.1} className="h-full">
-            <Card icon={<AIIcon />} title="AI Capabilities">
-              {aiCapabilities}
-            </Card>
-          </Reveal>
+          {aiCapabilities ? (
+            <Reveal delay={0.1} className="h-full">
+              <Card icon={<AIIcon />} title="AI Capabilities">
+                {aiCapabilities}
+                <p className="mt-4 border-t border-slate-200 pt-4 text-sm text-slate-500">
+                  {AI_BACKEND_STATEMENT}
+                </p>
+              </Card>
+            </Reveal>
+          ) : (
+            <Reveal delay={0.1} className="h-full">
+              <Card icon={<IntegrationIcon />} title="Integration Capabilities">
+                {integrationCapabilities}
+              </Card>
+            </Reveal>
+          )}
         </div>
-        <Reveal>
-          <div className="mt-6">
-            <Card icon={<IntegrationIcon />} title="Integration Capabilities">
-              <div className="max-w-3xl">{integrationCapabilities}</div>
-            </Card>
-          </div>
-        </Reveal>
+        {aiCapabilities && (
+          <Reveal>
+            <div className="mt-6">
+              <Card icon={<IntegrationIcon />} title="Integration Capabilities">
+                <div className="max-w-3xl">{integrationCapabilities}</div>
+              </Card>
+            </div>
+          </Reveal>
+        )}
       </Section>
 
       <Section width="narrow" divide>

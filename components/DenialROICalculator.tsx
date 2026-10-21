@@ -38,7 +38,7 @@ function currency(n: number) {
 }
 
 const fieldClass =
-  "mt-1.5 h-11 w-full rounded-lg border border-slate-300 px-3.5 text-body text-charcoal focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand";
+  "h-10 w-full rounded-lg border border-slate-300 px-3.5 text-body text-charcoal focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand";
 
 function MoneyInput({
   value,
@@ -53,7 +53,7 @@ function MoneyInput({
 }) {
   const display = value ? Number(value).toLocaleString("en-US") : "";
   return (
-    <div className="relative mt-1.5">
+    <div className="relative">
       <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">
         $
       </span>
@@ -64,7 +64,7 @@ function MoneyInput({
         onChange={(e) => onChange(e.target.value.replace(/[^0-9]/g, ""))}
         onFocus={onFocus}
         placeholder={placeholder}
-        className={`${fieldClass} mt-0 pl-7`}
+        className={`${fieldClass} pl-7`}
       />
     </div>
   );
@@ -78,7 +78,7 @@ function ReductionButtons({
   onChange: (v: string) => void;
 }) {
   return (
-    <div role="radiogroup" aria-label="Reduction with MGear" className="mt-1.5 grid grid-cols-2 gap-2">
+    <div role="radiogroup" aria-label="Reduction with MGear" className="grid grid-cols-2 gap-2">
       {reductionOptions.map((opt) => {
         const selected = value === opt;
         return (
@@ -89,7 +89,7 @@ function ReductionButtons({
             aria-checked={selected}
             onClick={() => onChange(opt)}
             className={clsx(
-              "h-10 rounded-lg border text-sm font-semibold transition-colors",
+              "h-9 rounded-lg border text-sm font-semibold transition-colors",
               selected
                 ? "border-brand bg-brand text-white shadow-sm"
                 : "border-slate-300 bg-white text-slate-600 hover:border-brand/50 hover:text-brand"
@@ -101,6 +101,27 @@ function ReductionButtons({
       })}
     </div>
   );
+}
+
+// One grid for the column headings and every row so the columns line up, and
+// every cell is vertically centered against the (taller) 2x2 button group.
+const ROW_GRID = "sm:grid-cols-[1.1fr_1fr_1fr]";
+
+function ColumnHeadings({ first }: { first: string }) {
+  return (
+    <div
+      className={`mb-2 hidden gap-4 px-4 text-xs font-medium text-slate-500 sm:grid ${ROW_GRID}`}
+    >
+      <span>{first}</span>
+      <span>Annual Write-Offs ($)</span>
+      <span>Reduction with MGear (%)*</span>
+    </div>
+  );
+}
+
+// On phones there is no heading row, so each field carries its own label.
+function MobileLabel({ children }: { children: string }) {
+  return <span className="mb-1 block text-xs text-slate-500 sm:hidden">{children}</span>;
 }
 
 function PillToggle<T extends string>({
@@ -241,53 +262,58 @@ export function DenialROICalculator() {
       </div>
 
       {mode === "total" ? (
-        <div className="mt-5 grid gap-4 sm:max-w-xl sm:grid-cols-2">
-          <label className="block">
-            <span className="text-sm font-medium text-charcoal">
-              Total Annual Denial Write-Offs
-            </span>
-            <MoneyInput
-              value={totalWriteOffs}
-              onChange={setTotalWriteOffs}
-              onFocus={isExample ? clearExamples : undefined}
-              placeholder="500,000"
-            />
-          </label>
-          <div>
-            <span className="text-sm font-medium text-charcoal">
-              Reduction with MGear (%)*
-            </span>
-            <ReductionButtons value={totalReduction} onChange={setTotalReduction} />
+        <div className="mt-6">
+          <ColumnHeadings first="" />
+          <div
+            className={`grid gap-4 rounded-lg border border-slate-200 bg-white p-4 sm:items-center ${ROW_GRID}`}
+          >
+            <p className="text-sm font-semibold text-charcoal">All denial write-offs</p>
+            <label className="block">
+              <MobileLabel>Total Annual Denial Write-Offs ($)</MobileLabel>
+              <MoneyInput
+                value={totalWriteOffs}
+                onChange={setTotalWriteOffs}
+                onFocus={isExample ? clearExamples : undefined}
+                placeholder="500,000"
+              />
+            </label>
+            <div>
+              <MobileLabel>Reduction with MGear (%)*</MobileLabel>
+              <ReductionButtons value={totalReduction} onChange={setTotalReduction} />
+            </div>
           </div>
         </div>
       ) : (
-        <div className="mt-5 space-y-3">
-          {rows.map((r) => (
-            <div
-              key={r.id}
-              className="grid gap-3 rounded-lg border border-slate-200 bg-white p-4 sm:grid-cols-[1.2fr_1fr_1fr] sm:items-end"
-            >
-              <p className="text-sm font-semibold text-charcoal">{r.label}</p>
-              <label className="block">
-                <span className="text-xs text-slate-500">Annual Write-Offs ($)</span>
-                <MoneyInput
-                  value={r.amount}
-                  onChange={(v) => updateRow(r.id, "amount", v)}
-                  onFocus={isExample ? clearExamples : undefined}
-                  placeholder="0"
-                />
-              </label>
-              <div>
-                <span className="text-xs text-slate-500">Reduction with MGear (%)*</span>
-                <ReductionButtons
-                  value={r.reduction}
-                  onChange={(v) => updateRow(r.id, "reduction", v)}
-                />
+        <div className="mt-6">
+          <ColumnHeadings first="Category" />
+          <div className="space-y-3">
+            {rows.map((r) => (
+              <div
+                key={r.id}
+                className={`grid gap-4 rounded-lg border border-slate-200 bg-white p-4 sm:items-center ${ROW_GRID}`}
+              >
+                <p className="text-sm font-semibold text-charcoal">{r.label}</p>
+                <label className="block">
+                  <MobileLabel>Annual Write-Offs ($)</MobileLabel>
+                  <MoneyInput
+                    value={r.amount}
+                    onChange={(v) => updateRow(r.id, "amount", v)}
+                    onFocus={isExample ? clearExamples : undefined}
+                    placeholder="0"
+                  />
+                </label>
+                <div>
+                  <MobileLabel>Reduction with MGear (%)*</MobileLabel>
+                  <ReductionButtons
+                    value={r.reduction}
+                    onChange={(v) => updateRow(r.id, "reduction", v)}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
           {categoryTotal > 0 && (
-            <p className="text-xs text-slate-500">
+            <p className="mt-3 text-xs text-slate-500">
               Categories entered total {currency(categoryTotal)}.
             </p>
           )}

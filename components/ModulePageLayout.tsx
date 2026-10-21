@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, type CSSProperties } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { PageHero } from "@/components/PageHero";
@@ -69,6 +69,18 @@ export function ModulePageLayout({
   faqs: FAQItem[];
   closingHeadline?: string;
 }) {
+  // Receives is often a single short line and Sends a long one. Equal columns
+  // left a hole inside the shorter box, so the box with more text gets more
+  // width (same idea as CardPair): a wider column wraps the same text onto
+  // fewer lines and the two end up within a line of each other.
+  const receivesShare = Math.min(
+    0.66,
+    Math.max(0.34, receives.length / (receives.length + sends.length || 1))
+  );
+  const receivesSendsCols = {
+    "--cols": `${receivesShare}fr auto ${1 - receivesShare}fr`,
+  } as CSSProperties;
+
   return (
     <>
       <PageHero
@@ -89,7 +101,10 @@ export function ModulePageLayout({
             eyebrow="How This Module Connects"
             heading="Nothing here happens in isolation"
           />
-          <div className="mt-8 grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr]">
+          <div
+            className="mt-8 grid items-stretch gap-4 lg:[grid-template-columns:var(--cols)]"
+            style={receivesSendsCols}
+          >
             <Reveal className="h-full">
               <div className="flex h-full gap-3 rounded-xl border border-brand/20 bg-[#f2f9f4] px-5 py-5 shadow-sm">
                 <ReceivesIcon />

@@ -1,4 +1,5 @@
 import { EMR_LIST } from "@/lib/copy";
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ZoomableImage } from "@/components/ZoomableImage";
@@ -125,6 +126,8 @@ const faqs = [
   },
 ];
 
+const pairs = Array.from({ length: Math.ceil(modules.length / 2) }, (_, i) => modules.slice(i * 2, i * 2 + 2));
+
 export default function ModulesHub() {
   return (
     <>
@@ -143,14 +146,33 @@ export default function ModulesHub() {
           the part a feature list can&apos;t show.
         </p>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-2">
-          {modules.map((m, i) => (
-            <Reveal key={m.href} delay={(i % 2) * 0.08} className="h-full">
+        <div className="mt-10 space-y-4">
+          {pairs.map((pair, rowIndex) => {
+            // One grid per row so each pair of cards gets its own column
+            // balance: the card with more text gets more width, which brings
+            // the two heights together instead of leaving a hole inside the
+            // shorter one. A lone last card spans the full row.
+            const weights = pair.map((m) => m.receives.length + m.sends.length + m.desc.length + 40);
+            const share =
+              pair.length === 2
+                ? Math.min(0.6, Math.max(0.4, weights[0] / (weights[0] + weights[1])))
+                : 1;
+            const cols = { "--cols": pair.length === 2 ? `${share}fr ${1 - share}fr` : "1fr" } as CSSProperties;
+            return (
+              <div
+                key={rowIndex}
+                className="grid gap-4 lg:[grid-template-columns:var(--cols)]"
+                style={cols}
+              >
+                {pair.map((m, j) => {
+                  const i = rowIndex * 2 + j;
+                  return (
+                    <Reveal key={m.href} delay={(i % 2) * 0.08} className="h-full">
               <Link
                 href={m.href}
                 className="group flex h-full rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-sm transition-colors hover:border-brand/40 hover:shadow-md"
               >
-                <div className="flex items-start gap-4">
+                <div className="flex w-full items-start gap-4">
                   <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-brand/10 text-sm font-semibold text-brand">
                     {m.n}
                   </span>
@@ -175,7 +197,11 @@ export default function ModulesHub() {
                 </div>
               </Link>
             </Reveal>
-          ))}
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       </Section>
 

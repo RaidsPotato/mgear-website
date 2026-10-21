@@ -1,15 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 
 type Mode = "total" | "category";
 
-const reductionOptions = ["10", "15", "25", "30", "40", "50"];
-// Prefilled so the estimator never opens on an empty "Select %" and $0 results.
-// 30% is the low end of the 30-40% year-one figure in the footnote below (that
-// figure itself is still an unsourced open item), so the default is the more
-// conservative end.
+// A 2x2 of buttons instead of a dropdown, so the choice is visible and one
+// click. 30% is the low end of the 30-40% year-one figure in the footnote below
+// (that figure itself is still an unsourced open item); 40% is the high end.
+const reductionOptions = ["10", "25", "30", "40"];
 const DEFAULT_REDUCTION = "30";
+
+// Example figures filled in when the estimator first scrolls into view, so it
+// never sits on $0. They are ILLUSTRATIVE, invented for the demo, and labeled as
+// such on screen; the first time a visitor touches a field they are cleared.
+// The total matches the "500,000" placeholder the field has always shown.
+const EXAMPLE_TOTAL = "500000";
+const EXAMPLE_ROWS: Record<string, string> = {
+  clinicals: "200000",
+  authorization: "175000",
+  levelOfCare: "125000",
+};
 
 const categoryDefs = [
   { id: "clinicals", label: "Lack of Clinicals" },
@@ -26,21 +37,18 @@ function currency(n: number) {
   });
 }
 
-// Shared so every field — text input or select — renders at the exact same
-// height and baseline. Native <select> UA styling doesn't reliably match a
-// text <input> on padding alone, which is what threw the two fields out of
-// alignment; `appearance-none` plus a custom arrow (below) removes that
-// browser-supplied styling entirely.
 const fieldClass =
   "mt-1.5 h-11 w-full rounded-lg border border-slate-300 px-3.5 text-body text-charcoal focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand";
 
 function MoneyInput({
   value,
   onChange,
+  onFocus,
   placeholder,
 }: {
   value: string;
   onChange: (digits: string) => void;
+  onFocus?: () => void;
   placeholder?: string;
 }) {
   const display = value ? Number(value).toLocaleString("en-US") : "";
@@ -54,6 +62,7 @@ function MoneyInput({
         inputMode="numeric"
         value={display}
         onChange={(e) => onChange(e.target.value.replace(/[^0-9]/g, ""))}
+        onFocus={onFocus}
         placeholder={placeholder}
         className={`${fieldClass} mt-0 pl-7`}
       />
@@ -61,7 +70,7 @@ function MoneyInput({
   );
 }
 
-function ReductionSelect({
+function ReductionButtons({
   value,
   onChange,
 }: {
@@ -69,28 +78,27 @@ function ReductionSelect({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="relative mt-1.5">
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className={`${fieldClass} mt-0 appearance-none bg-white pr-9`}
-      >
-        <option value="">Select %</option>
-        {reductionOptions.map((opt) => (
-          <option key={opt} value={opt}>
+    <div role="radiogroup" aria-label="Reduction with MGear" className="mt-1.5 grid grid-cols-2 gap-2">
+      {reductionOptions.map((opt) => {
+        const selected = value === opt;
+        return (
+          <button
+            key={opt}
+            type="button"
+            role="radio"
+            aria-checked={selected}
+            onClick={() => onChange(opt)}
+            className={clsx(
+              "h-10 rounded-lg border text-sm font-semibold transition-colors",
+              selected
+                ? "border-brand bg-brand text-white shadow-sm"
+                : "border-slate-300 bg-white text-slate-600 hover:border-brand/50 hover:text-brand"
+            )}
+          >
             {opt}%
-          </option>
-        ))}
-      </select>
-      <svg
-        aria-hidden
-        width="10"
-        height="6"
-        viewBox="0 0 10 6"
-        className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 fill-slate-400"
-      >
-        <path d="M0 0 L5 6 L10 0 Z" />
-      </svg>
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -131,6 +139,59 @@ export function DenialROICalculator() {
   const [rows, setRows] = useState(
     categoryDefs.map((c) => ({ ...c, amount: "", reduction: DEFAULT_REDUCTION }))
   );
+  // True while the figures on screen are the illustrative examples rather than
+  // anything the visitor typed.
+  const [isExample, setIsExample] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // Fill the example figures the first time the estimator scrolls into view.
+  // Only fields still empty are filled, so a visitor who got there first and
+  // started typing is never overwritten.
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const step = reduced ? 0 : 170;
+        setIsExample(true);
+        categoryDefs.forEach((c, i) => {
+          timers.push(
+            setTimeout(
+              () =>
+                setRows((prev) =>
+                  prev.map((r) =>
+                    r.id === c.id && r.amount === "" ? { ...r, amount: EXAMPLE_ROWS[c.id] } : r
+                  )
+                ),
+              step * (i + 1)
+            )
+          );
+        });
+        timers.push(
+          setTimeout(
+            () => setTotalWriteOffs((prev) => (prev === "" ? EXAMPLE_TOTAL : prev)),
+            step * (categoryDefs.length + 1)
+          )
+        );
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      timers.forEach(clearTimeout);
+    };
+  }, []);
+
+  function clearExamples() {
+    setRows((prev) => prev.map((r) => ({ ...r, amount: "" })));
+    setTotalWriteOffs("");
+    setIsExample(false);
+  }
 
   const total = parseFloat(totalWriteOffs) || 0;
 
@@ -156,7 +217,10 @@ export function DenialROICalculator() {
   }
 
   return (
-    <div className="rounded-xl border border-brand/25 bg-gradient-to-b from-[#f2f9f4] to-white px-6 py-8 sm:px-10">
+    <div
+      ref={rootRef}
+      className="rounded-xl border border-brand/25 bg-gradient-to-b from-[#f2f9f4] to-white px-6 py-8 sm:px-10"
+    >
       <span className="eyebrow">Denial Prevention ROI Estimator</span>
       <p className="mt-3 max-w-2xl text-body text-slate-600">
         Enter your own annual write-off figures — MGear doesn&apos;t supply those
@@ -177,7 +241,7 @@ export function DenialROICalculator() {
       </div>
 
       {mode === "total" ? (
-        <div className="mt-5 grid gap-4 sm:max-w-md sm:grid-cols-2">
+        <div className="mt-5 grid gap-4 sm:max-w-xl sm:grid-cols-2">
           <label className="block">
             <span className="text-sm font-medium text-charcoal">
               Total Annual Denial Write-Offs
@@ -185,15 +249,16 @@ export function DenialROICalculator() {
             <MoneyInput
               value={totalWriteOffs}
               onChange={setTotalWriteOffs}
+              onFocus={isExample ? clearExamples : undefined}
               placeholder="500,000"
             />
           </label>
-          <label className="block">
+          <div>
             <span className="text-sm font-medium text-charcoal">
               Reduction with MGear (%)*
             </span>
-            <ReductionSelect value={totalReduction} onChange={setTotalReduction} />
-          </label>
+            <ReductionButtons value={totalReduction} onChange={setTotalReduction} />
+          </div>
         </div>
       ) : (
         <div className="mt-5 space-y-3">
@@ -208,16 +273,17 @@ export function DenialROICalculator() {
                 <MoneyInput
                   value={r.amount}
                   onChange={(v) => updateRow(r.id, "amount", v)}
+                  onFocus={isExample ? clearExamples : undefined}
                   placeholder="0"
                 />
               </label>
-              <label className="block">
+              <div>
                 <span className="text-xs text-slate-500">Reduction with MGear (%)*</span>
-                <ReductionSelect
+                <ReductionButtons
                   value={r.reduction}
                   onChange={(v) => updateRow(r.id, "reduction", v)}
                 />
-              </label>
+              </div>
             </div>
           ))}
           {categoryTotal > 0 && (
@@ -228,7 +294,22 @@ export function DenialROICalculator() {
         </div>
       )}
 
-      <div className="mt-8 rounded-lg border border-brand/30 bg-white p-5">
+      {isExample && (
+        <p className="mt-4 text-sm text-slate-600">
+          <strong className="font-semibold text-charcoal">Example figures</strong> are
+          shown so you can see how it works — they&apos;re illustrative, not real data.{" "}
+          <button
+            type="button"
+            onClick={clearExamples}
+            className="font-medium text-brand underline underline-offset-2 hover:text-brand-dark"
+          >
+            Clear them
+          </button>{" "}
+          and enter your own.
+        </p>
+      )}
+
+      <div className="mt-6 rounded-lg border border-brand/30 bg-white p-5">
         <p className="text-sm font-semibold text-charcoal">Estimated Improvement</p>
 
         {mode === "category" && categoryTotal > 0 && (

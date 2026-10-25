@@ -9,6 +9,7 @@ import { DenialROICalculator } from "@/components/DenialROICalculator";
 import { StatTile } from "@/components/StatTile";
 import { Button } from "@/components/Button";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { OpenItems } from "@/components/OpenItems";
 import { Reveal } from "@/components/Reveal";
 import { EMR_LIST } from "@/lib/copy";
 
@@ -293,6 +294,12 @@ export default function PlatformOverview() {
         <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
         <FAQAccordion items={faqs} />
       </Section>
+
+      <OpenItems
+        items={[
+          "The extended flagship chain (finding the cause of an authorization delay, resending records, the 24-hour escalation), the \"if the payer denies\" path, and the eighth chain (a status mismatch is caught and corrected) come from a product review dated 2026-10-20 and have not yet been confirmed against the product build.",
+        ]}
+      />
 
       <Section width="wide" tone="dark">
         <div className="mx-auto max-w-2xl text-center">

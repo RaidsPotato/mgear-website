@@ -18,8 +18,8 @@ export default function Page() {
       sends="Medical necessity reviews and supporting clinical documentation to payers via payer portals, fax, email and other channels; compliance data to Analytics."
       problem="Fragmented communication and missed payer notifications are named directly among the platform's core problems — a call that should have happened within 24 hours but happened on day three, a document sent to the wrong contact, a notification nobody can prove was sent when the payer disputes it later. This module exists so that work is logged as it happens, not reconstructed under pressure."
       whatItDoes="Notifications. Communications. Phone calls. Submitted documentation. Payer interactions."
-      workflow="When Authorization Management flags that a payer needs to be notified, Payer Communication handles it directly — the call, the document, the interaction — governed by the exact requirements Payor Grid holds for that payer. Every outbound interaction is tracked in a delivery log, so 'we sent it' is something the platform can show, not something staff have to remember and defend later."
-      businessValue="Staff aren't guessing which payer wants a fax versus a portal upload, or trying to recall whether a call happened last Tuesday or the Tuesday before. The requirement and the record of meeting it live in the same system."
+      workflow="When Authorization Management hands over a packet — the InterQual/MCG review plus the supporting clinical documentation — Payer Communication delivers it to the payer through whichever channel that payer requires (portal, fax, email), governed by the exact requirements Payor Grid holds for that payer. It also brings authorization status and supporting documents back from payer portals, and when Authorization Management finds no answer after 24 hours, it sends the packet again with a letter requiring an immediate update. Every outbound interaction is tracked in a delivery log, so 'we sent it' is something the platform can show, not something staff have to remember and defend later."
+      businessValue="Staff aren't guessing which payer wants a fax versus a portal upload, or trying to recall whether a call happened last Tuesday or the Tuesday before. The requirement and the record of meeting it live in the same system. And the sending itself is automated: the packet goes out, the follow-up goes out, and nobody has to remember to do either."
       financialImpact={
         <p>
           This module contributes directly to{" "}
@@ -41,6 +41,9 @@ export default function Page() {
       screenshots={[
         { src: "/screenshots/payer-02-comm-director.png", alt: "MGear Payer Communication command center" },
         { src: "/screenshots/payer-03-transmissions.png", alt: "MGear outbound transmissions log" },
+      ]}
+      openItems={[
+        "Delivery through payer portals, fax and email, retrieving authorization status and documents from payer portals, and the 24-hour resend with a letter come from a product review dated 2026-10-20 and have not yet been confirmed against the product build.",
       ]}
       faqs={[
         {

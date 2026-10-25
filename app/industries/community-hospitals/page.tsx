@@ -29,6 +29,9 @@ export default function Page() {
       screenshots={[
         { src: "/screenshots/auth-01-authorizations.png", alt: "MGear authorization tracker" },
       ]}
+      openItems={[
+        "The cause-finding, resend and escalation steps in the day-to-day sequence come from a product review dated 2026-10-20 and have not yet been confirmed against the product build. The list of supported EHRs is still to be confirmed with the integration workstream.",
+      ]}
       faqs={[
         {
           question: "Is MGear only built for large hospitals?",
@@ -38,7 +41,7 @@ export default function Page() {
         {
           question: "We already have Epic, Cerner, or another EHR — why add this?",
           answer:
-            "Your EHR is the system of record. MGear integrates with it via FHIR and HL7 and sits on top as the operational coordination layer — the thing that notices an authorization is stalling and gets the right department moving on it in real time.",
+            "Your EHR is the system of record. MGear integrates with it via FHIR and HL7 and sits on top as the operational coordination layer — the thing that notices an authorization is stalling, works out why, and acts on it — or gets the right department moving on it — in real time.",
         },
         {
           question: "We outsource some of this work — why change that?",
@@ -63,10 +66,13 @@ export default function Page() {
       </h2>
       <p className="mt-4 max-w-3xl text-body text-slate-600">
         An authorization has not come back and the stay is still running: Payer
-        Communication is notified the moment the delay is detected, Payor Grid verifies
-        that payer&apos;s specific requirements, Analytics updates in real time, Quality
-        identifies the workflow delay, the manager is alerted, and the team resolves it
-        before discharge — instead of finding out at the next status meeting.
+        Communication is notified the moment the delay is detected and Payor Grid
+        verifies that payer&apos;s specific requirements. MGear then works out what is
+        holding it up — for example, medical records that were never sent — and resends
+        or supplies them, notifying the assigned Case Manager if there is still no
+        answer after 24 hours. Analytics updates in real time, Quality identifies the
+        workflow delay, and the team resolves it before discharge — instead of finding
+        out at the next status meeting.
       </p>
     </SolutionPageLayout>
   );

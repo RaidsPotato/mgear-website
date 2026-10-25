@@ -49,6 +49,9 @@ export default function Page() {
         { src: "/screenshots/um-01-ed-bed-board.png", alt: "MGear ED dashboard — live emergency department review" },
         { src: "/screenshots/um-02-ip-dashboard.png", alt: "MGear inpatient dashboard — in-house, discharge, and finished queues" },
       ]}
+      openItems={[
+        "Reconciling each review with the patient's actual status, the physician's order and the payer authorization, and sending reviews on to Payer Communication, P2P Management and Denial Management, come from a product review dated 2026-10-20 and have not yet been confirmed against the product build.",
+      ]}
       faqs={[
         {
           question: "How does a UM review become an authorization request?",

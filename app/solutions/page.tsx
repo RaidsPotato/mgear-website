@@ -30,13 +30,13 @@ const solutions = [
     href: "/solutions/utilization-case-management",
     name: "Utilization & Case Management",
     chain: "The review that doesn't wait for a status meeting",
-    desc: "A completed review becomes the authorization request automatically, and a stalled authorization notifies the departments that can still fix it — while the patient is still admitted.",
+    desc: "A completed review becomes the authorization request automatically, and MGear works out why a stalled authorization is stuck and acts on it — while the patient is still admitted.",
   },
   {
     href: "/solutions/revenue-cycle-authorization-denials",
     name: "Revenue Cycle, Authorization & Denials Leadership",
     chain: "Every denial risk, visible while the stay is still open",
-    desc: "Authorization delays, denials, and underpayments — connected from the moment they start to the appeal, the payer rule, or the manager alert that resolves them.",
+    desc: "Authorization delays, denials, and underpayments — connected from the moment they start to the fix, the appeal, or the payer rule that resolves them.",
   },
 ];
 

@@ -47,7 +47,7 @@ export default function Page() {
       eyebrow="Module — Authorization Management"
       headline="The Chain Starts Here"
       subheadline="An authorization delay doesn't sit in a queue. MGear works out why an authorization is delayed or denied and acts on it — sending or resending missing medical records, escalating, scheduling the peer-to-peer automatically where the payer allows it — while the stay is still open. It does most of the manual work itself and shows what no one can see today."
-      receives="Completed reviews from Utilization Management."
+      receives="Completed reviews from Utilization Management, already reconciled with the patient's actual status."
       sends="Notifications to Payer Communication; requirement checks to Payor Grid; denials trigger a case in P2P Management and Denial Management."
       problem="Authorization delays, missed payer notifications, and preventable denials are three of the most direct revenue risks named across the platform — and all three start, or are caught, right here. A delayed or denied authorization that no one notices in real time is the exact failure this module exists to prevent."
       whatItDoes="Authorization requests. Pending, approved, and denied status tracking. TAR management. Escalations."
@@ -110,6 +110,9 @@ export default function Page() {
       screenshots={[
         { src: "/screenshots/auth-01-authorizations.png", alt: "MGear authorization tracker" },
         { src: "/screenshots/auth-04-action-matrix.png", alt: "MGear authorization action matrix — manager view" },
+      ]}
+      openItems={[
+        "The workflow described here (building the packet, the 24-hour resend with a letter, the insurance-eligibility check, escalation to the Case Management Director, automatic peer-to-peer scheduling, and the appeal-or-downgrade recommendation) comes from a product review dated 2026-10-20 and is written present-tense. It has not yet been confirmed against the product build.",
       ]}
       faqs={[
         {

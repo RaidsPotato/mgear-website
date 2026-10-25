@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { ClosingCTA } from "@/components/ModulePageLayout";
 import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { OpenItems } from "@/components/OpenItems";
 import { EMR_LIST, EMR_BADGES } from "@/lib/copy";
 
 export const metadata: Metadata = {
@@ -108,6 +109,12 @@ export default function InteroperabilityPage() {
         <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
         <FAQAccordion items={faqs} />
       </Section>
+
+      <OpenItems
+        items={[
+          "The list of supported EHRs (including Epic through the Epic Showroom) comes from a product review dated 2026-10-20. Which connectors are live and which are planned is still to be confirmed with the integration workstream.",
+        ]}
+      />
 
       <ClosingCTA
         headline="See how the data reaches every module."

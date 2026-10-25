@@ -15,16 +15,19 @@ export default function Page() {
       eyebrow="Module — P2P Management"
       headline="One Outcome, and It Routes Itself"
       subheadline="A denial becomes a scheduled peer-to-peer call automatically. What the advisor decides on that call determines what happens next — without anyone re-entering the case."
-      receives="Physician escalations from Utilization Management; denial cases from Authorization Management."
+      receives="Medical necessity reviews and physician escalations from Utilization Management; denial cases from Authorization Management, which schedules the P2P automatically where the payer allows it."
       sends="Overturned outcomes back to Authorization (stay authorized, no appeal needed); upheld outcomes to Denial Management, where an appeal is drafted automatically; overturn rates and advisor performance to Analytics."
       problem="In most hospitals, the handoff between authorization staff, physician advisors, and the appeals team means re-keying a case or emailing a spreadsheet at every step. This module exists so that handoff happens without anyone doing that — the case moves itself."
       whatItDoes="Physician-advisor escalations. Peer-to-peer scheduling. Outcome capture. Overturn rates. Advisor performance. Denial prevention."
       workflow={
         <>
           <p>
-            A payer denies while the patient is still in-house. A P2P case is created
-            and scheduled with the physician advisor automatically. The advisor works
-            the call and captures the outcome directly in the case:
+            A payer denies while the patient is still in-house. Authorization Management
+            checks through Payor Grid whether the payer allows a peer-to-peer; if it
+            does, a P2P case is created and scheduled automatically with the hospital&apos;s
+            physician advisor and the payer&apos;s medical director, and the appeal process
+            starts alongside it. The advisor works the call and captures the outcome
+            directly in the case:
           </p>
           <ul className="mt-4 list-disc space-y-1 pl-5">
             <li><strong className="text-charcoal">Overturned</strong> → the stay is authorized. No appeal needed.</li>
@@ -55,6 +58,9 @@ export default function Page() {
       screenshots={[
         { src: "/screenshots/p2p-01-queue.png", alt: "MGear peer-to-peer queue" },
         { src: "/screenshots/p2p-02-calendar.png", alt: "MGear peer-to-peer calendar" },
+      ]}
+      openItems={[
+        "Scheduling the P2P automatically (with the physician advisor and the payer's medical director) where the payer allows one comes from a product review dated 2026-10-20 and has not yet been confirmed against the product build.",
       ]}
       faqs={[
         {

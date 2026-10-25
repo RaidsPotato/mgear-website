@@ -52,7 +52,7 @@ const nodes: {
     sub: "requests, TAR, defers",
     row: 1,
     col: 3,
-    receives: "Completed reviews from Utilization Management.",
+    receives: "Completed reviews from Utilization Management, reconciled with the patient's actual status.",
     sends: "Notifications to Payer Communication; requirement checks to Payor Grid; denials trigger a case in Physician Advisors and Denial Management.",
   },
   {
@@ -70,7 +70,7 @@ const nodes: {
     sub: "P2P scheduling, overturn rates",
     row: 2,
     col: 2,
-    receives: "Physician escalations from Utilization Management; denial cases from Authorization Management.",
+    receives: "Medical necessity reviews and physician escalations from Utilization Management; denial cases from Authorization, which schedules the P2P automatically where the payer allows it.",
     sends: "Overturned outcomes back to Authorization; upheld outcomes to Denial Management; overturn rates and advisor performance to Analytics.",
   },
   {
@@ -80,7 +80,7 @@ const nodes: {
     row: 2,
     col: 3,
     receives: "Extracted terms from Contract Intelligence; requirement checks from Authorization and Payer Communication.",
-    sends: "Payer rules and notification requirements that govern how both of those modules work; deviation data to Analytics.",
+    sends: "Payer rules and notification requirements that govern how both of those modules work, including whether a payer allows a peer-to-peer; deviation data to Analytics.",
   },
   {
     id: "contract",
@@ -97,7 +97,7 @@ const nodes: {
     sub: "appeals, underpayments, unpaid claims",
     row: 3,
     col: 3,
-    receives: "Upheld outcomes from Physician Advisors; denials from Authorization; expected reimbursement from Payor Grid.",
+    receives: "Medical necessity reviews from Utilization Management; upheld outcomes from Physician Advisors; denials from Authorization; expected reimbursement from Payor Grid.",
     sends: "Appeal and reimbursement data to Analytics.",
   },
   {

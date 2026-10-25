@@ -8,6 +8,7 @@ import { ZoomableImage } from "@/components/ZoomableImage";
 import { Reveal } from "@/components/Reveal";
 import { Card, CardPair } from "@/components/CardPair";
 import { AI_BACKEND_STATEMENT } from "@/lib/copy";
+import { OpenItems } from "@/components/OpenItems";
 import { FAQAccordion, type FAQItem } from "@/components/FAQAccordion";
 import {
   ReceivesIcon,
@@ -46,6 +47,7 @@ export function ModulePageLayout({
   interactiveDemo,
   screenshots,
   faqs,
+  openItems,
   closingHeadline = "See the connection, not a slide deck.",
 }: {
   number: number;
@@ -67,6 +69,8 @@ export function ModulePageLayout({
   interactiveDemo?: ReactNode;
   screenshots: ModuleScreenshot[];
   faqs: FAQItem[];
+  // Claims on this page that have not been confirmed yet.
+  openItems?: string[];
   closingHeadline?: string;
 }) {
   // Receives is often a single short line and Sends a long one. Equal columns
@@ -269,6 +273,8 @@ export function ModulePageLayout({
         </h2>
         <FAQAccordion items={faqs} />
       </Section>
+
+      {openItems && openItems.length > 0 && <OpenItems items={openItems} />}
 
       <ClosingCTA headline={closingHeadline} />
     </>

@@ -32,6 +32,9 @@ export default function Page() {
       screenshots={[
         { src: "/screenshots/analytics-01-executive-dashboard.png", alt: "MGear executive dashboard — every module on one screen" },
       ]}
+      openItems={[
+        "The cause-finding, resend and escalation steps in the day-to-day sequence come from a product review dated 2026-10-20 and have not yet been confirmed against the product build. The list of supported EHRs is still to be confirmed with the integration workstream.",
+      ]}
       faqs={[
         {
           question: "Which departments does this cover?",
@@ -64,11 +67,14 @@ export default function Page() {
       </h2>
       <p className="mt-4 max-w-3xl text-body text-slate-600">
         An authorization has not come back, and the stay is still running: Payer
-        Communication is notified the moment the delay is detected, Payor Grid verifies
-        that payer&apos;s specific requirements, Analytics updates in real time, Quality
-        identifies the workflow delay, the manager is alerted, and the team resolves it
-        before discharge. That sequence runs the same way whether it&apos;s one facility
-        or the largest hospital in the system.
+        Communication is notified the moment the delay is detected and Payor Grid
+        verifies that payer&apos;s specific requirements. MGear then works out what is
+        holding it up — for example, medical records that were never sent — and resends
+        or supplies them. If there is still no answer after 24 hours, the assigned Case
+        Manager is notified, and the Case Management Director if the delay continues,
+        while Analytics updates in real time and Quality identifies the workflow delay.
+        The team resolves it before discharge. That sequence runs the same way whether
+        it&apos;s one facility or the largest hospital in the system.
       </p>
     </SolutionPageLayout>
   );

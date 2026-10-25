@@ -5,7 +5,7 @@ import { SolutionPageLayout } from "@/components/SolutionPageLayout";
 export const metadata: Metadata = {
   title: "MGear for Revenue Cycle, Authorization & Denials Leadership",
   description:
-    "Authorization delays, denials, and underpayments — connected from the moment they start to the appeal, the payer rule, or the manager alert that resolves them.",
+    "Authorization delays, denials, and underpayments — connected from the moment they start to the fix, the appeal, or the payer rule that resolves them — with MGear working out the cause and acting, not just alerting.",
 };
 
 export default function Page() {
@@ -13,7 +13,7 @@ export default function Page() {
     <SolutionPageLayout
       eyebrow="Solutions — Revenue Cycle, Authorization & Denials Leadership"
       headline="Every Denial Risk, Visible While the Stay Is Still Open"
-      subheadline="Authorization delays don't sit in a queue. Denials don't wait for someone to notice a P2P outcome. Underpayments don't require a manual audit to surface. All three are visible the moment the data that produces them exists."
+      subheadline="Authorization delays don't sit in a queue. Denials don't wait for someone to notice a P2P outcome. Underpayments don't require a manual audit to surface. All three are visible — and acted on automatically — the moment the data that produces them exists."
       financialImpact={
         <p>
           Across this cluster, the platform earns{" "}
@@ -47,6 +47,9 @@ export default function Page() {
         { src: "/screenshots/auth-01-authorizations.png", alt: "MGear authorization tracker" },
         { src: "/screenshots/denial-01-appeals-queue.png", alt: "MGear denials and appeals workspace" },
       ]}
+      openItems={[
+        "The cause-finding, 24-hour resend, escalation, concurrent-peer-to-peer and lower-level-of-care steps come from a product review dated 2026-10-20 and have not yet been confirmed against the product build.",
+      ]}
       faqs={[
         {
           question: "What's the difference between this page and the Authorization or Denial Management module pages?",
@@ -77,22 +80,29 @@ export default function Page() {
         The chain that starts at authorization
       </h2>
       <p className="mt-4 max-w-3xl text-body text-slate-600">
-        When an authorization stalls: Payer Communication is notified immediately,
-        Payor Grid checks that payer&apos;s specific requirements, the delay shows up on
-        Analytics in real time, Quality flags it as a workflow issue, a manager is
-        alerted, and the team resolves it before discharge.
+        When an authorization stalls: Payer Communication is notified immediately and
+        Payor Grid checks that payer&apos;s specific requirements. MGear then works out
+        what is holding it up — for example, medical records that were never sent — and
+        resends or supplies them. If there is no answer after 24 hours, the assigned
+        Case Manager is notified and the packet goes out again with a letter requiring an
+        immediate update; if the delay continues, the case escalates to the Case
+        Management Director. Meanwhile the delay shows up on Analytics in real time,
+        Quality flags it as a workflow issue, and the team resolves it before discharge.
       </p>
 
       <h2 className="mt-10 text-section font-semibold text-charcoal">
         The chain that closes a denial
       </h2>
       <p className="mt-4 max-w-3xl text-body text-slate-600">
-        When a payer denies while the patient is in-house, a P2P case is created and
-        scheduled with a physician advisor automatically. Overturned means the stay is
-        authorized and no appeal is needed. Upheld means an appeal is drafted
+        When a payer denies while the patient is in-house, MGear checks whether the
+        case is appealable and whether the payer allows a concurrent peer-to-peer. If it
+        does, a P2P case is created and scheduled automatically with the physician
+        advisor, and the appeal process starts alongside it. Overturned means the stay
+        is authorized and no appeal is needed. Upheld means an appeal is drafted
         automatically, deep-linked back into the exact case that produced it — nobody
         re-keys a case or emails a spreadsheet between authorization staff, physician
-        advisors, and appeals.
+        advisors, and appeals. And if the payer is right and the case does not meet
+        criteria, MGear recommends a lower level of care; the physician makes the call.
       </p>
 
       <h2 className="mt-10 text-section font-semibold text-charcoal">

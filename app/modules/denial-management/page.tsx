@@ -14,16 +14,18 @@ export default function Page() {
       eyebrow="Module — Denial Management"
       headline="The Appeal Starts Itself. The Underpayment Doesn't Stay Hidden."
       subheadline="When a P2P call is upheld, the appeal is created and linked back to that case automatically. When a payer pays less than the contract says they owe, this module is what makes that visible."
-      receives="Upheld outcomes from P2P Management; denials recorded in Authorization Management; expected reimbursement terms from Payor Grid."
+      receives="Medical necessity reviews from Utilization Management; upheld outcomes from P2P Management; denials recorded in Authorization Management; expected reimbursement terms from Payor Grid."
       sends="Appeal and reimbursement data to Analytics."
       problem="Preventable denials, underpayments, unpaid claims, and revenue leakage are named directly among the platform's core problems. An underpayment that no one catches because reconciling actual payment against the contract takes hours nobody has is revenue lost as surely as a denial that's never appealed."
       whatItDoes="All appeal levels. Appeal status and outcomes. Reimbursement reconciliation. Expected reimbursement. Underpayments. Unpaid claims. Proactive escalations."
       workflow={
         <>
           <p>
-            When a P2P call is upheld, an appeal is created automatically and
-            deep-linked back into the exact case that produced it — no one drafts a new
-            record from scratch.
+            When a case is denied, Authorization Management checks whether it is
+            appealable and starts the appeal process alongside the peer-to-peer. When a
+            P2P call is upheld, the appeal is created automatically and deep-linked back
+            into the exact case that produced it — no one drafts a new record from
+            scratch.
           </p>
           <p className="mt-4">
             On the reimbursement side, this module holds the expected reimbursement for
@@ -55,6 +57,9 @@ export default function Page() {
       integrationCapabilities="Denial Management connects to the same EMR integration and payer connectivity as the rest of the platform, and specifically to Payor Grid for contract-derived expected-reimbursement figures."
       screenshots={[
         { src: "/screenshots/denial-01-appeals-queue.png", alt: "MGear denials and appeals workspace" },
+      ]}
+      openItems={[
+        "Checking whether a case is appealable and starting the appeal alongside the peer-to-peer comes from a product review dated 2026-10-20 and has not yet been confirmed against the product build.",
       ]}
       faqs={[
         {

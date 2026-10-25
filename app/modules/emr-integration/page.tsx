@@ -40,6 +40,9 @@ export default function Page() {
       }
       futureRoadmap="Integration surfaces and data-source configuration exist today; live connectors to specific EHR systems are being built by a parallel workstream — the platform's stated capabilities are expected to be ready by market."
       screenshots={[]}
+      openItems={[
+        "The list of supported EHRs (including Epic through the Epic Showroom) and sending data back to the EHR (authorization numbers, copies of InterQual/MCG reviews) come from a product review dated 2026-10-20. Which connectors are live and which are planned is still to be confirmed with the integration workstream.",
+      ]}
       faqs={[
         {
           question: "Which EHRs does MGear integrate with?",

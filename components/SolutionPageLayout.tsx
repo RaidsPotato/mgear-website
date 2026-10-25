@@ -3,6 +3,7 @@ import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { PageHero } from "@/components/PageHero";
 import { ClosingCTA } from "@/components/ModulePageLayout";
+import { OpenItems } from "@/components/OpenItems";
 import { FAQAccordion, type FAQItem } from "@/components/FAQAccordion";
 import type { ModuleScreenshot } from "@/components/ModulePageLayout";
 import { AI_BACKEND_STATEMENT } from "@/lib/copy";
@@ -21,6 +22,7 @@ export function SolutionPageLayout({
   integrationCapabilities,
   screenshots,
   faqs,
+  openItems,
   closingHeadline = "See the connection, not a slide deck.",
 }: {
   eyebrow: string;
@@ -32,6 +34,8 @@ export function SolutionPageLayout({
   integrationCapabilities: ReactNode;
   screenshots: ModuleScreenshot[];
   faqs: FAQItem[];
+  // Claims on this page that have not been confirmed yet.
+  openItems?: string[];
   closingHeadline?: string;
 }) {
   return (
@@ -117,6 +121,8 @@ export function SolutionPageLayout({
         </h2>
         <FAQAccordion items={faqs} />
       </Section>
+
+      {openItems && openItems.length > 0 && <OpenItems items={openItems} />}
 
       <ClosingCTA headline={closingHeadline} />
     </>

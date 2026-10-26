@@ -32,7 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 "@type": "Organization",
                 name: "MGear",
                 description:
-                  "MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational AI infrastructure for hospitals.",
+                  "MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational infrastructure for hospitals.",
               },
               {
                 "@type": "SoftwareApplication",

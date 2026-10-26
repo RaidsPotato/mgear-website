@@ -10,7 +10,7 @@ import { AI_BACKEND_STATEMENT } from "@/lib/copy";
 export const metadata: Metadata = {
   title: "AI at MGear — Governed AI That Assists Operations, Never Replaces Clinical Judgment",
   description:
-    "Seven named AI capabilities across the platform — AI Quality Auditor, Authorization Assistant, Payer Communication Assistant, Contract Intelligence, Conversational Analytics, Operational Intelligence, and Workflow Automation. AI assists operations. Humans remain responsible.",
+    "Six named AI capabilities across the platform — Authorization Assistant, Payer Communication Assistant, Contract Intelligence, Conversational Analytics, Operational Intelligence, and Workflow Automation. AI assists operations. Humans remain responsible.",
 };
 
 const capabilities = [
@@ -50,12 +50,6 @@ const capabilities = [
     module: "Conversational Analytics",
     desc: "Answers natural-language executive questions from the platform's one governed, canonical data source.",
   },
-  {
-    name: "AI Quality Auditor",
-    href: "/modules/quality-management",
-    module: "Quality Management",
-    desc: "Audits review quality, workflow compliance, and documentation quality as the work happens.",
-  },
 ];
 
 const faqs = [
@@ -69,9 +63,9 @@ const faqs = [
     answer: `${AI_BACKEND_STATEMENT} It is never a way for data to leave MGear, and it makes no clinical decisions.`,
   },
   {
-    question: "Are all seven AI capabilities available today?",
+    question: "Are all six AI capabilities available today?",
     answer:
-      "Most are. AI Quality Auditor, Contract Intelligence, and Conversational Analytics are being built ahead of go-to-market and are written present-tense as the specification for that build — see each module's page for its current build status.",
+      "Most are. Contract Intelligence and Conversational Analytics are being built ahead of go-to-market and are written present-tense as the specification for that build — see each module's page for its current build status.",
   },
   {
     question: 'What does "governed" mean specifically?',
@@ -107,7 +101,7 @@ export default function AIPage() {
       <Section width="wide">
         <SectionHeader
           eyebrow="Named Capabilities"
-          heading="The seven capabilities"
+          heading="The six capabilities"
           lead="Each one is scoped to a module, not a general-purpose assistant layered on top of the platform."
         />
 

@@ -30,7 +30,7 @@ export default function Page() {
           <strong className="text-charcoal">reduced preventable denials</strong>.
         </p>
       }
-      aiCapabilities="Payor Grid's core intelligence is the rules engine — a deterministic system that checks real work against configured payer rules, not one of MGear's seven named AI capabilities. Where Payor Grid's rules are populated by Contract Intelligence's AI extraction, that upstream step is AI-assisted; the rules engine itself is not."
+      aiCapabilities="Payor Grid's core intelligence is the rules engine — a deterministic system that checks real work against configured payer rules, not one of MGear's six named AI capabilities. Where Payor Grid's rules are populated by Contract Intelligence's AI extraction, that upstream step is AI-assisted; the rules engine itself is not."
       integrationCapabilities={
         <>
           <p>

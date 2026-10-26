@@ -58,9 +58,6 @@ export default function Page() {
       screenshots={[
         { src: "/screenshots/denial-01-appeals-queue.png", alt: "MGear denials and appeals workspace" },
       ]}
-      openItems={[
-        "Checking whether a case is appealable and starting the appeal alongside the peer-to-peer comes from a product review dated 2026-10-20 and has not yet been confirmed against the product build.",
-      ]}
       faqs={[
         {
           question: "How does an appeal get created?",

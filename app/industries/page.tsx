@@ -32,7 +32,7 @@ const industries = [
   {
     href: "/industries/behavioral-health",
     name: "Behavioral Health",
-    desc: "The Providence behavioral health program: a program that cost $395K returned $4.87M net.",
+    desc: "The Providence behavioral health program: denial rate from 35% to 0%, authorization approval at 100%, and about $4.1M in additional revenue since it started.",
   },
   {
     href: "/industries/multi-hospital-systems",

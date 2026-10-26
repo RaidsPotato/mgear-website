@@ -59,9 +59,6 @@ export default function Page() {
         { src: "/screenshots/p2p-01-queue.png", alt: "MGear peer-to-peer queue" },
         { src: "/screenshots/p2p-02-calendar.png", alt: "MGear peer-to-peer calendar" },
       ]}
-      openItems={[
-        "Scheduling the P2P automatically (with the physician advisor and the payer's medical director) where the payer allows one comes from a product review dated 2026-10-20 and has not yet been confirmed against the product build.",
-      ]}
       faqs={[
         {
           question: "What happens after a P2P outcome is captured?",

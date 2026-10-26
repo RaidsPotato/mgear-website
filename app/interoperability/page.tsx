@@ -6,7 +6,6 @@ import { PageHero } from "@/components/PageHero";
 import { ClosingCTA } from "@/components/ModulePageLayout";
 import { TagGrid } from "@/components/TagGrid";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { OpenItems } from "@/components/OpenItems";
 import { EMR_LIST, EMR_BADGES } from "@/lib/copy";
 
 export const metadata: Metadata = {
@@ -22,7 +21,7 @@ const faqs = [
   },
   {
     question: "What happens when a system doesn't support a direct interface?",
-    answer: "AI-assisted ingestion and RPA are used to bring the data in anyway, rather than leaving a gap in the feed.",
+    answer: "RPA is used where needed to bring the data in anyway, rather than leaving a gap in the feed.",
   },
   {
     question: "Is MGear ready for CMS-0057-F?",
@@ -49,7 +48,7 @@ export default function InteroperabilityPage() {
         <SectionHeader
           eyebrow="EHR Connectivity"
           heading="Data flows in continuously"
-          lead="Clinical and administrative data feeds every module on the platform in real time. Where a direct interface isn't available, AI-assisted ingestion and RPA bring the data in anyway, rather than leaving a gap in the feed that every downstream chain depends on."
+          lead="Clinical and administrative data feeds every module on the platform in real time. Where a direct interface isn't available, RPA brings the data in anyway, rather than leaving a gap in the feed that every downstream chain depends on."
         />
         <div className="mt-8">
           <TagGrid
@@ -109,12 +108,6 @@ export default function InteroperabilityPage() {
         <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
         <FAQAccordion items={faqs} />
       </Section>
-
-      <OpenItems
-        items={[
-          "The list of supported EHRs (including Epic through the Epic Showroom) comes from a product review dated 2026-10-20. Which connectors are live and which are planned is still to be confirmed with the integration workstream.",
-        ]}
-      />
 
       <ClosingCTA
         headline="See how the data reaches every module."

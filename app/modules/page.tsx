@@ -89,7 +89,7 @@ const modules = [
     name: "Quality Management",
     receives: "Review and workflow data from Utilization Management and Authorization Management.",
     sends: "Workflow-delay flags to managers, and review-quality data to Analytics.",
-    desc: "AI-assisted review auditing — workflow compliance, documentation quality, reviewer performance.",
+    desc: "Rule-based review and workflow auditing — workflow compliance, documentation quality, reviewer performance.",
   },
   {
     n: 10,

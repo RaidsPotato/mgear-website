@@ -47,9 +47,6 @@ export default function Page() {
         { src: "/screenshots/auth-01-authorizations.png", alt: "MGear authorization tracker" },
         { src: "/screenshots/denial-01-appeals-queue.png", alt: "MGear denials and appeals workspace" },
       ]}
-      openItems={[
-        "The cause-finding, 24-hour resend, escalation, concurrent-peer-to-peer and lower-level-of-care steps come from a product review dated 2026-10-20 and have not yet been confirmed against the product build.",
-      ]}
       faqs={[
         {
           question: "What's the difference between this page and the Authorization or Denial Management module pages?",
@@ -62,7 +59,7 @@ export default function Page() {
         },
         {
           question: "Where's the full financial case study?",
-          answer: "The Results page, built around the Providence behavioral health program — a program that cost $395K returned $4.87M net.",
+          answer: "The Results page, built around two Providence programs — an ED program that cost $395K returned $4.87M net, and a behavioral health program took the denial rate from 35% to 0%.",
         },
       ]}
     >
@@ -127,7 +124,7 @@ export default function Page() {
         <Link href="/results" className="font-semibold text-brand underline underline-offset-2">
           Results page
         </Link>
-        : a program that cost $395K returned $4.87M net.
+        : an ED program that cost $395K returned $4.87M net, and a behavioral health program took the denial rate from 35% to 0%.
       </p>
     </SolutionPageLayout>
   );

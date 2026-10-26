@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 // production domain is not confirmed yet ([OPEN-7]).
 const body = `# MGear
 
-> MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational AI infrastructure for hospitals. It connects utilization management, authorization, peer-to-peer reviews, denials, payer communication and analytics into one process, automates the routine steps in them, and gives every department live visibility into where each case stands while the patient is still admitted.
+> MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational infrastructure for hospitals. It connects utilization management, authorization, peer-to-peer reviews, denials, payer communication and analytics into one process, automates the routine steps in them, and gives every department live visibility into where each case stands while the patient is still admitted.
 
 MGear is not utilization management software, authorization software, denial software, analytics software or case management software on its own — it is the platform that connects all of those functions. It integrates with the hospital's EHR (Epic, Oracle Health/Cerner, MEDITECH, TruBridge/CPSI, Altera Digital Health, MEDHOST, Netsmart, Azalea Health, athenahealth) via FHIR and HL7 and does not replace it. AI assists operations and works only on MGear's backend, analyzing a limited amount of data to help with simple workflow steps; it has no connection to anything outside MGear. People remain responsible for every clinical and operational decision.
 

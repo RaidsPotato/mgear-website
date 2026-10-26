@@ -9,7 +9,7 @@ import { BOOKING_URL } from "@/lib/links";
 export const metadata: Metadata = {
   title: "Company — About MGear",
   description:
-    "MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational AI infrastructure for hospitals.",
+    "MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational infrastructure for hospitals.",
 };
 
 const faqs = [
@@ -35,7 +35,7 @@ export default function CompanyPage() {
         compact
         eyebrow="Company"
         title="About MGear"
-        lead="MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational AI infrastructure for hospitals."
+        lead="MGear is the Real-Time Mid-Revenue Cycle Operating Platform — operational infrastructure for hospitals."
       />
 
       <Section width="wide">

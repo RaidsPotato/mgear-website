@@ -27,13 +27,10 @@ export default function Page() {
           <strong className="text-charcoal">improved payer compliance</strong>.
         </p>
       }
-      aiCapabilities="AI Quality Auditor, Authorization Assistant, Payer Communication Assistant, Contract Intelligence, Conversational Analytics, Operational Intelligence, and Workflow Automation are the platform's named AI capabilities. AI does not replace clinicians. AI assists operations. Humans remain responsible for every operational and clinical decision."
+      aiCapabilities="Authorization Assistant, Payer Communication Assistant, Contract Intelligence, Conversational Analytics, Operational Intelligence, and Workflow Automation are the platform's named AI capabilities. AI does not replace clinicians. AI assists operations. Humans remain responsible for every operational and clinical decision."
       integrationCapabilities="CMS-0057-F readiness, FHIR interoperability, HL7 interoperability, SMART on FHIR, payer connectivity, HIPAA architecture, role-based access, audit logging, enterprise security, cloud architecture, multi-hospital SaaS deployment, and enterprise scalability are all stated platform capabilities. Role-based access and audit logging are visible in the working product today."
       screenshots={[
         { src: "/screenshots/analytics-01-executive-dashboard.png", alt: "MGear executive dashboard — every module on one screen" },
-      ]}
-      openItems={[
-        "The cause-finding, resend and escalation steps in the day-to-day sequence come from a product review dated 2026-10-20 and have not yet been confirmed against the product build. The list of supported EHRs is still to be confirmed with the integration workstream.",
       ]}
       faqs={[
         {

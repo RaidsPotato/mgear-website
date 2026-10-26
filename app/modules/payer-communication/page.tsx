@@ -42,9 +42,6 @@ export default function Page() {
         { src: "/screenshots/payer-02-comm-director.png", alt: "MGear Payer Communication command center" },
         { src: "/screenshots/payer-03-transmissions.png", alt: "MGear outbound transmissions log" },
       ]}
-      openItems={[
-        "Delivery through payer portals, fax and email, retrieving authorization status and documents from payer portals, and the 24-hour resend with a letter come from a product review dated 2026-10-20 and have not yet been confirmed against the product build.",
-      ]}
       faqs={[
         {
           question: "How does Payer Communication know what each payer requires?",

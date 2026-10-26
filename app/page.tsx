@@ -33,10 +33,10 @@ const chain1Steps = [
 ];
 
 const providenceStats = [
-  { value: "$4.87M", label: "Net annual impact" },
-  { value: "35% → 0%", label: "Behavioral health denial rate" },
-  { value: "11% → 16%", label: "Admission rate" },
-  { value: "100%", label: "Authorization approval rate" },
+  { value: "$4.87M", label: "Net annual impact — ED program" },
+  { value: "35% → 0%", label: "Denial rate — behavioral health program" },
+  { value: "11% → 16%", label: "Admission rate — ED program" },
+  { value: "100%", label: "Authorization approval — behavioral health" },
 ];
 
 // Wording expanded per Max's website review (2026-10-14): the trigger isn't
@@ -76,7 +76,6 @@ const consequences = [
 ];
 
 const aiCapabilities = [
-  "AI Quality Auditor",
   "Authorization Assistant",
   "Payer Communication Assistant",
   "Contract Intelligence",
@@ -89,7 +88,7 @@ const faqs = [
   {
     question: "What is MGear?",
     answer:
-      "The Real-Time Mid-Revenue Cycle Operating Platform — operational AI infrastructure that coordinates every hospital department responsible for protecting revenue while the patient is still admitted.",
+      "The Real-Time Mid-Revenue Cycle Operating Platform — operational infrastructure that coordinates every hospital department responsible for protecting revenue while the patient is still admitted.",
   },
   {
     question: "Is MGear utilization management software?",
@@ -124,7 +123,7 @@ export default function Home() {
       <section className="hero-glow bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 pt-28 pb-16 sm:pt-40 sm:pb-24">
           <div className="max-w-3xl">
-            <p className="eyebrow text-brand">Operational AI Infrastructure for Hospitals</p>
+            <p className="eyebrow text-brand">Operational Infrastructure for Hospitals</p>
             <h1 className="mt-4 text-hero font-bold text-white">
               The Real-Time Mid-Revenue Cycle Operating Platform
             </h1>
@@ -146,7 +145,7 @@ export default function Home() {
           <div className="mt-6">
             <StatBand
               stats={providenceStats}
-              caption="Results from the Providence behavioral health program"
+              caption="Results from two Providence programs: ED utilization management and behavioral health"
               captionHref="/results"
               tone="dark"
               size="lg"
@@ -281,12 +280,13 @@ export default function Home() {
                 <AnimatedStat value="$4.87M" className="text-gradient-brand" /> net
               </p>
               <p className="mt-2 text-lead text-slate-600">
-                on a program that cost $395K.
+                on an ED program that cost $395K.
               </p>
               <p className="mt-5 text-body text-slate-600">
-                The Providence behavioral health program: behavioral health denial rate
-                from 35% to 0%, admission rate from 11% to 16%, authorization approval
-                rate at 100%.
+                Two Providence programs. The ED utilization management program lifted the
+                admission rate from 11% to 16%. The behavioral health program took the
+                denial rate from 35% to 0% and authorization approval to 100%, adding about
+                $4.1M in revenue since it started.
               </p>
               <div className="mt-6">
                 <Button href="/results" variant="secondary">

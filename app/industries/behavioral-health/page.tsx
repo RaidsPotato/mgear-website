@@ -3,23 +3,22 @@ import Link from "next/link";
 import { SolutionPageLayout } from "@/components/SolutionPageLayout";
 
 export const metadata: Metadata = {
-  title: "MGear for Behavioral Health — A Program That Cost $395K Returned $4.87M Net",
+  title: "MGear for Behavioral Health — Denial Rate From 35% to 0%",
   description:
-    "The Providence behavioral health program: admission rate 11% to 16%, denial rate 35% to 0%, authorization approval 100%, net annual impact approximately $4.87M.",
+    "The Providence behavioral health program: denial rate 35% to 0%, authorization approval 100%, and approximately $4.1M in additional revenue since it started.",
 };
 
 export default function Page() {
   return (
     <SolutionPageLayout
       eyebrow="Industries — Behavioral Health"
-      headline="A Program That Cost $395K Returned $4.87M Net"
-      subheadline="The Providence behavioral health program is the only case study on the MGear site — a real, measured outcome, not a projection."
+      headline="A Behavioral Health Denial Rate That Went From 35% to 0%"
+      subheadline="The Providence behavioral health program is one of two Providence programs on the MGear site — a real, measured outcome, not a projection."
       financialImpact={
         <p>
-          Additional annual revenue of approximately{" "}
-          <strong className="text-charcoal">$5.26M</strong> against an annual program
-          cost of approximately <strong className="text-charcoal">$395K</strong> — a net
-          annual impact of approximately <strong className="text-charcoal">$4.87M</strong>.
+          Approximately <strong className="text-charcoal">$4.1M</strong> in additional
+          revenue since the program started, with the denial rate down from 35% to 0%
+          and authorization approval at 100%.
         </p>
       }
       aiCapabilities="AI does not replace clinicians. AI assists operations — Authorization Assistant and Workflow Automation reduce manual work in tracking, routing, and appeal creation. Humans remain responsible for every clinical and operational decision."
@@ -30,7 +29,7 @@ export default function Page() {
       faqs={[
         {
           question: "Is this the only case study on the site?",
-          answer: "Yes, currently.",
+          answer: "It is one of two Providence programs on the site; the other, an ED utilization management program, is on the Results page.",
         },
         {
           question: "Are these figures verified?",
@@ -47,12 +46,9 @@ export default function Page() {
       <h2 className="text-section font-semibold text-charcoal">The outcome</h2>
       <ul className="mt-6 space-y-3">
         {[
-          ["Admission rate", "11% → 16%"],
           ["Behavioral health denial rate", "35% → 0%"],
           ["Authorization approval rate", "100%"],
-          ["Additional annual revenue", "≈$5.26M"],
-          ["Annual program cost", "≈$395K"],
-          ["Net annual impact", "≈$4.87M"],
+          ["Additional revenue since the program started", "≈$4.1M"],
         ].map(([label, value]) => (
           <li
             key={label}

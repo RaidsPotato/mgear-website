@@ -111,9 +111,6 @@ export default function Page() {
         { src: "/screenshots/auth-01-authorizations.png", alt: "MGear authorization tracker" },
         { src: "/screenshots/auth-04-action-matrix.png", alt: "MGear authorization action matrix — manager view" },
       ]}
-      openItems={[
-        "The workflow described here (building the packet, the 24-hour resend with a letter, the insurance-eligibility check, escalation to the Case Management Director, automatic peer-to-peer scheduling, and the appeal-or-downgrade recommendation) comes from a product review dated 2026-10-20 and is written present-tense. It has not yet been confirmed against the product build.",
-      ]}
       faqs={[
         {
           question: "What happens when an authorization is delayed?",

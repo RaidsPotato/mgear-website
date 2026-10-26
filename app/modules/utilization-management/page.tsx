@@ -23,7 +23,7 @@ export default function Page() {
         <>
           <p>
             A review runs through a structured three-step process ending in a final
-            documented outcome — visible live on the ED and inpatient dashboards as it
+            documented outcome — visible live on the UM dashboards as it
             happens, not compiled after the fact.
           </p>
           <p className="mt-4">
@@ -34,7 +34,7 @@ export default function Page() {
           </p>
         </>
       }
-      businessValue="Reviews and escalations happen inside one continuous workflow instead of a UM team working from a spreadsheet and paging a physician advisor separately. Avoidable days are tracked as they accumulate, not reconstructed at month-end. The live dashboards mean a UM director can see today's ED and inpatient status in real time, not the next morning."
+      businessValue="Reviews and escalations happen inside one continuous workflow instead of a UM team working from a spreadsheet and paging a physician advisor separately. Avoidable days are tracked as they accumulate, not reconstructed at month-end. The live dashboards mean a UM director can see today's review status in real time, not the next morning."
       financialImpact={
         <p>
           Reviews decided correctly and on time protect three outcomes directly:{" "}
@@ -44,13 +44,10 @@ export default function Page() {
           review this module completes is a chance to capture one of those.
         </p>
       }
-      integrationCapabilities={`Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — ${EMR_LIST} — feeding the ED and inpatient dashboards continuously.`}
+      integrationCapabilities={`Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — ${EMR_LIST} — feeding the live UM dashboards continuously.`}
       screenshots={[
-        { src: "/screenshots/um-01-ed-bed-board.png", alt: "MGear ED dashboard — live emergency department review" },
-        { src: "/screenshots/um-02-ip-dashboard.png", alt: "MGear inpatient dashboard — in-house, discharge, and finished queues" },
-      ]}
-      openItems={[
-        "Reconciling each review with the patient's actual status, the physician's order and the payer authorization, and sending reviews on to Payer Communication, P2P Management and Denial Management, come from a product review dated 2026-10-20 and have not yet been confirmed against the product build.",
+        { src: "/screenshots/um-01-ed-bed-board.png", alt: "MGear UM dashboard — live review queue" },
+        { src: "/screenshots/um-02-ip-dashboard.png", alt: "MGear UM dashboard — in-house, discharge, and finished queues" },
       ]}
       faqs={[
         {

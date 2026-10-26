@@ -3,20 +3,21 @@ import { Section } from "@/components/Section";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ClosingCTA } from "@/components/ModulePageLayout";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { OpenItems } from "@/components/OpenItems";
 import { ProvidenceComparison } from "@/components/ProvidenceComparison";
 import { ScreenshotHotspots } from "@/components/ScreenshotHotspots";
 import { AnimatedStat } from "@/components/AnimatedStat";
 
 export const metadata: Metadata = {
-  title: "Results — A Program That Cost $395K Returned $4.87M Net",
+  title: "Results — Two Providence Programs, Measured",
   description:
-    "The Providence behavioral health program: admission rate 11% to 16%, denial rate 35% to 0%, authorization approval 100%, net annual impact approximately $4.87M.",
+    "Two Providence programs: an ED utilization management program that lifted the admission rate from 11% to 16% (about $4.87M net annually), and a behavioral health program that took the denial rate from 35% to 0% (about $4.1M in additional revenue since it started).",
 };
 
 const faqs = [
   {
     question: "Is this the only case study on the site?",
-    answer: "Yes, currently. A second Providence figure — 43% denial reduction at Providence Little Company of Mary — is available as a shorter proof point elsewhere on request.",
+    answer: "Yes, currently — it covers two programs at the same health system, Providence. A further Providence figure — 43% denial reduction at Providence Little Company of Mary — is available as a shorter proof point elsewhere on request.",
   },
   {
     question: "Are these figures verified?",
@@ -46,8 +47,9 @@ export default function ResultsPage() {
               <AnimatedStat value="$4.87M" className="text-gradient-brand" /> net
             </p>
             <p className="mt-3 text-lead text-slate-300">
-              on a program that cost $395K — the Providence behavioral health program,
-              measured, not projected.
+              on an ED utilization management program that cost $395K — measured, not
+              projected. A second Providence program, in behavioral health, took the denial
+              rate from 35% to 0% and added about $4.1M in revenue since it started.
             </p>
           </div>
           <div className="mt-12 rounded-2xl bg-white p-4 shadow-2xl sm:p-6">
@@ -58,27 +60,45 @@ export default function ResultsPage() {
 
       <Section width="wide">
         <SectionHeader eyebrow="The Outcome" heading="The outcome, in full" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            ["Admission rate", "11% → 16%"],
-            ["Behavioral health denial rate", "35% → 0%"],
-            ["Authorization approval rate", "100%"],
-            ["Additional annual revenue", "≈$5.26M"],
-            ["Annual program cost", "≈$395K"],
-            ["Net annual impact", "≈$4.87M"],
-          ].map(([label, value]) => (
-            <div
-              key={label}
-              className="rounded-xl border border-brand/20 bg-[#f2f9f4] px-6 py-6"
-            >
-              <p className="text-sm text-slate-600">{label}</p>
-              <AnimatedStat
-                value={value}
-                className="mt-1.5 block text-3xl font-bold tracking-tight text-gradient-brand"
-              />
+        {[
+          {
+            program: "ED utilization management program",
+            cols: "sm:grid-cols-2 lg:grid-cols-4",
+            figures: [
+              ["Admission rate", "11% → 16%"],
+              ["Additional annual revenue", "≈$5.26M"],
+              ["Annual program cost", "≈$395K"],
+              ["Net annual impact", "≈$4.87M"],
+            ],
+          },
+          {
+            program: "Behavioral health program",
+            cols: "sm:grid-cols-3",
+            figures: [
+              ["Denial rate", "35% → 0%"],
+              ["Authorization approval rate", "100%"],
+              ["Additional revenue since it started", "≈$4.1M"],
+            ],
+          },
+        ].map((group) => (
+          <div key={group.program} className="mt-8">
+            <h3 className="text-lg font-semibold text-charcoal">{group.program}</h3>
+            <div className={`mt-4 grid gap-4 ${group.cols}`}>
+              {group.figures.map(([label, value]) => (
+                <div
+                  key={label}
+                  className="rounded-xl border border-brand/20 bg-[#f2f9f4] px-6 py-6"
+                >
+                  <p className="text-sm text-slate-600">{label}</p>
+                  <AnimatedStat
+                    value={value}
+                    className="mt-1.5 block text-3xl font-bold tracking-tight text-gradient-brand"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </Section>
 
       <Section width="wide" tone="alt">
@@ -86,6 +106,9 @@ export default function ResultsPage() {
         <p className="mt-6 max-w-3xl text-body text-slate-600">
           This isn&apos;t a different mechanism from what&apos;s described on Platform
           Overview — it&apos;s the same chain, run continuously, across a whole program.
+          The ED program works at the front of that chain — reviews and admission
+          decisions — and the behavioral health program works on authorizations, denials
+          and reimbursement.
         </p>
         <p className="mt-4 max-w-3xl text-body text-slate-600">
           It starts with Utilization Management. MGear continuously monitors medical
@@ -141,6 +164,13 @@ export default function ResultsPage() {
         <h2 className="mb-8 text-section font-semibold text-charcoal">Frequently asked</h2>
         <FAQAccordion items={faqs} />
       </Section>
+
+      <OpenItems
+        items={[
+          "The ≈$395K annual program cost and the ≈$4.87M net are attributed to the ED program, following an annotation in a product review (2026-10-14). Which program the cost belongs to has not been confirmed.",
+          "The ≈$4.1M for the behavioral health program is reported as additional revenue since the program started, not per year, so it is not added to the ED program's annual figure.",
+        ]}
+      />
 
       <ClosingCTA headline="See the mechanism behind this number." />
     </>

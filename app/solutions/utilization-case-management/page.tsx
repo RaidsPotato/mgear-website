@@ -25,13 +25,10 @@ export default function Page() {
           and <strong className="text-charcoal">one fewer preventable denial</strong>.
         </p>
       }
-      integrationCapabilities={`Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — ${EMR_LIST} — feeding the ED and inpatient dashboards continuously.`}
+      integrationCapabilities={`Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — ${EMR_LIST} — feeding the live UM dashboards continuously.`}
       screenshots={[
         { src: "/screenshots/um-03-daily-um-log.png", alt: "MGear daily UM log" },
-        { src: "/screenshots/um-04-live-ed-audit.png", alt: "MGear live ED audit view" },
-      ]}
-      openItems={[
-        "The status-mismatch reconciliation and the 24-hour resend and escalation steps come from a product review dated 2026-10-20 and have not yet been confirmed against the product build.",
+        { src: "/screenshots/um-04-live-ed-audit.png", alt: "MGear live UM audit view" },
       ]}
       faqs={[
         {

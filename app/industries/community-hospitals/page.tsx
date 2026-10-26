@@ -25,12 +25,9 @@ export default function Page() {
         </p>
       }
       aiCapabilities="AI does not replace clinicians or staff. AI assists operations — Authorization Assistant reduces manual tracking and routing work, and Workflow Automation creates an appeal automatically when a P2P outcome is upheld. Humans remain responsible for every operational and clinical decision."
-      integrationCapabilities={`Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — ${EMR_LIST}. Where a direct interface isn't available, AI-assisted ingestion and RPA bring the data in anyway.`}
+      integrationCapabilities={`Admission and clinical data arrive via FHIR and HL7 from the hospital's EHR — ${EMR_LIST}. Where a direct interface isn't available, RPA brings the data in anyway.`}
       screenshots={[
         { src: "/screenshots/auth-01-authorizations.png", alt: "MGear authorization tracker" },
-      ]}
-      openItems={[
-        "The cause-finding, resend and escalation steps in the day-to-day sequence come from a product review dated 2026-10-20 and have not yet been confirmed against the product build. The list of supported EHRs is still to be confirmed with the integration workstream.",
       ]}
       faqs={[
         {

@@ -17,7 +17,7 @@ export default function ResourcesPage() {
         compact
         eyebrow="Resources"
         title="Resources"
-        lead="This section is being built out. Today, the one published resource is the Providence behavioral health case study."
+        lead="This section is being built out. Today, the one published resource is the Providence case study, covering two programs."
       />
 
       <Section width="wide">
@@ -32,9 +32,9 @@ export default function ResourcesPage() {
         >
           <div>
             <p className="font-semibold text-charcoal group-hover:text-brand">
-              Providence Behavioral Health Case Study
+              Providence Case Study
             </p>
-            <p className="mt-1 text-sm text-slate-500">$395K cost &rarr; $4.87M net</p>
+            <p className="mt-1 text-sm text-slate-500">ED program: $395K cost &rarr; $4.87M net &middot; Behavioral health: denial rate 35% &rarr; 0%</p>
           </div>
           <span className="text-brand opacity-40 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
             &rarr;

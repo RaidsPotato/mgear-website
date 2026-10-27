@@ -31,7 +31,6 @@ export const industryLinks = [
 ];
 
 export const companyLinks = [
-  { href: "/company", label: "Company" },
   { href: "/resources", label: "Resources" },
   { href: "/implementation", label: "Implementation" },
 ];
@@ -41,12 +40,12 @@ export const primaryNav = [
   { href: "/modules", label: "Modules", children: moduleLinks },
   { href: "/solutions", label: "Solutions", children: solutionLinks },
   { href: "/industries", label: "Industries", children: industryLinks },
+  { href: "/company", label: "Company", children: companyLinks },
   { href: "/ai", label: "AI" },
   { href: "/interoperability", label: "Interoperability" },
   { href: "/results", label: "Results" },
   { href: "/security", label: "Security" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/company", label: "Company", children: companyLinks },
 ];
 
 export const footerColumns = [

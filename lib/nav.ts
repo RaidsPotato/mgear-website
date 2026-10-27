@@ -30,6 +30,12 @@ export const industryLinks = [
   { href: "/industries/multi-hospital-systems", label: "Multi-Hospital Systems" },
 ];
 
+export const companyLinks = [
+  { href: "/company", label: "Company" },
+  { href: "/resources", label: "Resources" },
+  { href: "/implementation", label: "Implementation" },
+];
+
 export const primaryNav = [
   { href: "/platform", label: "Platform Overview" },
   { href: "/modules", label: "Modules", children: moduleLinks },
@@ -40,6 +46,7 @@ export const primaryNav = [
   { href: "/results", label: "Results" },
   { href: "/security", label: "Security" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/company", label: "Company", children: companyLinks },
 ];
 
 export const footerColumns = [

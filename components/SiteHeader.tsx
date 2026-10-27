@@ -208,7 +208,7 @@ export function SiteHeader() {
               >
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand"
+                  className="flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-2 text-sm font-medium text-slate-700 hover:text-brand 2xl:px-3"
                 >
                   {item.label}
                   {item.children && (

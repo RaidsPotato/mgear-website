@@ -34,9 +34,9 @@ const chain1Steps = [
 
 const providenceStats = [
   { value: "$4.87M", label: "Net annual impact — ED program" },
-  { value: "35% → 0%", label: "Denial rate — behavioral health program" },
+  { value: "35% → 1%", label: "Denial rate — behavioral health program" },
   { value: "11% → 16%", label: "Admission rate — ED program" },
-  { value: "100%", label: "Authorization approval — behavioral health" },
+  { value: "99%", label: "Authorization approval — behavioral health" },
 ];
 
 // Wording expanded per Max's website review (2026-10-14): the trigger isn't
@@ -285,7 +285,7 @@ export default function Home() {
               <p className="mt-5 text-body text-slate-600">
                 Two Providence programs. The ED utilization management program lifted the
                 admission rate from 11% to 16%. The behavioral health program took the
-                denial rate from 35% to 0% and authorization approval to 100%, adding about
+                denial rate from 35% to 1% and authorization approval to 99%, adding about
                 $4.1M in revenue since it started.
               </p>
               <div className="mt-6">

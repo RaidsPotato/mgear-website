@@ -59,7 +59,7 @@ export default function Page() {
         },
         {
           question: "Where's the full financial case study?",
-          answer: "The Results page, built around two Providence programs — an ED program that cost $395K returned $4.87M net, and a behavioral health program took the denial rate from 35% to 0%.",
+          answer: "The Results page, built around two Providence programs — an ED program that cost $395K returned $4.87M net, and a behavioral health program took the denial rate from 35% to 1%.",
         },
       ]}
     >
@@ -124,7 +124,7 @@ export default function Page() {
         <Link href="/results" className="font-semibold text-brand underline underline-offset-2">
           Results page
         </Link>
-        : an ED program that cost $395K returned $4.87M net, and a behavioral health program took the denial rate from 35% to 0%.
+        : an ED program that cost $395K returned $4.87M net, and a behavioral health program took the denial rate from 35% to 1%.
       </p>
     </SolutionPageLayout>
   );

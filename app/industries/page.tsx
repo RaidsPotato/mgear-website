@@ -32,7 +32,7 @@ const industries = [
   {
     href: "/industries/behavioral-health",
     name: "Behavioral Health",
-    desc: "The Providence behavioral health program: denial rate from 35% to 0%, authorization approval at 100%, and about $4.1M in additional revenue since it started.",
+    desc: "The Providence behavioral health program: denial rate from 35% to 1%, authorization approval at 99%, and about $4.1M in additional revenue since it started.",
   },
   {
     href: "/industries/multi-hospital-systems",

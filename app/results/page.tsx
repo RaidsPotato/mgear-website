@@ -11,7 +11,7 @@ import { AnimatedStat } from "@/components/AnimatedStat";
 export const metadata: Metadata = {
   title: "Results — Two Providence Programs, Measured",
   description:
-    "Two Providence programs: an ED utilization management program that lifted the admission rate from 11% to 16% (about $4.87M net annually), and a behavioral health program that took the denial rate from 35% to 0% (about $4.1M in additional revenue since it started).",
+    "Two Providence programs: an ED utilization management program that lifted the admission rate from 11% to 16% (about $4.87M net annually), and a behavioral health program that took the denial rate from 35% to 1% (about $4.1M in additional revenue since it started).",
 };
 
 const faqs = [
@@ -49,7 +49,7 @@ export default function ResultsPage() {
             <p className="mt-3 text-lead text-slate-300">
               on an ED utilization management program that cost $395K — measured, not
               projected. A second Providence program, in behavioral health, took the denial
-              rate from 35% to 0% and added about $4.1M in revenue since it started.
+              rate from 35% to 1% and added about $4.1M in revenue since it started.
             </p>
           </div>
           <div className="mt-12 rounded-2xl bg-white p-4 shadow-2xl sm:p-6">
@@ -75,8 +75,8 @@ export default function ResultsPage() {
             program: "Behavioral health program",
             cols: "sm:grid-cols-3",
             figures: [
-              ["Denial rate", "35% → 0%"],
-              ["Authorization approval rate", "100%"],
+              ["Denial rate", "35% → 1%"],
+              ["Authorization approval rate", "99%"],
               ["Additional revenue since it started", "≈$4.1M"],
             ],
           },

@@ -5,14 +5,14 @@ import { AnimatedStat } from "./AnimatedStat";
 //    annual revenue (and the ~$395K cost / ~$4.87M net pair, which Max's review
 //    annotated as the ED program's — the cost's owner is the one thing still
 //    unconfirmed).
-//  - Behavioral health: denial rate 35% -> 0%, authorization approval 100%,
+//  - Behavioral health: denial rate 35% -> 1%, authorization approval 99%,
 //    ~$4.1M additional revenue since it started.
 // Each metric carries its program so nothing is read as belonging to the other.
 // Both before/after states are on screen at once (no toggle to discover).
 const tiles = [
   { program: "ED utilization management", label: "Admission rate", without: 11, with: 16 },
-  { program: "Behavioral health", label: "Denial rate", without: 35, with: 0 },
-  { program: "Behavioral health", label: "Authorization approval rate", with: 100 },
+  { program: "Behavioral health", label: "Denial rate", without: 35, with: 1 },
+  { program: "Behavioral health", label: "Authorization approval rate", with: 99 },
 ] as const;
 
 function Arrow() {

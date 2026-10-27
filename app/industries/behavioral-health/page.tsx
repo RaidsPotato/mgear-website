@@ -3,22 +3,22 @@ import Link from "next/link";
 import { SolutionPageLayout } from "@/components/SolutionPageLayout";
 
 export const metadata: Metadata = {
-  title: "MGear for Behavioral Health — Denial Rate From 35% to 0%",
+  title: "MGear for Behavioral Health — Denial Rate From 35% to 1%",
   description:
-    "The Providence behavioral health program: denial rate 35% to 0%, authorization approval 100%, and approximately $4.1M in additional revenue since it started.",
+    "The Providence behavioral health program: denial rate 35% to 1%, authorization approval 99%, and approximately $4.1M in additional revenue since it started.",
 };
 
 export default function Page() {
   return (
     <SolutionPageLayout
       eyebrow="Industries — Behavioral Health"
-      headline="A Behavioral Health Denial Rate That Went From 35% to 0%"
+      headline="A Behavioral Health Denial Rate That Went From 35% to 1%"
       subheadline="The Providence behavioral health program is one of two Providence programs on the MGear site — a real, measured outcome, not a projection."
       financialImpact={
         <p>
           Approximately <strong className="text-charcoal">$4.1M</strong> in additional
-          revenue since the program started, with the denial rate down from 35% to 0%
-          and authorization approval at 100%.
+          revenue since the program started, with the denial rate down from 35% to 1%
+          and authorization approval at 99%.
         </p>
       }
       aiCapabilities="AI does not replace clinicians. AI assists operations — Authorization Assistant and Workflow Automation reduce manual work in tracking, routing, and appeal creation. Humans remain responsible for every clinical and operational decision."
@@ -46,8 +46,8 @@ export default function Page() {
       <h2 className="text-section font-semibold text-charcoal">The outcome</h2>
       <ul className="mt-6 space-y-3">
         {[
-          ["Behavioral health denial rate", "35% → 0%"],
-          ["Authorization approval rate", "100%"],
+          ["Behavioral health denial rate", "35% → 1%"],
+          ["Authorization approval rate", "99%"],
           ["Additional revenue since the program started", "≈$4.1M"],
         ].map(([label, value]) => (
           <li

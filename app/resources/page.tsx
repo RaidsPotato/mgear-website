@@ -34,7 +34,7 @@ export default function ResourcesPage() {
             <p className="font-semibold text-charcoal group-hover:text-brand">
               Providence Case Study
             </p>
-            <p className="mt-1 text-sm text-slate-500">ED program: $395K cost &rarr; $4.87M net &middot; Behavioral health: denial rate 35% &rarr; 0%</p>
+            <p className="mt-1 text-sm text-slate-500">ED program: $395K cost &rarr; $4.87M net &middot; Behavioral health: denial rate 35% &rarr; 1%</p>
           </div>
           <span className="text-brand opacity-40 transition-all group-hover:translate-x-0.5 group-hover:opacity-100">
             &rarr;

@@ -9,13 +9,13 @@ import { EMR_LIST } from "@/lib/copy";
 export const metadata: Metadata = {
   title: "Implementation — Getting MGear Live at Your Hospital",
   description:
-    "How an MGear rollout is structured, from EHR connectivity through module configuration to go-live — outlined ahead of a finalized timeline and support commitment.",
+    "How an MGear rollout is structured, from EHR connectivity through module configuration to go-live. Book a call to scope it for your hospital.",
 };
 
 const faqs = [
   {
     question: "How long does implementation take?",
-    answer: "A typical timeline hasn't been finalized yet. This page will be updated with a specific length once it is.",
+    answer: "It's scoped with your team on a call, based on your EHR and the modules you're starting with.",
   },
   {
     question: "Do we need to implement all eleven modules at once?",
@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     question: "What's the support commitment after go-live?",
-    answer: "Not yet finalized — this page will state response times and the ongoing support structure once decided.",
+    answer: "Ongoing support is part of what's typically included. Book a call to walk through the support structure for your hospital.",
   },
 ];
 
@@ -35,17 +35,12 @@ export default function ImplementationPage() {
         compact
         eyebrow="Implementation"
         title="Getting MGear Live at Your Hospital"
-        lead="The shape of a rollout, outlined ahead of a finalized timeline and support commitment."
+        lead="The shape of a rollout, from EHR connectivity to go-live. Book a call to scope it for your hospital."
+        actions={[{ label: "Book a Call", href: "/request-demo" }]}
       />
 
       <Section width="wide">
-        <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
-          This page outlines the typical shape of an implementation. A specific
-          timeline and the finalized support commitment are still being determined.
-        </div>
-
         <SectionHeader
-          className="mt-12"
           eyebrow="Rollout"
           heading="How a rollout is structured"
         />
@@ -70,8 +65,8 @@ export default function ImplementationPage() {
 
         <Eyebrow className="mt-12">Support</Eyebrow>
         <p className="mt-4 max-w-3xl text-body text-slate-600">
-          A specific support commitment — response times and ongoing structure — is
-          still being finalized. This section will be updated once it is.
+          Ongoing support is part of what&apos;s typically included. Book a call to walk
+          through the support structure for your hospital.
         </p>
       </Section>
 

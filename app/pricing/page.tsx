@@ -10,7 +10,7 @@ import { BOOKING_URL } from "@/lib/links";
 export const metadata: Metadata = {
   title: "Pricing — MGear Hospital Revenue Cycle Operating Platform",
   description:
-    "MGear is priced around your hospital's scale and the modules you license, not a public list price. Contact sales for a quote structured to your facility.",
+    "MGear is priced around your hospital's scale and the modules you license, not a public list price. Book a call for a quote structured to your facility.",
 };
 
 const faqs = [
@@ -24,8 +24,8 @@ const faqs = [
       "No. Each facility carries only the modules it's actually licensed for. A module a facility hasn't licensed doesn't appear for its users, and the platform's analytics say so explicitly rather than reporting a misleading zero.",
   },
   {
-    question: "When will a public pricing model be available?",
-    answer: "This page carries a pricing posture rather than final numbers today. It will be updated once the pricing model is finalized.",
+    question: "How do I get a price for my hospital?",
+    answer: "Book a call. We'll walk through the modules you need and quote it for your facility.",
   },
 ];
 
@@ -37,17 +37,11 @@ export default function PricingPage() {
         eyebrow="Pricing"
         title="Priced Around Your Hospital, Not a List Price"
         lead="MGear doesn't publish a flat per-seat rate. Pricing is quoted per hospital, structured around scale and the modules actually licensed."
+        actions={[{ label: "Book a Call", href: "/request-demo" }]}
       />
 
       <Section width="wide">
-        <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
-          This page states MGear&apos;s pricing posture — how pricing works — not final
-          numbers. A specific pricing model, what&apos;s included versus additional, and
-          exact figures are still being finalized.
-        </div>
-
         <SectionHeader
-          className="mt-12"
           eyebrow="The Model"
           heading="How MGear is priced"
           lead="Pricing is structured around your hospital's scale and the specific modules you license — not a one-size fee across every facility. Each facility in a multi-hospital system carries only the modules it's licensed for, so you're never paying for a module that doesn't appear for your users."
@@ -58,9 +52,8 @@ export default function PricingPage() {
           <TagGrid items={["EHR integration (FHIR/HL7)", "Implementation support", "Ongoing support"]} tone="brand" />
         </div>
         <p className="mt-4 max-w-3xl text-body text-slate-600">
-          Exact inclusions and what counts as additional will be confirmed as pricing
-          is finalized — see Implementation for the outline of how a rollout is
-          structured.
+          Exact inclusions are scoped to your hospital on a call — see Implementation
+          for the outline of how a rollout is structured.
         </p>
       </Section>
 

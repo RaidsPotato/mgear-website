@@ -17,18 +17,14 @@ export default function ResourcesPage() {
         compact
         eyebrow="Resources"
         title="Resources"
-        lead="This section is being built out. Today, the one published resource is the Providence case study, covering two programs."
+        lead="The Providence case study, covering two programs, is the published result today. To learn more, book a call."
+        actions={[{ label: "Book a Call", href: "/request-demo" }]}
       />
 
       <Section width="wide">
-        <div className="rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
-          No additional resources — whitepapers, webinars, or further case studies —
-          are published yet. This page will grow as they become available.
-        </div>
-
         <Link
           href="/results"
-          className="group mt-8 flex max-w-md items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-sm transition-colors hover:border-brand/40 hover:shadow-md"
+          className="group flex max-w-md items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-sm transition-colors hover:border-brand/40 hover:shadow-md"
         >
           <div>
             <p className="font-semibold text-charcoal group-hover:text-brand">
